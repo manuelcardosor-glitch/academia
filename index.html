@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academia · PartnersUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#050F1E;--navy2:#0A1C36;--navy3:#0E2347;--navy4:#152B55;
+  --cyan:#00C8FF;--cyan-dim:rgba(0,200,255,.12);--cyan-glow:rgba(0,200,255,.3);
+  --gold:#FFB300;--gold-dim:rgba(255,179,0,.12);
+  --green:#22D37A;--green-dim:rgba(34,211,122,.12);
+  --red:#FF4D6A;--red-dim:rgba(255,77,106,.12);
+  --text:#F0F4FF;--text2:#7A8BAF;--text3:#3D506E;
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);
+  --f1:'Bricolage Grotesque',sans-serif;--f2:'DM Sans',sans-serif;
+  --sidebar:270px;
+}
+html,body{height:100%;background:var(--navy);color:var(--text);font-family:var(--f2);font-size:14px}
+body{display:flex;overflow:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:8px}
+
+/* ─── LOGIN ─── */
+#screen-login{
+  position:fixed;inset:0;z-index:200;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+}
+.login-card{
+  width:100%;max-width:400px;
+  background:var(--navy2);
+  border:1px solid var(--border2);
+  border-radius:20px;
+  padding:40px 36px;
+  position:relative;overflow:hidden;
+}
+.login-card::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,var(--cyan-glow) 0%,transparent 70%);
+  pointer-events:none;
+}
+.login-logo{
+  display:flex;align-items:center;gap:12px;margin-bottom:32px;
+}
+.login-icon{
+  width:42px;height:42px;background:var(--cyan);
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--f1);font-weight:800;font-size:15px;color:var(--navy);
+}
+.login-brand{font-family:var(--f1);font-weight:800;font-size:18px;color:var(--text);line-height:1.1}
+.login-brand span{display:block;font-size:11px;font-weight:400;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+.login-title{font-family:var(--f1);font-weight:700;font-size:22px;color:var(--text);margin-bottom:6px}
+.login-sub{font-size:13px;color:var(--text2);margin-bottom:28px;line-height:1.5}
+.form-field{margin-bottom:16px}
+.form-label{font-family:var(--f1);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text2);display:block;margin-bottom:6px}
+.form-input{
+  width:100%;background:var(--navy3);border:1px solid var(--border2);
+  border-radius:10px;padding:12px 14px;color:var(--text);
+  font-family:var(--f2);font-size:14px;outline:none;
+  transition:border-color .15s;
+}
+.form-input:focus{border-color:var(--cyan)}
+.login-err{color:var(--red);font-size:12px;margin-bottom:12px;display:none;font-weight:500}
+.btn-login{
+  width:100%;background:var(--cyan);color:var(--navy);
+  font-family:var(--f1);font-weight:800;font-size:14px;
+  padding:13px;border-radius:10px;border:none;cursor:pointer;
+  letter-spacing:0.3px;transition:filter .15s;margin-top:4px;
+}
+.btn-login:hover{filter:brightness(1.08)}
+
+/* ─── SIDEBAR ─── */
+#sidebar{
+  width:var(--sidebar);min-width:var(--sidebar);
+  background:var(--navy2);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;height:100vh;overflow:hidden;
+  position:relative;
+}
+.sb-top{padding:20px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
+.sb-logo{display:flex;align-items:center;gap:10px}
+.sb-icon{
+  width:36px;height:36px;background:var(--cyan);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--f1);font-weight:800;font-size:14px;color:var(--navy);flex-shrink:0;
+}
+.sb-brand{font-family:var(--f1);font-weight:800;font-size:14px;color:var(--text);line-height:1.1}
+.sb-brand span{display:block;font-size:10px;font-weight:400;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:1px}
+.sb-user{
+  padding:14px 18px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.sb-avatar{
+  width:32px;height:32px;background:var(--cyan);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--f1);font-weight:700;font-size:12px;color:var(--navy);flex-shrink:0;
+}
+.sb-uname{font-family:var(--f1);font-weight:700;font-size:12px;color:var(--text)}
+.sb-urole{font-size:10px;color:var(--cyan);font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+.sb-prog{padding:12px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
+.sb-prog-row{display:flex;justify-content:space-between;font-family:var(--f1);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text2);margin-bottom:7px}
+.sb-prog-row span{color:var(--cyan)}
+.prog-bar{height:3px;background:var(--border2);border-radius:8px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--cyan),#00AAFF);border-radius:8px;width:0%;transition:width .5s ease}
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0}
+.sb-section{font-family:var(--f1);font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:14px 18px 5px}
+.sb-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 14px 9px 12px;cursor:pointer;
+  border-left:3px solid transparent;transition:all .15s;
+}
+.sb-item:hover{background:var(--navy3)}
+.sb-item.active{background:var(--cyan-dim);border-left-color:var(--cyan)}
+.sb-iicon{
+  width:28px;height:28px;border-radius:7px;background:var(--navy3);
+  display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
+}
+.sb-item.active .sb-iicon{background:var(--cyan-dim)}
+.sb-itext{flex:1;min-width:0}
+.sb-ititle{font-family:var(--f1);font-weight:600;font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-item.active .sb-ititle{color:var(--cyan)}
+.sb-isub{font-size:10px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-badge{font-family:var(--f1);font-weight:700;font-size:9px;padding:2px 6px;border-radius:20px;flex-shrink:0}
+.bd-lock{background:var(--navy3);color:var(--text3)}
+.bd-done{background:var(--green-dim);color:var(--green)}
+.bd-go{background:var(--cyan-dim);color:var(--cyan)}
+.sb-logout{
+  padding:14px 18px;border-top:1px solid var(--border);flex-shrink:0;
+}
+.btn-logout{
+  width:100%;background:transparent;border:1px solid var(--border2);
+  color:var(--text2);font-family:var(--f1);font-weight:600;font-size:11px;
+  padding:9px;border-radius:9px;cursor:pointer;transition:all .15s;
+  text-transform:uppercase;letter-spacing:0.5px;
+}
+.btn-logout:hover{border-color:var(--red);color:var(--red)}
+
+/* ─── MAIN ─── */
+#main{flex:1;overflow-y:auto;display:flex;flex-direction:column;height:100vh}
+#topbar{
+  background:var(--navy2);border-bottom:1px solid var(--border);
+  padding:0 28px;height:54px;display:flex;align-items:center;
+  justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:5;
+}
+.crumb{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text2)}
+.crumb strong{font-family:var(--f1);font-weight:700;color:var(--text)}
+.crumb-sep{color:var(--text3)}
+.topbar-actions{display:flex;align-items:center;gap:10px}
+.btn-sm{
+  font-family:var(--f1);font-weight:700;font-size:11px;padding:7px 14px;
+  border-radius:7px;border:none;cursor:pointer;letter-spacing:0.3px;transition:all .15s;
+}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2)}
+.btn-ghost:hover{color:var(--text)}
+.btn-cyan{background:var(--cyan);color:var(--navy)}
+.btn-cyan:hover{filter:brightness(1.08)}
+#content{flex:1;padding:30px 34px;max-width:880px;width:100%}
+.mbtn-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--text2);font-size:18px;padding:4px}
+
+/* ─── DASHBOARD ─── */
+.hero{
+  background:var(--navy2);border:1px solid var(--border);
+  border-radius:18px;padding:28px 30px;margin-bottom:22px;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;right:-50px;top:-50px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,var(--cyan-glow) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-eye{font-family:var(--f1);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--cyan);margin-bottom:8px}
+.hero-title{font-family:var(--f1);font-size:21px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:6px}
+.hero-sub{font-size:13px;color:var(--text2);max-width:480px;line-height:1.6}
+.hero-btn{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  background:var(--cyan);color:var(--navy);font-family:var(--f1);
+  font-weight:800;font-size:12px;padding:10px 20px;border-radius:9px;
+  border:none;cursor:pointer;transition:all .15s;letter-spacing:0.3px;
+}
+.hero-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.stat-c{background:var(--navy2);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.stat-v{font-family:var(--f1);font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
+.stat-v.c{color:var(--cyan)}.stat-v.g{color:var(--green)}
+.stat-l{font-size:11px;color:var(--text2)}
+.sec-title{font-family:var(--f1);font-weight:700;font-size:12px;color:var(--text);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.mods-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
+.mod-card{
+  background:var(--navy2);border:1px solid var(--border);border-radius:14px;
+  padding:18px 20px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;
+}
+.mod-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.mod-card.locked{opacity:.45;cursor:not-allowed}
+.mod-accent{position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.mod-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.mod-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.mod-status{font-family:var(--f1);font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:0.8px;padding:3px 8px;border-radius:20px}
+.ms-done{background:var(--green-dim);color:var(--green)}
+.ms-prog{background:var(--cyan-dim);color:var(--cyan)}
+.ms-lock{background:var(--navy3);color:var(--text3)}
+.mod-title{font-family:var(--f1);font-weight:700;font-size:13.5px;color:var(--text);margin-bottom:4px;line-height:1.3}
+.mod-desc{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:10px}
+.mod-meta{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--text3)}
+.mod-prog{margin-top:10px;height:3px;background:var(--border);border-radius:8px;overflow:hidden}
+.mod-prog-fill{height:100%;border-radius:8px;transition:width .5s}
+
+/* ─── LESSON ─── */
+.les-header{margin-bottom:22px}
+.les-eye{font-family:var(--f1);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--cyan);margin-bottom:8px}
+.les-title{font-family:var(--f1);font-size:22px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px}
+.les-meta{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--text2)}
+.les-sep{color:var(--text3)}
+.tab-bar{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.tab{font-family:var(--f1);font-weight:700;font-size:11px;padding:10px 16px;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;letter-spacing:0.3px;text-transform:uppercase}
+.tab:hover{color:var(--text)}.tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+.les-list{display:flex;flex-direction:column;gap:3px;margin-bottom:22px}
+.les-item{
+  display:flex;align-items:center;gap:11px;padding:11px 15px;
+  border-radius:10px;cursor:pointer;border:1px solid transparent;transition:all .15s;
+}
+.les-item:hover{background:var(--navy3);border-color:var(--border)}
+.les-item.active{background:var(--cyan-dim);border-color:var(--cyan)}
+.les-item.done .li-n{background:var(--green);color:var(--navy)}
+.li-n{
+  width:26px;height:26px;border-radius:50%;background:var(--navy3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--f1);font-weight:700;font-size:10px;color:var(--text2);flex-shrink:0;transition:all .15s;
+}
+.les-item.active .li-n{background:var(--cyan);color:var(--navy)}
+.li-info{flex:1;min-width:0}
+.li-t{font-family:var(--f1);font-weight:600;font-size:12.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.les-item.active .li-t{color:var(--cyan)}
+.li-d{font-size:10.5px;color:var(--text2)}
+.li-ck{font-size:12px;color:var(--green)}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+.res-card{
+  background:var(--navy3);border:1px solid var(--border);border-radius:10px;
+  padding:12px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:all .15s;
+}
+.res-card:hover{border-color:var(--border2)}
+.res-icon{width:30px;height:30px;border-radius:7px;background:var(--cyan-dim);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.res-title{font-family:var(--f1);font-weight:600;font-size:11px;color:var(--text);line-height:1.3}
+.res-type{font-size:10px;color:var(--text3)}
+
+/* ─── VIDEO ─── */
+.vid-wrap{
+  background:var(--navy3);border:1px solid var(--border);border-radius:14px;
+  aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin-bottom:22px;cursor:pointer;transition:border-color .2s;position:relative;overflow:hidden;
+}
+.vid-wrap:hover{border-color:var(--cyan)}
+.vid-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy3) 0%,var(--navy2) 100%)}
+.vid-play{
+  position:relative;z-index:1;width:54px;height:54px;background:var(--cyan);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;
+  transition:transform .2s;box-shadow:0 4px 20px var(--cyan-glow);color:var(--navy);
+}
+.vid-wrap:hover .vid-play{transform:scale(1.08)}
+.vid-label{position:relative;z-index:1;font-family:var(--f1);font-weight:600;font-size:12px;color:var(--text2)}
+.vid-watched{
+  position:absolute;top:12px;right:12px;z-index:2;
+  background:var(--green);color:var(--navy);font-family:var(--f1);font-weight:700;
+  font-size:10px;padding:4px 10px;border-radius:20px;letter-spacing:0.5px;display:none;
+}
+
+/* ─── LESSON BODY ─── */
+.les-body{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:18px}
+.les-body h3{font-family:var(--f1);font-weight:700;font-size:15px;color:var(--text);margin-bottom:10px;margin-top:18px}
+.les-body h3:first-child{margin-top:0}
+.les-body p{font-size:13.5px;color:var(--text2);line-height:1.8;margin-bottom:12px}
+.les-body ul{margin:8px 0 14px 18px}
+.les-body li{font-size:13.5px;color:var(--text2);line-height:1.8;margin-bottom:4px}
+.les-body li::marker{color:var(--cyan)}
+.highlight{
+  background:var(--cyan-dim);border-left:3px solid var(--cyan);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0;
+  font-size:13px;color:var(--text);line-height:1.7;
+}
+.highlight strong{color:var(--cyan)}
+
+/* ─── QUIZ ─── */
+.quiz-wrap{
+  background:var(--navy2);border:1px solid var(--gold);border-radius:14px;
+  padding:24px 26px;margin-bottom:18px;
+}
+.quiz-title{
+  font-family:var(--f1);font-weight:800;font-size:14px;color:var(--gold);
+  margin-bottom:4px;display:flex;align-items:center;gap:8px;
+}
+.quiz-sub{font-size:12px;color:var(--text2);margin-bottom:20px}
+.q-block{margin-bottom:20px}
+.q-text{font-family:var(--f1);font-weight:700;font-size:13px;color:var(--text);margin-bottom:10px;line-height:1.4}
+.q-opts{display:flex;flex-direction:column;gap:7px}
+.q-opt{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;
+  background:var(--navy3);border:1px solid var(--border);border-radius:9px;
+  cursor:pointer;transition:all .15s;
+}
+.q-opt:hover{border-color:var(--border2)}
+.q-opt.selected{border-color:var(--cyan);background:var(--cyan-dim)}
+.q-opt.correct{border-color:var(--green);background:var(--green-dim)}
+.q-opt.wrong{border-color:var(--red);background:var(--red-dim)}
+.q-radio{
+  width:18px;height:18px;border-radius:50%;border:2px solid var(--border2);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:9px;transition:all .15s;
+}
+.q-opt.selected .q-radio{border-color:var(--cyan);background:var(--cyan);color:var(--navy)}
+.q-opt.correct .q-radio{border-color:var(--green);background:var(--green);color:var(--navy)}
+.q-opt.wrong .q-radio{border-color:var(--red);background:var(--red);color:#fff}
+.q-opt-text{font-size:13px;color:var(--text);line-height:1.4}
+.quiz-actions{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:12px}
+.quiz-score{font-family:var(--f1);font-weight:700;font-size:13px;color:var(--text)}
+.quiz-score span{color:var(--cyan)}
+.quiz-result{
+  padding:14px 18px;border-radius:10px;font-family:var(--f1);font-weight:700;font-size:13px;
+  margin-top:14px;display:none;
+}
+.quiz-result.pass{background:var(--green-dim);border:1px solid var(--green);color:var(--green)}
+.quiz-result.fail{background:var(--red-dim);border:1px solid var(--red);color:var(--red)}
+
+/* ─── NAV BUTTONS ─── */
+.les-nav{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:18px 0;border-top:1px solid var(--border);
+}
+.nav-btn{
+  display:flex;align-items:center;gap:7px;font-family:var(--f1);font-weight:700;font-size:11px;
+  padding:10px 18px;border-radius:9px;cursor:pointer;border:1px solid var(--border2);
+  background:transparent;color:var(--text2);transition:all .15s;letter-spacing:0.3px;
+}
+.nav-btn:hover:not(:disabled){color:var(--text);background:var(--navy3)}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.nav-btn.primary{background:var(--cyan);color:var(--navy);border-color:var(--cyan)}
+.nav-btn.primary:hover{filter:brightness(1.08)}
+.nav-btn.locked-btn{background:var(--navy3);color:var(--text3);border-color:var(--border);cursor:not-allowed}
+
+/* ─── TOAST ─── */
+#toast{
+  position:fixed;bottom:22px;right:22px;
+  background:var(--navy2);border:1px solid var(--green);color:var(--green);
+  font-family:var(--f1);font-weight:700;font-size:12px;padding:10px 16px;
+  border-radius:9px;display:flex;align-items:center;gap:8px;
+  opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:100;
+}
+#toast.show{opacity:1;transform:translateY(0)}
+#toast.warn{border-color:var(--gold);color:var(--gold)}
+
+/* ─── MOBILE ─── */
+@media(max-width:768px){
+  #sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);transition:transform .25s}
+  #sidebar.open{transform:translateX(0)}
+  .mbtn-toggle{display:flex}
+  #content{padding:18px 16px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .mods-grid{grid-template-columns:1fr}
+  .res-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ LOGIN ════ -->
+<div id="screen-login">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-icon">PU</div>
+      <div class="login-brand">PartnersUp<span>Academia</span></div>
+    </div>
+    <div class="login-title">Bienvenido de vuelta</div>
+    <div class="login-sub">Ingresa con tus credenciales para continuar tu formación.</div>
+    <div class="form-field">
+      <label class="form-label">Usuario</label>
+      <input id="inp-user" class="form-input" type="text" placeholder="tu.usuario" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="form-field">
+      <label class="form-label">Contraseña</label>
+      <input id="inp-pass" class="form-input" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div id="login-err" class="login-err">Usuario o contraseña incorrectos.</div>
+    <button class="btn-login" onclick="doLogin()">Ingresar →</button>
+  </div>
+</div>
+
+<!-- ════ APP ════ -->
+<div id="app" style="display:none;width:100%;height:100%;display:none;flex">
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="sb-top">
+    <div class="sb-logo">
+      <div class="sb-icon">PU</div>
+      <div class="sb-brand">PartnersUp<span>Academia</span></div>
+    </div>
+  </div>
+  <div class="sb-user">
+    <div class="sb-avatar" id="sbAv">A</div>
+    <div>
+      <div class="sb-uname" id="sbName">Asesor</div>
+      <div class="sb-urole" id="sbRole">Asesor</div>
+    </div>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-row">Progreso total <span id="progPct">0%</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section">Principal</div>
+    <div class="sb-item active" onclick="goView('dash')">
+      <div class="sb-iicon">🏠</div>
+      <div class="sb-itext"><div class="sb-ititle">Dashboard</div><div class="sb-isub">Resumen</div></div>
+    </div>
+    <div class="sb-section">Módulos</div>
+    <div class="sb-item" onclick="goMod(0)"><div class="sb-iicon">🚀</div><div class="sb-itext"><div class="sb-ititle">1. Fundamentos</div><div class="sb-isub">El sistema completo</div></div><span class="sb-badge bd-go" id="b0">Inicio</span></div>
+    <div class="sb-item" onclick="goMod(1)"><div class="sb-iicon">📣</div><div class="sb-itext"><div class="sb-ititle">2. Meta Ads</div><div class="sb-isub">Captación de pacientes</div></div><span class="sb-badge bd-lock" id="b1">🔒</span></div>
+    <div class="sb-item" onclick="goMod(2)"><div class="sb-iicon">⚙️</div><div class="sb-itext"><div class="sb-ititle">3. CRM</div><div class="sb-isub">Gestión de leads</div></div><span class="sb-badge bd-lock" id="b2">🔒</span></div>
+    <div class="sb-item" onclick="goMod(3)"><div class="sb-iicon">🤖</div><div class="sb-itext"><div class="sb-ititle">4. Agente IA</div><div class="sb-isub">WhatsApp automático</div></div><span class="sb-badge bd-lock" id="b3">🔒</span></div>
+    <div class="sb-item" onclick="goMod(4)"><div class="sb-iicon">📈</div><div class="sb-itext"><div class="sb-ititle">5. Retención</div><div class="sb-isub">Pacientes que regresan</div></div><span class="sb-badge bd-lock" id="b4">🔒</span></div>
+    <div class="sb-item" onclick="goMod(5)"><div class="sb-iicon">💎</div><div class="sb-itext"><div class="sb-ititle">6. Escalado</div><div class="sb-isub">Crecer sin caos</div></div><span class="sb-badge bd-lock" id="b5">🔒</span></div>
+    <div class="sb-section" style="margin-top:6px">Recursos</div>
+    <div class="sb-item" onclick="goView('lib')"><div class="sb-iicon">📁</div><div class="sb-itext"><div class="sb-ititle">Biblioteca</div><div class="sb-isub">Materiales y plantillas</div></div></div>
+  </nav>
+  <div class="sb-logout"><button class="btn-logout" onclick="doLogout()">Cerrar sesión</button></div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="topbar">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="mbtn-toggle" onclick="toggleSB()">☰</button>
+      <div class="crumb">Academia <span class="crumb-sep">›</span> <strong id="crumbT">Dashboard</strong></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-sm btn-ghost" id="btnCont" onclick="goContinue()">Continuar →</button>
+    </div>
+  </div>
+
+  <div id="content">
+
+  <!-- ═══ DASHBOARD ═══ -->
+  <div id="v-dash">
+    <div class="hero">
+      <div class="hero-eye">👋 Academia PartnersUp</div>
+      <div class="hero-title">Aprende el sistema.<br>Domina cada herramienta.</div>
+      <div class="hero-sub">6 módulos diseñados para que puedas operar el sistema de adquisición de pacientes de principio a fin. Con quiz obligatorio en cada lección.</div>
+      <button class="hero-btn" onclick="goContinue()">▶ Comenzar</button>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-c"><div class="stat-v c" id="st1">0</div><div class="stat-l">Lecciones completadas</div></div>
+      <div class="stat-c"><div class="stat-v" id="st2">24</div><div class="stat-l">Total de lecciones</div></div>
+      <div class="stat-c"><div class="stat-v g" id="st3">0%</div><div class="stat-l">Progreso general</div></div>
+      <div class="stat-c"><div class="stat-v" id="st4">4.5h</div><div class="stat-l">Contenido total</div></div>
+    </div>
+    <div class="sec-title">Módulos del Programa</div>
+    <div class="mods-grid" id="modsGrid"></div>
+    <div class="sec-title" style="margin-top:20px">Próxima Lección</div>
+    <div id="nextCard"></div>
+  </div>
+
+  <!-- ═══ MODULE ═══ -->
+  <div id="v-mod" style="display:none">
+    <div class="les-header">
+      <div class="les-eye" id="mEye">Módulo 1</div>
+      <div class="les-title" id="mTitle">Título</div>
+      <div class="les-meta"><span id="mLes">4 lecciones</span><span class="les-sep">·</span><span id="mDur">45 min</span></div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab active" onclick="modTab('c',this)">Contenido</div>
+      <div class="tab" onclick="modTab('r',this)">Recursos</div>
+    </div>
+    <div id="mt-c"><div class="les-list" id="lesList"></div></div>
+    <div id="mt-r" style="display:none"><div class="res-grid" id="modRes"></div></div>
+  </div>
+
+  <!-- ═══ LESSON ═══ -->
+  <div id="v-les" style="display:none">
+    <div class="les-header">
+      <div class="les-eye" id="lEye">Módulo 1 · Bienvenida</div>
+      <div class="les-title" id="lTitle">Lección</div>
+      <div class="les-meta"><span id="lDur">10 min</span><span class="les-sep">·</span><span id="lPos">1/4</span></div>
+    </div>
+    <div class="vid-wrap" id="vidWrap" onclick="watchVideo()">
+      <div class="vid-bg"></div>
+      <div class="vid-play">▶</div>
+      <div class="vid-label" id="vidLabel">Haz clic para ver el video</div>
+      <div class="vid-watched" id="vidDone">✓ Visto</div>
+    </div>
+    <div class="les-body" id="lBody"></div>
+
+    <!-- QUIZ -->
+    <div class="quiz-wrap" id="quizWrap">
+      <div class="quiz-title">🎯 Quiz de la Lección</div>
+      <div class="quiz-sub">Responde correctamente para desbloquear la siguiente lección. Necesitas al menos 2 de 3 respuestas correctas.</div>
+      <div id="quizQuestions"></div>
+      <div class="quiz-result" id="quizResult"></div>
+      <div class="quiz-actions">
+        <div class="quiz-score" id="quizScore"></div>
+        <button class="btn-sm btn-cyan" id="btnQuiz" onclick="submitQuiz()">Verificar respuestas</button>
+      </div>
+    </div>
+
+    <div class="les-nav">
+      <button class="nav-btn" id="btnPrev" onclick="prevLes()">← Anterior</button>
+      <button class="nav-btn primary locked-btn" id="btnNext" onclick="nextLes()">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- ═══ LIBRARY ═══ -->
+  <div id="v-lib" style="display:none">
+    <div class="hero" style="margin-bottom:22px">
+      <div class="hero-eye">📁 Biblioteca</div>
+      <div class="hero-title" style="font-size:18px">Materiales de formación</div>
+      <div class="hero-sub">Recursos de apoyo para cada módulo del programa.</div>
+    </div>
+    <div class="sec-title">Fundamentos del Sistema</div>
+    <div class="res-grid" style="margin-bottom:22px">
+      <div class="res-card"><div class="res-icon">📄</div><div><div class="res-title">Guía de Activación</div><div class="res-type">PDF · 8 páginas</div></div></div>
+      <div class="res-card"><div class="res-icon">📊</div><div><div class="res-title">KPIs de Referencia</div><div class="res-type">Plantilla</div></div></div>
+      <div class="res-card"><div class="res-icon">🎥</div><div><div class="res-title">Video de Bienvenida</div><div class="res-type">Video · 8 min</div></div></div>
+    </div>
+    <div class="sec-title">Meta Ads</div>
+    <div class="res-grid" style="margin-bottom:22px">
+      <div class="res-card"><div class="res-icon">📝</div><div><div class="res-title">Plantilla de Copy VSL</div><div class="res-type">Google Docs</div></div></div>
+      <div class="res-card"><div class="res-icon">🎨</div><div><div class="res-title">Pack de Creativos</div><div class="res-type">Canva · 8 piezas</div></div></div>
+      <div class="res-card"><div class="res-icon">📊</div><div><div class="res-title">Estructura de Campaña</div><div class="res-type">PDF · 12 páginas</div></div></div>
+    </div>
+    <div class="sec-title">CRM & Automatizaciones</div>
+    <div class="res-grid">
+      <div class="res-card"><div class="res-icon">⚙️</div><div><div class="res-title">Flujo de Automatización</div><div class="res-type">Snapshot importable</div></div></div>
+      <div class="res-card"><div class="res-icon">💬</div><div><div class="res-title">Scripts Agente IA</div><div class="res-type">Google Docs</div></div></div>
+      <div class="res-card"><div class="res-icon">📋</div><div><div class="res-title">Pipeline de Seguimiento</div><div class="res-type">CSV importable</div></div></div>
+    </div>
+  </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+</div><!-- /app -->
+
+<div id="toast">✓ <span id="toastMsg">Listo</span></div>
+
+<script>
+// ══════════════════════════════════
+// AUTH — credenciales en frontend (MVP)
+// ══════════════════════════════════
+const USERS = {
+  'asesor1':  {pass:'academia2026', name:'Admin UP',  role:'Asesor'},
+  'asesor2':  {pass:'academia2026', name:'Asesor 1',    role:'Asesor'},
+  'asesor3':  {pass:'academia2026', name:'Asesor 2',    role:'Asesor'},
+  'asesor4':  {pass:'academia2026', name:'Asesor 3',    role:'Asesor'},
+  'asesor5':  {pass:'academia2026', name:'Asesor 4',    role:'Asesor'},
+};
+
+let currentUser = null;
+
+function doLogin(){
+  const u = document.getElementById('inp-user').value.trim().toLowerCase();
+  const p = document.getElementById('inp-pass').value;
+  const err = document.getElementById('login-err');
+  if(USERS[u] && USERS[u].pass === p){
+    currentUser = {username:u, ...USERS[u]};
+    err.style.display='none';
+    document.getElementById('screen-login').style.display='none';
+    const app = document.getElementById('app');
+    app.style.display='flex';
+    initApp();
+  } else {
+    err.style.display='block';
+    document.getElementById('inp-pass').value='';
+  }
+}
+
+function doLogout(){
+  currentUser = null;
+  document.getElementById('app').style.display='none';
+  document.getElementById('screen-login').style.display='flex';
+  document.getElementById('inp-user').value='';
+  document.getElementById('inp-pass').value='';
+}
+
+// ══════════════════════════════════
+// DATA
+// ══════════════════════════════════
+const MODS = [
+  {id:0,em:'🚀',col:'#00C8FF',locked:false,
+   title:'Fundamentos del Sistema',
+   desc:'Qué es el sistema, sus cuatro pilares, cómo leer el CRM y las métricas que importan.',
+   dur:'45 min',cnt:4,
+   lessons:[
+    {title:'Los cuatro pilares del sistema',dur:'10 min',
+     body:`<h3>Un sistema, no una campaña</h3><p>El sistema de captación de pacientes tiene cuatro componentes que trabajan juntos. Ninguno funciona solo — su valor está en la integración.</p><ul><li><strong>Meta Ads</strong> — anuncios que llevan pacientes potenciales al sistema</li><li><strong>CRM</strong> — pipeline que captura, clasifica y da seguimiento automático a cada lead</li><li><strong>Agente IA en WhatsApp</strong> — responde, califica y agenda las 24 horas sin intervención manual</li><li><strong>Asesoría mensual</strong> — revisión de métricas y ajuste estratégico</li></ul><div class="highlight">Los cuatro pilares activos desde el día uno. <strong>La activación completa tarda 7 días hábiles desde la firma.</strong></div><h3>El rol del asesor en el sistema</h3><p>Como asesor, tu función es acompañar al cliente en la implementación, explicar cómo leer sus resultados y garantizar que use el sistema correctamente. No operarás las campañas — el equipo técnico lo hace. Pero debes entender cada parte para responder preguntas y resolver dudas.</p>`,
+     quiz:[
+      {q:'¿Cuántos días hábiles tarda la activación completa del sistema?',opts:['3 días','7 días','14 días','30 días'],ans:1},
+      {q:'¿Cuál es el rol principal del asesor con el cliente?',opts:['Operar las campañas de Meta','Gestionar el CRM manualmente','Acompañar la implementación y explicar resultados','Crear el contenido de los anuncios'],ans:2},
+      {q:'¿Cuántos pilares tiene el sistema?',opts:['Dos','Tres','Cuatro','Cinco'],ans:2}
+     ]},
+    {title:'Cómo navegar el CRM con el cliente',dur:'12 min',
+     body:`<h3>El CRM es el corazón operativo</h3><p>El CRM gestiona todos los leads del cliente. Cada paciente potencial entra, avanza por etapas y termina en una cita agendada o se descarta con registro. Ningún lead se pierde si el sistema está bien configurado.</p><p>Las etapas del pipeline estándar:</p><ul><li><strong>Nuevo Lead</strong> — acaba de llenar el formulario del anuncio</li><li><strong>Contactado</strong> — el agente IA ya escribió por WhatsApp</li><li><strong>Calificado</strong> — confirmó interés y tiene perfil ideal</li><li><strong>Cita Agendada</strong> — fecha y hora confirmadas</li><li><strong>Asistió</strong> — fue a la clínica</li><li><strong>Paciente</strong> — compró un tratamiento</li></ul><div class="highlight">El KPI más importante no es cuántos leads entran. Es <strong>cuántos pasan de Agendado a Asistió.</strong></div><h3>Revisión semanal de 15 minutos</h3><p>Enseña al cliente a hacer una revisión semanal de su pipeline. Busca etapas donde los leads se acumulan — ese es el cuello de botella que deben reportar en la asesoría mensual.</p>`,
+     quiz:[
+      {q:'¿Qué etapa sigue después de "Calificado" en el pipeline?',opts:['Nuevo Lead','Contactado','Cita Agendada','Paciente'],ans:2},
+      {q:'¿Cuánto tiempo debe tomar la revisión semanal del CRM?',opts:['1 hora','30 minutos','15 minutos','5 minutos'],ans:2},
+      {q:'¿Qué indica que hay un lead acumulado en una etapa?',opts:['Todo está funcionando bien','Hay un cuello de botella que reportar','El agente IA falló','El lead ya es paciente'],ans:1}
+     ]},
+    {title:'Métricas que debes saber explicar',dur:'12 min',
+     body:`<h3>Tres métricas, todo el contexto</h3><p>Para acompañar a un cliente necesitas poder explicar tres números con claridad:</p><p><strong>CPL (Costo Por Lead)</strong>: inversión en publicidad dividida por número de leads. En clínicas estéticas un CPL saludable está entre $8,000 y $25,000 COP. Si está por encima, hay ajuste pendiente en el anuncio o el público.</p><p><strong>Tasa de agendamiento</strong>: porcentaje de leads que terminan con cita confirmada. Entre 20% y 45% es saludable. Por debajo de 20%, el agente IA necesita ajuste en su guión.</p><p><strong>ROI del sistema</strong>: ingresos generados divididos entre inversión total (gestión más pauta). A partir del mes 3, la mayoría de las clínicas activas están en 2.5x–4x.</p><div class="highlight">No optimices por CPL. <strong>Optimiza siempre por costo por paciente que asistió.</strong> Un lead barato que nunca llega vale menos que uno caro que compra.</div>`,
+     quiz:[
+      {q:'¿Cuál es el rango de CPL saludable para clínicas estéticas en Colombia?',opts:['$1,000 – $5,000 COP','$8,000 – $25,000 COP','$50,000 – $100,000 COP','$200,000 – $500,000 COP'],ans:1},
+      {q:'¿Qué tasa de agendamiento indica que el agente IA necesita ajuste?',opts:['Por encima del 45%','Entre 20% y 45%','Por debajo del 20%','Por encima del 60%'],ans:2},
+      {q:'¿En qué métrica debes enfocarte al optimizar el sistema?',opts:['CPL más bajo posible','Más leads por día','Costo por paciente que asistió','Mayor alcance de los anuncios'],ans:2}
+     ]},
+    {title:'Tu rol en la asesoría mensual',dur:'11 min',
+     body:`<h3>La asesoría que maximiza resultados</h3><p>La asesoría mensual es el punto de contacto más importante con el cliente. Para que sea productiva, debes llegar con cuatro datos:</p><ul><li>Inversión total en pauta ese mes</li><li>Total de leads generados</li><li>Total de citas que asistieron</li><li>Ingresos generados por pacientes nuevos del sistema</li></ul><p>Con esos cuatro datos calculas el ROI del mes y propones ajustes concretos. La mayoría de las mejoras en resultados vienen de estas sesiones — no del setup inicial.</p><div class="highlight">El sistema mejora con el tiempo. <strong>Los primeros 30–60 días son de aprendizaje del algoritmo.</strong> Los resultados más fuertes vienen del mes 2 en adelante. Comunica esto al cliente desde el inicio.</div><h3>Gestión de expectativas</h3><p>El cliente que entiende la curva de aprendizaje del sistema tiene más paciencia y mejores resultados. Explica siempre que el mes 1 es de ajuste y que el mes 3 en adelante es donde el sistema entrega su potencial real.</p>`,
+     quiz:[
+      {q:'¿Cuántos datos necesitas tener antes de la asesoría mensual?',opts:['1','2','4','6'],ans:2},
+      {q:'¿Cuándo el sistema entrega sus mejores resultados?',opts:['En el primer mes','En el día de la activación','A partir del mes 3','Después de un año'],ans:2},
+      {q:'¿Por qué es importante explicar la curva de aprendizaje al cliente?',opts:['Para cobrar más','Para que tenga paciencia y mejores resultados','Para evitar reuniones','No es importante explicarla'],ans:1}
+     ]}
+   ],
+   resources:[{i:'🚀',t:'Guía de Activación',s:'PDF · 8 páginas'},{i:'📊',t:'KPIs de Referencia',s:'Plantilla'},{i:'🎥',t:'Video de Bienvenida',s:'8 min'}]
+  },
+  {id:1,em:'📣',col:'#3B82F6',locked:true,
+   title:'Meta Ads para Clínicas',
+   desc:'Estructura de campañas, cómo interpretar reportes y qué decirle al cliente sobre sus anuncios.',
+   dur:'55 min',cnt:4,
+   lessons:[
+    {title:'Cómo funciona el algoritmo de Meta',dur:'11 min',
+     body:`<h3>El algoritmo trabaja para ti — si lo dejas</h3><p>Meta no distribuye anuncios al azar. Su algoritmo aprende qué personas tienen más probabilidad de llenar el formulario y concentra el presupuesto en ellas. Ese proceso se llama fase de aprendizaje y dura entre 7 y 14 días.</p><p>Los primeros 15 días de una campaña nueva son los más costosos: el algoritmo está invirtiendo en aprender. Interrumpir, pausar o hacer cambios frecuentes reinicia el aprendizaje.</p><div class="highlight">Regla principal: <strong>no tocar las campañas mientras están aprendiendo.</strong> La paciencia en ese momento vale más que cualquier ajuste.</div>`,
+     quiz:[
+      {q:'¿Cuánto dura la fase de aprendizaje del algoritmo de Meta?',opts:['1-2 días','7-14 días','30 días','3 meses'],ans:1},
+      {q:'¿Qué pasa si pausas una campaña durante la fase de aprendizaje?',opts:['El algoritmo mejora','El costo baja','El aprendizaje se reinicia','No pasa nada'],ans:2},
+      {q:'¿Por qué los primeros 15 días son los más costosos?',opts:['Meta cobra más al inicio','El algoritmo está aprendiendo e invirtiendo en datos','Los creativos no están optimizados','La audiencia es nueva'],ans:1}
+     ]},
+    {title:'Estructura de campaña: CBO, Ad Sets y Creativos',dur:'12 min',
+     body:`<h3>Tres niveles que trabajan juntos</h3><p>Las campañas tienen una estructura de tres niveles:</p><ul><li><strong>Campaña (CBO)</strong> — define el objetivo y controla el presupuesto total. El presupuesto está aquí para que Meta lo distribuya inteligentemente entre los grupos de anuncios.</li><li><strong>Ad Sets</strong> — define el público y el posicionamiento. Cada ad set apunta a un segmento diferente (por ciudad, interés o comportamiento).</li><li><strong>Anuncios (Creativos)</strong> — el video o imagen más el copy que ve el paciente.</li></ul><div class="highlight">El equipo técnico decide la estructura. <strong>Tu trabajo es entenderla para poder interpretar los reportes</strong> y hacer preguntas precisas.</div>`,
+     quiz:[
+      {q:'¿Dónde se configura el presupuesto en una campaña CBO?',opts:['En cada anuncio individual','En el nivel de Ad Set','En el nivel de Campaña','En la cuenta de Meta'],ans:2},
+      {q:'¿Qué define principalmente el Ad Set?',opts:['El texto del anuncio','El público y posicionamiento','El presupuesto total','El objetivo de la campaña'],ans:1},
+      {q:'¿Qué son los creativos en la estructura de una campaña?',opts:['Los públicos configurados','El presupuesto asignado','El video o imagen y el copy que ve el paciente','Las reglas de optimización'],ans:2}
+     ]},
+    {title:'Cómo interpretar el reporte de campañas',dur:'13 min',
+     body:`<h3>Las 5 columnas que revisas cada semana</h3><p>Para gestionar la inversión solo necesitas 5 columnas del panel de Meta:</p><ul><li><strong>Alcance</strong> — personas únicas que vieron el anuncio</li><li><strong>Impresiones</strong> — veces que se mostró (incluye repetición)</li><li><strong>Costo por resultado</strong> — CPL: cuánto pagaron por cada lead</li><li><strong>Resultados</strong> — total de leads del período</li><li><strong>Presupuesto gastado</strong> — inversión total</li></ul><div class="highlight">Si el CPL sube semana a semana, hay saturación de audiencia. <strong>El antídoto es creativo nuevo.</strong> Eso es lo que el equipo ajustará en la asesoría.</div>`,
+     quiz:[
+      {q:'¿Qué indica que hay saturación de audiencia?',opts:['El CPL baja semana a semana','El CPL sube semana a semana','El alcance aumenta','Las impresiones disminuyen'],ans:1},
+      {q:'¿Qué diferencia hay entre Alcance e Impresiones?',opts:['Son lo mismo','Alcance son personas únicas, Impresiones incluye repetición','Impresiones son personas únicas, Alcance incluye repetición','No hay diferencia importante'],ans:1},
+      {q:'¿Cuál es el antídoto principal para la saturación de audiencia?',opts:['Aumentar el presupuesto','Cambiar el público objetivo','Crear nuevo creativo (video o imagen)','Pausar la campaña 7 días'],ans:2}
+     ]},
+    {title:'Preguntas clave para la asesoría',dur:'19 min',
+     body:`<h3>Las preguntas que separan a un asesor promedio de uno excelente</h3><p>Los asesores que mejor acompañan a sus clientes son los que hacen preguntas precisas basadas en datos, no los que solo transmiten información.</p><p>Preguntas estándar para cada asesoría mensual:</p><ul><li>¿Cuál fue el CPL este mes comparado con el anterior?</li><li>¿Qué creativo generó más leads con menor costo?</li><li>¿Hay algún ad set que debería pausarse o escalarse?</li><li>¿Qué contenido nuevo recomiendas grabar este mes?</li><li>¿La tasa de agendamiento del cliente es mejor o peor que el benchmark del sector?</li></ul><div class="highlight">La última pregunta es la más poderosa. <strong>Saber cómo está el cliente vs el promedio del sector le da contexto real</strong> sobre si el sistema está funcionando bien en su caso.</div>`,
+     quiz:[
+      {q:'¿Cuál es la pregunta más poderosa para contextualizar los resultados del cliente?',opts:['¿Cuánto gastamos este mes?','¿Hay que cambiar el creativo?','¿La tasa de agendamiento está por encima o debajo del benchmark?','¿El cliente está satisfecho?'],ans:2},
+      {q:'¿En qué se basan los mejores asesores para acompañar a sus clientes?',opts:['En experiencia personal','En datos y preguntas precisas','En opiniones del equipo','En tendencias del mercado'],ans:1},
+      {q:'¿Con qué frecuencia deben revisarse estas preguntas?',opts:['Diariamente','Semanalmente','En cada asesoría mensual','Trimestralmente'],ans:2}
+     ]}
+   ],
+   resources:[{i:'📝',t:'Copy VSL Clínica',s:'Google Docs'},{i:'🎨',t:'Pack Creativos',s:'Canva 8 piezas'},{i:'📊',t:'Estructura de Campaña',s:'PDF'}]
+  },
+  {id:2,em:'⚙️',col:'#8B5CF6',locked:true,
+   title:'CRM y Automatizaciones',
+   desc:'Cómo funciona el CRM, el pipeline de seguimiento y las automatizaciones que trabajan solas.',
+   dur:'50 min',cnt:4,
+   lessons:[
+    {title:'Arquitectura del CRM de captación',dur:'13 min',
+     body:`<h3>El sistema nervioso de la operación</h3><p>El CRM es el sistema que conecta todos los canales. Cuando un lead llena el formulario del anuncio, en menos de 90 segundos recibe un mensaje del agente IA por WhatsApp. Esa velocidad de respuesta es la que determina la tasa de conversión — no el copy del anuncio.</p><p>El CRM gestiona cuatro tipos de comunicación automática: mensajes de bienvenida, seguimientos programados, confirmaciones de cita y recordatorios pre-cita.</p><div class="highlight">Estudios del sector muestran que responder en los primeros 5 minutos multiplica por 9 la probabilidad de convertir ese lead. <strong>El agente IA responde en 90 segundos.</strong></div>`,
+     quiz:[
+      {q:'¿En cuánto tiempo responde el agente IA al nuevo lead?',opts:['5 minutos','90 segundos','24 horas','Cuando el equipo lo revise'],ans:1},
+      {q:'¿Cuántos tipos de comunicación automática gestiona el CRM?',opts:['Uno','Dos','Cuatro','Seis'],ans:2},
+      {q:'Responder en los primeros 5 minutos multiplica la conversión por:',opts:['2 veces','5 veces','9 veces','15 veces'],ans:2}
+     ]},
+    {title:'Flujo de seguimiento automático',dur:'12 min',
+     body:`<h3>El sistema que trabaja mientras el equipo duerme</h3><p>El flujo de seguimiento tiene tres disparadores automáticos para leads que no responden:</p><ul><li>Mensaje inicial: a los 90 segundos de registrarse</li><li>Segundo seguimiento: a las 24 horas si no hubo respuesta</li><li>Tercer seguimiento: a las 72 horas con una propuesta de fecha concreta</li></ul><p>Si después de tres intentos no hay respuesta, el lead pasa a una cola de "revisión manual" donde el asesor de la clínica puede intervenir con contexto completo.</p><div class="highlight">Este flujo recupera entre el 15% y 25% de leads que sin él se habrían perdido. <strong>Ese porcentaje es la diferencia entre una agenda medio llena y una llena.</strong></div>`,
+     quiz:[
+      {q:'¿Cuándo se envía el segundo seguimiento automático?',opts:['A los 90 segundos','A las 6 horas','A las 24 horas','A los 3 días'],ans:2},
+      {q:'¿Qué porcentaje de leads recupera el flujo de seguimiento?',opts:['5-10%','15-25%','40-50%','60-70%'],ans:1},
+      {q:'¿Qué pasa con el lead después de tres intentos sin respuesta?',opts:['Se elimina del sistema','Pasa a revisión manual','Se reactiva en 30 días','Se marca como perdido definitivamente'],ans:1}
+     ]},
+    {title:'Recordatorios y confirmación de citas',dur:'13 min',
+     body:`<h3>El proceso que reduce las inasistencias en un 30%</h3><p>Una vez confirmada la cita, el sistema envía tres comunicaciones automáticas:</p><ul><li>Confirmación inmediata con dirección y detalles</li><li>Recordatorio 24 horas antes de la cita</li><li>Recordatorio 2 horas antes de la cita</li></ul><p>Este protocolo reduce la tasa de inasistencia en promedio un 30%. La diferencia entre el 55% y el 85% de asistencia en una clínica con 40 citas al mes son 12 pacientes adicionales que asistieron — sin ningún trabajo extra.</p><div class="highlight">El sistema gestiona los recordatorios. <strong>La responsabilidad del asesor y del cliente es asegurarse de que la información de la cita en el CRM sea correcta.</strong> Una hora equivocada genera el efecto contrario.</div>`,
+     quiz:[
+      {q:'¿Cuántas comunicaciones automáticas envía el sistema después de confirmar una cita?',opts:['Una','Dos','Tres','Cuatro'],ans:2},
+      {q:'¿En cuánto reduce el protocolo de recordatorios la tasa de inasistencia?',opts:['10%','20%','30%','50%'],ans:2},
+      {q:'¿Cuál es la responsabilidad principal del asesor respecto a las citas en el CRM?',opts:['Enviar los recordatorios manualmente','Confirmar las citas por teléfono','Asegurarse de que la información en el CRM sea correcta','Programar el agente IA diariamente'],ans:2}
+     ]},
+    {title:'Intervención manual: cuándo y cómo',dur:'12 min',
+     body:`<h3>El 20% que requiere toque humano</h3><p>El agente IA maneja el 80% de los casos de forma autónoma. El 20% restante requiere intervención humana: objeciones complejas, casos especiales, o pacientes que prefieren hablar con una persona.</p><p>El protocolo es claro: el asesor de la clínica nunca debe "competir" con el agente IA en una conversación activa. Si el agente está manejando un lead, el asesor espera a que ese lead llegue a la cola de revisión manual. De lo contrario, se crean mensajes duplicados que confunden al prospecto.</p><div class="highlight">Cuando el asesor toma una conversación de revisión manual, tiene acceso al historial completo. <strong>Usa ese contexto — nunca preguntes algo que el agente ya preguntó.</strong></div>`,
+     quiz:[
+      {q:'¿Qué porcentaje de casos maneja el agente IA de forma autónoma?',opts:['50%','60%','70%','80%'],ans:3},
+      {q:'¿Qué pasa si el asesor de la clínica interviene en una conversación activa del agente?',opts:['Mejora la experiencia','Se crea duplicación de mensajes que confunde al prospecto','El agente se apaga','No pasa nada importante'],ans:1},
+      {q:'¿Qué información tiene el asesor cuando toma una conversación de revisión manual?',opts:['Solo el nombre del lead','Solo el servicio de interés','El historial completo de la conversación','No tiene información previa'],ans:2}
+     ]}
+   ],
+   resources:[{i:'⚙️',t:'Snapshot de Automatización',s:'Importable'},{i:'📋',t:'Pipeline Configurado',s:'CSV'},{i:'📝',t:'Manual de CRM',s:'PDF'}]
+  },
+  {id:3,em:'🤖',col:'#10B981',locked:true,
+   title:'Agente IA en WhatsApp',
+   desc:'Cómo funciona el agente, qué puede y no puede hacer, y cómo actualizar su entrenamiento.',
+   dur:'40 min',cnt:4,
+   lessons:[
+    {title:'Cómo piensa y actúa el agente IA',dur:'10 min',
+     body:`<h3>Un consultor de ventas entrenado, no un chatbot</h3><p>El agente IA no responde con frases genéricas. Está entrenado con el conocimiento específico de la clínica: servicios, rangos de precio, disponibilidad general de agenda, objeciones comunes y el perfil del paciente ideal.</p><p>Su única función es mover al lead hacia una cita confirmada. Cada mensaje que envía está diseñado con ese objetivo.</p><div class="highlight">El agente no cierra ventas. <strong>El agente cierra citas.</strong> La venta la cierra el especialista en la clínica durante la consulta. Esa división es intencional.</div>`,
+     quiz:[
+      {q:'¿Cuál es la función principal del agente IA?',opts:['Vender tratamientos','Mover al lead hacia una cita confirmada','Reemplazar al personal de la clínica','Gestionar redes sociales'],ans:1},
+      {q:'¿Quién cierra la venta del tratamiento?',opts:['El agente IA','El asesor de PartnersUp','El especialista en la clínica durante la consulta','El sistema automáticamente'],ans:2},
+      {q:'¿Con qué información específica está entrenado el agente?',opts:['Solo servicios generales de estética','Información genérica sobre medicina','Servicios, precios, agenda y perfil del paciente ideal de la clínica','Solo el nombre de la clínica'],ans:2}
+     ]},
+    {title:'Límites del agente: qué puede y no puede hacer',dur:'10 min',
+     body:`<h3>Los límites son intencionales y protegen al cliente</h3><p>El agente puede: responder preguntas sobre servicios, proponer horarios de cita, confirmar citas, manejar objeciones básicas de precio, enviar recordatorios y reactivar leads fríos.</p><p>El agente no puede: dar diagnósticos médicos, comprometer descuentos no aprobados, manejar quejas de pacientes actuales, ni tomar decisiones fuera de su guión configurado.</p><p>Cuando alguien pregunta algo fuera del guión, el agente responde: "Te comunico con un asesor en breve" y escala la conversación al equipo humano. Ese es el protocolo correcto.</p><div class="highlight">Si la clínica te reporta que el agente "no supo responder" algo, <strong>ese es el caso perfecto para actualizar el entrenamiento</strong> — no para intervenir manualmente.</div>`,
+     quiz:[
+      {q:'¿Qué hace el agente cuando alguien pregunta algo fuera de su guión?',opts:['Inventa una respuesta','Se desconecta','Escala la conversación al equipo humano','Ignora la pregunta'],ans:2},
+      {q:'¿Puede el agente IA dar diagnósticos médicos?',opts:['Sí, si tiene la información necesaria','Sí, para tratamientos estéticos básicos','No, está fuera de sus capacidades configuradas','Solo en casos de urgencia'],ans:2},
+      {q:'Si la clínica reporta que el agente no supo responder algo, ¿cuál es la acción correcta?',opts:['Intervenir manualmente en todas las conversaciones','Apagar el agente temporalmente','Actualizar el entrenamiento del agente','Ignorarlo si fue un caso aislado'],ans:2}
+     ]},
+    {title:'Cómo actualizar el entrenamiento del agente',dur:'10 min',
+     body:`<h3>El asesor facilita las actualizaciones</h3><p>Cuando el cliente cambia precios, agrega servicios o lanza promociones, el agente necesita saberlo. El proceso es simple: el cliente comunica el cambio al asesor, el asesor lo reporta al equipo técnico, y la actualización se aplica dentro de 48 horas hábiles.</p><p>Como asesor, debes identificar cuándo el agente necesita actualización. Las señales más comunes son: el agente menciona un servicio que ya no se ofrece, no sabe responder sobre un servicio nuevo, o cotiza a un precio desactualizado.</p><div class="highlight">Tener un agente desactualizado es peor que no tenerlo. <strong>Un lead que recibe información incorrecta pierde confianza en la clínica.</strong> Las actualizaciones son parte del mantenimiento mensual del sistema.</div>`,
+     quiz:[
+      {q:'¿En cuánto tiempo se aplica una actualización al entrenamiento del agente?',opts:['Inmediatamente','En 24 horas','En 48 horas hábiles','En una semana'],ans:2},
+      {q:'¿Cuál es el proceso correcto para actualizar el agente?',opts:['El cliente lo hace directamente en el sistema','El cliente comunica al asesor, quien reporta al equipo técnico','El asesor lo actualiza directamente','Se hace solo en la asesoría mensual'],ans:1},
+      {q:'¿Qué pasa cuando el agente da información desactualizada al lead?',opts:['No tiene mayor impacto','El lead lo ignora','El lead pierde confianza en la clínica','El sistema lo corrige automáticamente'],ans:2}
+     ]},
+    {title:'Objeciones comunes y cómo las maneja el agente',dur:'10 min',
+     body:`<h3>Las tres objeciones que aparecen en el 70% de conversaciones</h3><p>El agente está entrenado para manejar las objeciones más frecuentes:</p><ul><li><strong>"¿Cuánto cuesta?"</strong> → Da un rango general y ofrece una consulta presencial gratuita para un presupuesto exacto. No da precio exacto — esa es tarea del especialista.</li><li><strong>"Voy a pensarlo"</strong> → Pregunta qué genera duda, responde específicamente y propone una fecha concreta.</li><li><strong>"¿Tiene resultados reales?"</strong> → Comparte el caso de éxito más relevante y ofrece una cita de evaluación sin compromiso.</li></ul><div class="highlight">El asesor debe conocer estas respuestas para poder explicarle al cliente <strong>por qué el agente responde así</strong> y por qué esa estrategia convierte mejor que responder el precio directamente.</div>`,
+     quiz:[
+      {q:'¿Por qué el agente no da el precio exacto cuando el lead pregunta?',opts:['Porque no tiene la información','Para proteger la información de la clínica','Para llevar al lead a una consulta presencial donde el especialista pueda personalizar','Porque los precios cambian constantemente'],ans:2},
+      {q:'¿Cuántas objeciones principales cubre el agente en el 70% de conversaciones?',opts:['Una','Dos','Tres','Cinco'],ans:2},
+      {q:'¿Qué hace el agente cuando el lead dice "voy a pensarlo"?',opts:['Termina la conversación','Ofrece un descuento','Pregunta qué genera la duda y propone una fecha concreta','Espera a que el lead vuelva a escribir'],ans:2}
+     ]}
+   ],
+   resources:[{i:'💬',t:'Scripts del Agente',s:'Google Docs'},{i:'🤖',t:'Protocolo de Escalada',s:'PDF'}]
+  },
+  {id:4,em:'📈',col:'#F59E0B',locked:true,
+   title:'Retención de Pacientes',
+   desc:'Cómo el sistema reactiva pacientes inactivos y construye el activo más valioso de la clínica.',
+   dur:'35 min',cnt:3,
+   lessons:[
+    {title:'Por qué la retención multiplica el ROI',dur:'12 min',
+     body:`<h3>El negocio real está en la segunda cita</h3><p>Conseguir un paciente nuevo tiene un costo: CPL, gestión de la cita, tiempo del especialista en la primera consulta. Hacer que ese mismo paciente regrese tiene un costo casi cero — y genera el mismo o mayor valor.</p><p>Una clínica que retiene el 60% de sus pacientes activos puede reducir su dependencia de publicidad pagada en un 40% después del primer año.</p><div class="highlight">El sistema incluye automatizaciones de reactivación. <strong>Pero funcionan mejor cuando la clínica tiene también un protocolo interno de seguimiento post-tratamiento.</strong> Eso es lo que debes incentivar como asesor.</div>`,
+     quiz:[
+      {q:'¿En qué porcentaje puede reducirse la dependencia de publicidad con 60% de retención?',opts:['10%','20%','40%','60%'],ans:2},
+      {q:'¿Cuál es el costo de hacer que un paciente existente regrese vs uno nuevo?',opts:['Es igual','Es mayor que uno nuevo','Es casi cero','Es el doble'],ans:1},
+      {q:'¿Qué debe incentivar el asesor además de las automatizaciones de retención?',opts:['Mayor inversión en publicidad','Un protocolo interno de seguimiento post-tratamiento','Más redes sociales','Reducir precios'],ans:1}
+     ]},
+    {title:'Automatizaciones de reactivación en el CRM',dur:'12 min',
+     body:`<h3>El paciente que no ha vuelto en 60 días</h3><p>El CRM detecta automáticamente cuando un paciente activo lleva más de 60 días sin agendar una cita. En ese momento activa una secuencia de tres mensajes espaciados en 7 días:</p><ul><li>Mensaje 1: recordatorio del último tratamiento + pregunta de bienestar</li><li>Mensaje 2: oferta de consulta de seguimiento gratuita</li><li>Mensaje 3: recordatorio final con propuesta de fecha concreta</li></ul><div class="highlight">Esta secuencia recupera en promedio <strong>el 18% de pacientes inactivos.</strong> Para una clínica con 200 pacientes activos, eso son 36 citas adicionales por ciclo — sin ningún peso adicional en pauta.</div>`,
+     quiz:[
+      {q:'¿Después de cuántos días sin cita se activa la secuencia de reactivación?',opts:['30 días','45 días','60 días','90 días'],ans:2},
+      {q:'¿Cuántos mensajes tiene la secuencia de reactivación?',opts:['Uno','Dos','Tres','Cinco'],ans:2},
+      {q:'¿Qué porcentaje de pacientes inactivos recupera esta secuencia en promedio?',opts:['5%','12%','18%','30%'],ans:2}
+     ]},
+    {title:'Construir la base de pacientes leales',dur:'11 min',
+     body:`<h3>El activo más valioso de la clínica</h3><p>Una base de datos de pacientes activos y bien gestionada es el activo más valioso que tiene una clínica. Vale más que el equipamiento, el local y la marca juntos — porque genera ingresos directamente y sin costo de adquisición.</p><p>Las clínicas que más crecen no son las que invierten más en publicidad. Son las que combinan una captación constante con una retención estructurada.</p><div class="highlight">La meta a 24 meses no es gastar más en pauta. <strong>Es que el 50% de los ingresos venga de pacientes que regresan.</strong> Cuando eso ocurre, el negocio se vuelve predecible y escalable.</div>`,
+     quiz:[
+      {q:'¿Cuál es la meta de retención a 24 meses para el ingreso de la clínica?',opts:['20% de ingresos por pacientes que regresan','35% de ingresos por pacientes que regresan','50% de ingresos por pacientes que regresan','80% de ingresos por pacientes que regresan'],ans:2},
+      {q:'¿Qué diferencia a las clínicas que más crecen?',opts:['Mayor inversión en equipamiento','Precios más competitivos','Combinan captación constante con retención estructurada','Mayor número de especialistas'],ans:2},
+      {q:'¿Cuándo el negocio de la clínica se vuelve predecible?',opts:['Desde el primer mes','Cuando el 50% de ingresos viene de pacientes que regresan','Cuando tienen 100 leads por mes','Cuando reducen el CPL'],ans:1}
+     ]}
+   ],
+   resources:[{i:'📈',t:'Estrategia de Retención',s:'PDF'},{i:'📅',t:'Calendario de Contenido',s:'Notion 30 días'}]
+  },
+  {id:5,em:'💎',col:'#6366F1',locked:true,
+   title:'Escalado sin Caos',
+   desc:'Cuándo escalar, cómo hacerlo sin romper el sistema, y la visión a 24 meses.',
+   dur:'40 min',cnt:4,
+   lessons:[
+    {title:'Señales de que el cliente está listo para escalar',dur:'10 min',
+     body:`<h3>Escalar antes de tiempo es el error más caro</h3><p>Muchos clientes quieren escalar el presupuesto de publicidad después del primer mes con buenos resultados. Casi siempre es prematuro. El algoritmo necesita al menos 90 días para optimizarse correctamente.</p><p>Las tres señales que indican que el cliente está listo para escalar:</p><ul><li>CPL estable por 30 días consecutivos</li><li>Tasa de asistencia sobre el 70%</li><li>Capacidad operativa en la clínica para absorber más pacientes</li></ul><div class="highlight">Escalar sin capacidad operativa genera malas experiencias que destruyen la retención. <strong>Primero estabiliza. Luego escala. Siempre en ese orden.</strong></div>`,
+     quiz:[
+      {q:'¿Cuántos días necesita el algoritmo para optimizarse correctamente?',opts:['15 días','30 días','60 días','90 días'],ans:3},
+      {q:'¿Cuál NO es una señal de que el cliente está listo para escalar?',opts:['CPL estable por 30 días','Tasa de asistencia sobre 70%','Capacidad operativa disponible','Muchos likes en redes sociales'],ans:3},
+      {q:'¿Qué ocurre cuando se escala sin capacidad operativa?',opts:['El sistema mejora más rápido','Se generan malas experiencias que destruyen la retención','Baja el CPL','El agente IA trabaja más eficiente'],ans:1}
+     ]},
+    {title:'La regla del 20%: cómo escalar el presupuesto',dur:'10 min',
+     body:`<h3>Sin romper el algoritmo</h3><p>Aumentar el presupuesto de una campaña de forma abrupta reinicia el aprendizaje del algoritmo. La regla general es no subir más del 20% del presupuesto actual por semana.</p><p>Si el cliente invierte $600,000 COP a la semana en pauta, el siguiente paso es $720,000. El siguiente, $864,000. Escalonado y controlado.</p><div class="highlight">El equipo técnico gestiona estas decisiones. <strong>Pero entender la regla del 20% te ayuda como asesor a no crear expectativas incorrectas</strong> sobre la velocidad del escalado.</div>`,
+     quiz:[
+      {q:'¿Cuánto se puede aumentar el presupuesto máximo por semana sin reiniciar el algoritmo?',opts:['10%','20%','50%','100%'],ans:1},
+      {q:'Si el cliente invierte $600,000 COP por semana, ¿cuál es el siguiente paso correcto?',opts:['$650,000 COP','$720,000 COP','$900,000 COP','$1,200,000 COP'],ans:1},
+      {q:'¿Por qué el asesor debe entender la regla del 20%?',opts:['Para poder aplicarla directamente','Para no crear expectativas incorrectas sobre la velocidad del escalado','Para negociar mejores precios','No necesita saberla'],ans:1}
+     ]},
+    {title:'Expandir a nuevos servicios o ciudades',dur:'10 min',
+     body:`<h3>Expansión vertical vs. horizontal</h3><p>Hay dos formas de crecer: profundizar en lo que ya funciona (más inversión, más pacientes del mismo tipo) o ampliar (nuevos servicios, nueva ciudad, nueva clínica).</p><p>La expansión vertical — más inversión en lo que ya funciona — es casi siempre más rentable que la horizontal en los primeros dos años. Cada nuevo servicio o ciudad requiere un ciclo de aprendizaje completo.</p><div class="highlight">No expandas hasta que el sistema actual genere un ROI superior a 3x. <strong>Expandirse desde la escasez multiplica los problemas, no los ingresos.</strong></div>`,
+     quiz:[
+      {q:'¿Qué es la expansión vertical en este contexto?',opts:['Abrir una nueva ciudad','Agregar nuevos servicios','Más inversión en lo que ya funciona','Contratar más personal'],ans:2},
+      {q:'¿Cuál tipo de expansión es más rentable en los primeros dos años?',opts:['Horizontal (nuevos servicios o ciudades)','Vertical (más inversión en lo que funciona)','Ambas son iguales','Depende completamente del caso'],ans:1},
+      {q:'¿Con qué ROI mínimo se recomienda considerar la expansión?',opts:['1.5x','2x','3x','5x'],ans:2}
+     ]},
+    {title:'El sistema a 24 meses: la visión completa',dur:'10 min',
+     body:`<h3>La clínica que no depende del azar</h3><p>A 24 meses de implementación correcta, el sistema debería verse así: Meta Ads genera leads con CPL estable, el agente IA agenda sin intervención manual, el CRM hace el seguimiento automático, y el 50% de los ingresos viene de pacientes que regresan.</p><p>En ese punto el negocio es predecible. El cliente sabe cuánto invierte y cuánto recibe. Puede proyectar, planear y crecer de forma consciente.</p><div class="highlight">Ese es el negocio que construyes junto al cliente. <strong>No una campaña de publicidad. Un sistema de adquisición y retención que funciona solo.</strong> Esa es la promesa del sistema.</div>`,
+     quiz:[
+      {q:'¿Cuál es la meta de retención a 24 meses según la visión del sistema?',opts:['20% ingresos recurrentes','35% ingresos recurrentes','50% ingresos recurrentes','70% ingresos recurrentes'],ans:2},
+      {q:'¿Qué significa que el negocio sea "predecible"?',opts:['Que el CPL sea siempre igual','Que el cliente sepa cuánto invierte y cuánto recibirá a cambio','Que no hayan cambios en el sistema','Que los leads lleguen a la misma hora'],ans:1},
+      {q:'¿Cuál es la promesa real del sistema según el módulo de escalado?',opts:['Una campaña de publicidad de alta conversión','Un agente IA para WhatsApp','Un sistema de adquisición y retención que funciona solo','El CRM más completo del mercado'],ans:2}
+     ]}
+   ],
+   resources:[{i:'💎',t:'Guía de Escalado',s:'PDF 15 páginas'},{i:'📊',t:'Proyección 24 meses',s:'Google Sheets'}]
+  }
+];
+
+// ══════════════════════════════════
+// STATE
+// ══════════════════════════════════
+let storeKey = () => 'pu_' + (currentUser?.username||'x');
+let getCompleted = () => JSON.parse(localStorage.getItem(storeKey()+'_c') || '[]');
+let getWatched   = () => JSON.parse(localStorage.getItem(storeKey()+'_w') || '[]');
+let getPassed    = () => JSON.parse(localStorage.getItem(storeKey()+'_q') || '[]');
+let saveCompleted= (d) => localStorage.setItem(storeKey()+'_c', JSON.stringify(d));
+let saveWatched  = (d) => localStorage.setItem(storeKey()+'_w', JSON.stringify(d));
+let savePassed   = (d) => localStorage.setItem(storeKey()+'_q', JSON.stringify(d));
+
+let curMod=0, curLes=0;
+let quizAnswers={}, quizDone=false;
+
+function lk(m,l){return m+'-'+l}
+
+// ══════════════════════════════════
+// INIT APP
+// ══════════════════════════════════
+function initApp(){
+  const u = currentUser;
+  document.getElementById('sbAv').textContent = u.name[0].toUpperCase();
+  document.getElementById('sbName').textContent = u.name;
+  document.getElementById('sbRole').textContent = u.role;
+  renderDash();
+  updateProgress();
+  goView('dash');
+}
+
+function updateProgress(){
+  const comp = getCompleted();
+  const total = MODS.reduce((s,m)=>s+m.lessons.length,0);
+  const done = comp.length;
+  const pct = Math.round(done/total*100);
+  document.getElementById('progPct').textContent = pct+'%';
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('st1').textContent = done;
+  document.getElementById('st3').textContent = pct+'%';
+  // Badges
+  MODS.forEach((m,i)=>{
+    const bd=document.getElementById('b'+i);
+    if(!bd) return;
+    const d=m.lessons.filter((_,j)=>comp.includes(lk(i,j))).length;
+    if(m.locked){bd.textContent='🔒';bd.className='sb-badge bd-lock';}
+    else if(d===m.lessons.length){bd.textContent='✓';bd.className='sb-badge bd-done';}
+    else if(d>0){bd.textContent=d+'/'+m.lessons.length;bd.className='sb-badge bd-go';}
+    else{bd.textContent='Inicio';bd.className='sb-badge bd-go';}
+  });
+}
+
+// ══════════════════════════════════
+// VIEWS
+// ══════════════════════════════════
+function goView(name){
+  ['dash','mod','les','lib'].forEach(v=>{
+    const el=document.getElementById('v-'+v);
+    if(el) el.style.display=v===name?'block':'none';
+  });
+  const titles={dash:'Dashboard',mod:'Módulo',les:'Lección',lib:'Biblioteca'};
+  document.getElementById('crumbT').textContent=titles[name]||name;
+  // Sidebar active
+  document.querySelectorAll('.sb-item').forEach(el=>el.classList.remove('active'));
+  if(name==='dash') document.querySelectorAll('.sb-item')[0].classList.add('active');
+  if(name==='lib'){const items=document.querySelectorAll('.sb-item');items[items.length-1].classList.add('active');}
+  if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('open');
+}
+
+// ══════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════
+function renderDash(){
+  const comp=getCompleted();
+  const grid=document.getElementById('modsGrid');
+  grid.innerHTML='';
+  MODS.forEach((m,i)=>{
+    const done=m.lessons.filter((_,j)=>comp.includes(lk(i,j))).length;
+    const pct=Math.round(done/m.lessons.length*100);
+    const st=m.locked?'Bloqueado':done===m.lessons.length?'Completado':done>0?'En progreso':'Comenzar';
+    const sc=m.locked?'ms-lock':done===m.lessons.length?'ms-done':'ms-prog';
+    grid.innerHTML+=`<div class="mod-card${m.locked?' locked':''}" onclick="${m.locked?'showLock()':'goMod('+i+')'}">
+      <div class="mod-accent" style="background:${m.col}"></div>
+      <div class="mod-head">
+        <div class="mod-icon" style="background:${m.col}20">${m.em}</div>
+        <div class="mod-status ${sc}">${st}</div>
+      </div>
+      <div class="mod-title">Módulo ${i+1}: ${m.title}</div>
+      <div class="mod-desc">${m.desc}</div>
+      <div class="mod-meta"><span>📚 ${m.cnt} lecciones</span><span>⏱ ${m.dur}</span></div>
+      <div class="mod-prog"><div class="mod-prog-fill" style="width:${pct}%;background:${m.col}"></div></div>
+    </div>`;
+  });
+  // Next card
+  const nc=document.getElementById('nextCard');
+  let found=false;
+  for(let i=0;i<MODS.length;i++){
+    if(MODS[i].locked) continue;
+    for(let j=0;j<MODS[i].lessons.length;j++){
+      if(!comp.includes(lk(i,j))){
+        const l=MODS[i].lessons[j];
+        nc.innerHTML=`<div class="les-item" style="background:var(--navy2);border:1px solid var(--border);padding:14px 16px;cursor:pointer" onclick="goLesson(${i},${j})">
+          <div class="li-n" style="background:${MODS[i].col}20;color:${MODS[i].col}">${MODS[i].em}</div>
+          <div class="li-info"><div class="li-t" style="font-size:13px">Módulo ${i+1} · ${l.title}</div><div class="li-d">${l.dur} · ${MODS[i].title}</div></div>
+          <button class="btn-sm btn-cyan" style="font-size:11px">Iniciar →</button></div>`;
+        found=true;break;
+      }
+    }
+    if(found) break;
+  }
+  if(!found) nc.innerHTML=`<div style="background:var(--navy2);border:1px solid var(--green);border-radius:12px;padding:16px 18px;color:var(--green);font-family:var(--f1);font-weight:700;font-size:13px">🎉 ¡Completaste todos los módulos del programa!</div>`;
+}
+
+// ══════════════════════════════════
+// MODULE
+// ══════════════════════════════════
+function goMod(idx){
+  curMod=idx;
+  const m=MODS[idx];
+  if(m.locked){showLock();return;}
+  document.getElementById('mEye').textContent=`Módulo ${idx+1} · ${m.title}`;
+  document.getElementById('mTitle').textContent=m.title;
+  document.getElementById('mLes').textContent=m.lessons.length+' lecciones';
+  document.getElementById('mDur').textContent=m.dur;
+  const comp=getCompleted();
+  const list=document.getElementById('lesList');
+  list.innerHTML='';
+  m.lessons.forEach((l,j)=>{
+    const done=comp.includes(lk(idx,j));
+    list.innerHTML+=`<div class="les-item${done?' done':''}" onclick="goLesson(${idx},${j})">
+      <div class="li-n">${done?'✓':(j+1)}</div>
+      <div class="li-info"><div class="li-t">${l.title}</div><div class="li-d">${l.dur}</div></div>
+      ${done?'<div class="li-ck">✓</div>':''}
+    </div>`;
+  });
+  const res=document.getElementById('modRes');
+  res.innerHTML='';
+  (m.resources||[]).forEach(r=>{
+    res.innerHTML+=`<div class="res-card"><div class="res-icon">${r.i}</div><div><div class="res-title">${r.t}</div><div class="res-type">${r.s}</div></div></div>`;
+  });
+  goView('mod');
+  document.getElementById('crumbT').textContent='Módulo '+(idx+1);
+  const items=document.querySelectorAll('.sb-item');
+  items.forEach(el=>el.classList.remove('active'));
+  if(items[idx+1]) items[idx+1].classList.add('active');
+}
+
+function modTab(n,el){
+  document.getElementById('mt-c').style.display=n==='c'?'block':'none';
+  document.getElementById('mt-r').style.display=n==='r'?'block':'none';
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ══════════════════════════════════
+// LESSON
+// ══════════════════════════════════
+function goLesson(mi,li){
+  curMod=mi; curLes=li;
+  quizAnswers={}; quizDone=false;
+  const m=MODS[mi]; const l=m.lessons[li];
+  document.getElementById('lEye').textContent=`Módulo ${mi+1} · ${m.title}`;
+  document.getElementById('lTitle').textContent=l.title;
+  document.getElementById('lDur').textContent=l.dur;
+  document.getElementById('lPos').textContent=`${li+1}/${m.lessons.length}`;
+  document.getElementById('vidLabel').textContent=l.title;
+  document.getElementById('lBody').innerHTML=l.body||'';
+
+  // Video state
+  const watched=getWatched();
+  const wk=lk(mi,li);
+  const wd=document.getElementById('vidDone');
+  wd.style.display=watched.includes(wk)?'block':'none';
+
+  // Quiz
+  renderQuiz(l.quiz, mi, li);
+
+  // Nav buttons
+  document.getElementById('btnPrev').disabled=(mi===0&&li===0);
+  updateNextBtn();
+
+  goView('les');
+  document.getElementById('crumbT').textContent=l.title.length>32?l.title.slice(0,32)+'…':l.title;
+}
+
+function watchVideo(){
+  const wk=lk(curMod,curLes);
+  const watched=getWatched();
+  if(!watched.includes(wk)){
+    watched.push(wk);
+    saveWatched(watched);
+  }
+  document.getElementById('vidDone').style.display='block';
+  toast('Video marcado como visto ✓');
+}
+
+function renderQuiz(qs, mi, li){
+  const passed=getPassed();
+  const qk=lk(mi,li);
+  const isAlreadyPassed=passed.includes(qk);
+  const wrap=document.getElementById('quizQuestions');
+  wrap.innerHTML='';
+  qs.forEach((q,qi)=>{
+    let optsHtml='';
+    q.opts.forEach((o,oi)=>{
+      let cls='q-opt';
+      if(isAlreadyPassed) cls+=(oi===q.ans?' correct':'');
+      optsHtml+=`<div class="${cls}" id="q${qi}o${oi}" onclick="selectOpt(${qi},${oi},${q.ans},${isAlreadyPassed})">
+        <div class="q-radio">${oi===q.ans&&isAlreadyPassed?'✓':''}</div>
+        <div class="q-opt-text">${o}</div>
+      </div>`;
+    });
+    wrap.innerHTML+=`<div class="q-block"><div class="q-text">${qi+1}. ${q.q}</div><div class="q-opts">${optsHtml}</div></div>`;
+  });
+  const res=document.getElementById('quizResult');
+  const score=document.getElementById('quizScore');
+  const btnQ=document.getElementById('btnQuiz');
+  if(isAlreadyPassed){
+    res.style.display='block';
+    res.className='quiz-result pass';
+    res.textContent='✓ Quiz completado. Puedes continuar a la siguiente lección.';
+    score.innerHTML='';
+    btnQ.style.display='none';
+    quizDone=true;
+  } else {
+    res.style.display='none';
+    res.className='quiz-result';
+    score.innerHTML='';
+    btnQ.style.display='block';
+    btnQ.textContent='Verificar respuestas';
+    quizDone=false;
+  }
+  updateNextBtn();
+}
+
+function selectOpt(qi,oi,ans,disabled){
+  if(disabled||quizDone) return;
+  // Deselect others in same question
+  for(let k=0;k<4;k++){
+    const el=document.getElementById('q'+qi+'o'+k);
+    if(el) el.classList.remove('selected');
+  }
+  document.getElementById('q'+qi+'o'+oi).classList.add('selected');
+  quizAnswers[qi]=oi;
+}
+
+function submitQuiz(){
+  const m=MODS[curMod]; const l=m.lessons[curLes];
+  const qs=l.quiz;
+  const total=qs.length;
+  const needed=Math.ceil(total*0.66);
+  let correct=0;
+  // Validate all answered
+  for(let qi=0;qi<total;qi++){
+    if(quizAnswers[qi]===undefined){
+      toast('⚠ Responde todas las preguntas primero','warn');
+      return;
+    }
+  }
+  // Show results
+  qs.forEach((q,qi)=>{
+    const sel=quizAnswers[qi];
+    const isRight=(sel===q.ans);
+    if(isRight) correct++;
+    for(let oi=0;oi<q.opts.length;oi++){
+      const el=document.getElementById('q'+qi+'o'+oi);
+      if(!el) continue;
+      el.classList.remove('selected','correct','wrong');
+      if(oi===q.ans) el.classList.add('correct');
+      else if(oi===sel && !isRight) el.classList.add('wrong');
+      const radio=el.querySelector('.q-radio');
+      if(radio) radio.textContent=(oi===q.ans)?'✓':'';
+    }
+  });
+  const passed=(correct>=needed);
+  const res=document.getElementById('quizResult');
+  const score=document.getElementById('quizScore');
+  const btnQ=document.getElementById('btnQuiz');
+  score.innerHTML=`Resultado: <span>${correct}/${total} correctas</span>`;
+  res.style.display='block';
+  if(passed){
+    res.className='quiz-result pass';
+    res.textContent='✓ ¡Aprobado! Lección completada. Puedes continuar.';
+    btnQ.textContent='Intenta de nuevo';
+    btnQ.style.display='none';
+    quizDone=true;
+    // Save passed
+    const pa=getPassed();
+    const qk=lk(curMod,curLes);
+    if(!pa.includes(qk)){pa.push(qk);savePassed(pa);}
+    // Save completed
+    const comp=getCompleted();
+    if(!comp.includes(qk)){comp.push(qk);saveCompleted(comp);}
+    updateProgress();
+    renderDash();
+    toast('🎉 Lección completada');
+  } else {
+    res.className='quiz-result fail';
+    res.textContent=`✗ Necesitas al menos ${needed} correctas. Obtuviste ${correct}/${total}. Revisa el contenido e intenta de nuevo.`;
+    btnQ.textContent='Intentar de nuevo';
+    btnQ.onclick=()=>{quizAnswers={};quizDone=false;res.style.display='none';score.innerHTML='';
+      document.querySelectorAll('.q-opt').forEach(el=>el.classList.remove('selected','correct','wrong'));
+      document.querySelectorAll('.q-radio').forEach(el=>el.textContent='');
+    };
+    toast('Revisa el contenido e intenta de nuevo','warn');
+  }
+  updateNextBtn();
+}
+
+function updateNextBtn(){
+  const passed=getPassed();
+  const qk=lk(curMod,curLes);
+  const ok=passed.includes(qk);
+  const btn=document.getElementById('btnNext');
+  const m=MODS[curMod];
+  const isLast=(curMod===MODS.length-1&&curLes===m.lessons.length-1);
+  if(isLast&&ok){btn.textContent='Completado ✓';btn.disabled=true;btn.className='nav-btn primary';}
+  else if(ok){btn.textContent='Siguiente →';btn.disabled=false;btn.className='nav-btn primary';}
+  else{btn.textContent='Completa el quiz para continuar';btn.disabled=false;btn.className='nav-btn locked-btn';}
+}
+
+function nextLes(){
+  const passed=getPassed();
+  if(!passed.includes(lk(curMod,curLes))){
+    toast('⚠ Debes completar el quiz para avanzar','warn');
+    return;
+  }
+  const m=MODS[curMod];
+  if(curLes<m.lessons.length-1){goLesson(curMod,curLes+1);}
+  else{
+    let nm=curMod+1;
+    while(nm<MODS.length&&MODS[nm].locked) nm++;
+    if(nm<MODS.length) goLesson(nm,0);
+    else{goView('dash');renderDash();}
+  }
+}
+
+function prevLes(){
+  if(curLes>0) goLesson(curMod,curLes-1);
+  else if(curMod>0){
+    let pm=curMod-1;
+    while(pm>0&&MODS[pm].locked) pm--;
+    goLesson(pm,MODS[pm].lessons.length-1);
+  }
+}
+
+function goContinue(){
+  const comp=getCompleted();
+  for(let i=0;i<MODS.length;i++){
+    if(MODS[i].locked) continue;
+    for(let j=0;j<MODS[i].lessons.length;j++){
+      if(!comp.includes(lk(i,j))){goLesson(i,j);return;}
+    }
+  }
+  goView('dash');
+}
+
+function showLock(){toast('⚠ Completa el módulo anterior primero','warn')}
+function toggleSB(){document.getElementById('sidebar').classList.toggle('open')}
+
+let toastT=null;
+function toast(msg,type){
+  clearTimeout(toastT);
+  const el=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  el.className=type==='warn'?'warn show':'show';
+  toastT=setTimeout(()=>el.className='',2800);
+}
+</script>
+</body>
+</html>
