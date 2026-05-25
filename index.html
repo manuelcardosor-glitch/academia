@@ -373,10 +373,10 @@ body{display:flex;overflow:hidden}
       <div class="login-brand">PartnersUp<span>Academia</span></div>
     </div>
     <div class="login-title">Bienvenido de vuelta</div>
-    <div class="login-sub">Ingresa con tus credenciales para continuar tu formación.</div>
+    <div class="login-sub">Usuarios disponibles: admin · asesor1 · asesor2 · asesor3 · asesor4</div>
     <div class="form-field">
       <label class="form-label">Usuario</label>
-      <input id="inp-user" class="form-input" type="text" placeholder="tu.usuario" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
+      <input id="inp-user" class="form-input" type="text" placeholder="admin, asesor1, asesor2..." autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
     <div class="form-field">
       <label class="form-label">Contraseña</label>
@@ -548,11 +548,11 @@ body{display:flex;overflow:hidden}
 // AUTH — credenciales en frontend (MVP)
 // ══════════════════════════════════
 const USERS = {
-  'asesor1':  {pass:'academia2026', name:'Admin UP',  role:'Asesor'},
-  'asesor2':  {pass:'academia2026', name:'Asesor 1',    role:'Asesor'},
-  'asesor3':  {pass:'academia2026', name:'Asesor 2',    role:'Asesor'},
-  'asesor4':  {pass:'academia2026', name:'Asesor 3',    role:'Asesor'},
-  'asesor5':  {pass:'academia2026', name:'Asesor 4',    role:'Asesor'},
+  'admin':    {pass:'academia2026', name:'Admin UP',  role:'Administrador'},
+  'asesor1':  {pass:'academia2026', name:'Asesor 1',  role:'Asesor'},
+  'asesor2':  {pass:'academia2026', name:'Asesor 2',  role:'Asesor'},
+  'asesor3':  {pass:'academia2026', name:'Asesor 3',  role:'Asesor'},
+  'asesor4':  {pass:'academia2026', name:'Asesor 4',  role:'Asesor'},
 };
 
 let currentUser = null;
