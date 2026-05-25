@@ -5,360 +5,246 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Academia · PartnersUp</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#050F1E;--navy2:#0A1C36;--navy3:#0E2347;--navy4:#152B55;
-  --cyan:#00C8FF;--cyan-dim:rgba(0,200,255,.12);--cyan-glow:rgba(0,200,255,.3);
-  --gold:#FFB300;--gold-dim:rgba(255,179,0,.12);
-  --green:#22D37A;--green-dim:rgba(34,211,122,.12);
-  --red:#FF4D6A;--red-dim:rgba(255,77,106,.12);
+  --cyan:#00C8FF;--cyan-dim:rgba(0,200,255,.1);--cyan-glow:rgba(0,200,255,.28);
+  --gold:#FFB300;--gold-dim:rgba(255,179,0,.1);
+  --green:#22D37A;--green-dim:rgba(34,211,122,.1);
+  --red:#FF4D6A;--red-dim:rgba(255,77,106,.1);
+  --purple:#A78BFA;--purple-dim:rgba(167,139,250,.1);
   --text:#F0F4FF;--text2:#7A8BAF;--text3:#3D506E;
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.11);
   --f1:'Bricolage Grotesque',sans-serif;--f2:'DM Sans',sans-serif;
-  --sidebar:270px;
+  --sidebar:272px;
 }
 html,body{height:100%;background:var(--navy);color:var(--text);font-family:var(--f2);font-size:14px}
 body{display:flex;overflow:hidden}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:8px}
 
-/* ─── LOGIN ─── */
-#screen-login{
-  position:fixed;inset:0;z-index:200;
-  background:var(--navy);
-  display:flex;align-items:center;justify-content:center;
-}
-.login-card{
-  width:100%;max-width:400px;
-  background:var(--navy2);
-  border:1px solid var(--border2);
-  border-radius:20px;
-  padding:40px 36px;
-  position:relative;overflow:hidden;
-}
-.login-card::before{
-  content:'';position:absolute;top:-80px;right:-80px;
-  width:200px;height:200px;
-  background:radial-gradient(circle,var(--cyan-glow) 0%,transparent 70%);
-  pointer-events:none;
-}
-.login-logo{
-  display:flex;align-items:center;gap:12px;margin-bottom:32px;
-}
-.login-icon{
-  width:42px;height:42px;background:var(--cyan);
-  border-radius:12px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--f1);font-weight:800;font-size:15px;color:var(--navy);
-}
+/* ── LOGIN ── */
+#screen-login{position:fixed;inset:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:center}
+.login-card{width:100%;max-width:400px;background:var(--navy2);border:1px solid var(--border2);border-radius:20px;padding:40px 36px;position:relative;overflow:hidden}
+.login-card::before{content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;background:radial-gradient(circle,var(--cyan-glow) 0%,transparent 70%);pointer-events:none}
+.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:32px}
+.login-icon{width:42px;height:42px;background:var(--cyan);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--f1);font-weight:800;font-size:15px;color:var(--navy)}
 .login-brand{font-family:var(--f1);font-weight:800;font-size:18px;color:var(--text);line-height:1.1}
 .login-brand span{display:block;font-size:11px;font-weight:400;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
 .login-title{font-family:var(--f1);font-weight:700;font-size:22px;color:var(--text);margin-bottom:6px}
-.login-sub{font-size:13px;color:var(--text2);margin-bottom:28px;line-height:1.5}
+.login-sub{color:var(--text2);font-size:13px;margin-bottom:28px;line-height:1.5}
 .form-field{margin-bottom:16px}
-.form-label{font-family:var(--f1);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text2);display:block;margin-bottom:6px}
-.form-input{
-  width:100%;background:var(--navy3);border:1px solid var(--border2);
-  border-radius:10px;padding:12px 14px;color:var(--text);
-  font-family:var(--f2);font-size:14px;outline:none;
-  transition:border-color .15s;
-}
+.form-label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px}
+.form-input{width:100%;background:var(--navy3);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;color:var(--text);font-family:var(--f2);font-size:14px;outline:none;transition:border .2s}
 .form-input:focus{border-color:var(--cyan)}
-.login-err{color:var(--red);font-size:12px;margin-bottom:12px;display:none;font-weight:500}
-.btn-login{
-  width:100%;background:var(--cyan);color:var(--navy);
-  font-family:var(--f1);font-weight:800;font-size:14px;
-  padding:13px;border-radius:10px;border:none;cursor:pointer;
-  letter-spacing:0.3px;transition:filter .15s;margin-top:4px;
-}
-.btn-login:hover{filter:brightness(1.08)}
+.login-err{color:var(--red);font-size:12px;margin-bottom:12px;display:none}
+.btn-login{width:100%;background:var(--cyan);color:var(--navy);font-family:var(--f1);font-weight:700;font-size:15px;border:none;border-radius:12px;padding:13px;cursor:pointer;transition:opacity .2s;margin-top:4px}
+.btn-login:hover{opacity:.88}
 
-/* ─── SIDEBAR ─── */
-#sidebar{
-  width:var(--sidebar);min-width:var(--sidebar);
-  background:var(--navy2);border-right:1px solid var(--border);
-  display:flex;flex-direction:column;height:100vh;overflow:hidden;
-  position:relative;
-}
-.sb-top{padding:20px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
-.sb-logo{display:flex;align-items:center;gap:10px}
-.sb-icon{
-  width:36px;height:36px;background:var(--cyan);border-radius:9px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--f1);font-weight:800;font-size:14px;color:var(--navy);flex-shrink:0;
-}
-.sb-brand{font-family:var(--f1);font-weight:800;font-size:14px;color:var(--text);line-height:1.1}
-.sb-brand span{display:block;font-size:10px;font-weight:400;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-top:1px}
-.sb-user{
-  padding:14px 18px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;flex-shrink:0;
-}
-.sb-avatar{
-  width:32px;height:32px;background:var(--cyan);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--f1);font-weight:700;font-size:12px;color:var(--navy);flex-shrink:0;
-}
-.sb-uname{font-family:var(--f1);font-weight:700;font-size:12px;color:var(--text)}
-.sb-urole{font-size:10px;color:var(--cyan);font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
-.sb-prog{padding:12px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
-.sb-prog-row{display:flex;justify-content:space-between;font-family:var(--f1);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text2);margin-bottom:7px}
-.sb-prog-row span{color:var(--cyan)}
-.prog-bar{height:3px;background:var(--border2);border-radius:8px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--cyan),#00AAFF);border-radius:8px;width:0%;transition:width .5s ease}
-.sb-nav{flex:1;overflow-y:auto;padding:8px 0}
-.sb-section{font-family:var(--f1);font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:14px 18px 5px}
-.sb-item{
-  display:flex;align-items:center;gap:10px;
-  padding:9px 14px 9px 12px;cursor:pointer;
-  border-left:3px solid transparent;transition:all .15s;
-}
-.sb-item:hover{background:var(--navy3)}
-.sb-item.active{background:var(--cyan-dim);border-left-color:var(--cyan)}
-.sb-iicon{
-  width:28px;height:28px;border-radius:7px;background:var(--navy3);
-  display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
-}
-.sb-item.active .sb-iicon{background:var(--cyan-dim)}
+/* ── APP SHELL ── */
+#app{width:100%;height:100%;display:none;flex}
+#sidebar{width:var(--sidebar);min-width:var(--sidebar);height:100%;background:var(--navy2);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;transition:transform .25s}
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+
+/* ── SIDEBAR INTERNALS ── */
+.sb-top{padding:18px 16px 0}
+.sb-logo{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.sb-icon{width:34px;height:34px;background:var(--cyan);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--f1);font-weight:800;font-size:13px;color:var(--navy);flex-shrink:0}
+.sb-brand{font-family:var(--f1);font-weight:800;font-size:15px;color:var(--text);line-height:1.1}
+.sb-brand span{display:block;font-size:10px;font-weight:400;color:var(--text2);text-transform:uppercase;letter-spacing:1.2px;margin-top:1px}
+.sb-user{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--navy3);border-radius:10px;margin:0 12px 16px}
+.sb-avatar{width:32px;height:32px;background:var(--cyan-dim);border:1px solid var(--cyan);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f1);font-weight:700;font-size:13px;color:var(--cyan);flex-shrink:0}
+.sb-uname{font-weight:600;font-size:13px;color:var(--text)}
+.sb-urole{font-size:11px;color:var(--text2)}
+.sb-prog{padding:0 16px 14px;border-bottom:1px solid var(--border)}
+.sb-prog-row{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:6px}
+.prog-bar{height:4px;background:var(--border2);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:4px;transition:width .5s ease;width:0%}
+.sb-nav{flex:1;overflow-y:auto;padding:10px 10px 10px}
+.sb-section{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;padding:8px 6px 4px}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;cursor:pointer;transition:background .15s;margin-bottom:1px}
+.sb-item:hover{background:var(--cyan-dim)}
+.sb-item.active{background:var(--cyan-dim);border-left:2px solid var(--cyan)}
+.sb-iicon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
 .sb-itext{flex:1;min-width:0}
-.sb-ititle{font-family:var(--f1);font-weight:600;font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sb-item.active .sb-ititle{color:var(--cyan)}
-.sb-isub{font-size:10px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sb-badge{font-family:var(--f1);font-weight:700;font-size:9px;padding:2px 6px;border-radius:20px;flex-shrink:0}
-.bd-lock{background:var(--navy3);color:var(--text3)}
+.sb-ititle{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-isub{font-size:10px;color:var(--text2)}
+.sb-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0}
+.bd-go{background:var(--green-dim);color:var(--green)}
+.bd-lock{background:var(--border);color:var(--text3)}
 .bd-done{background:var(--green-dim);color:var(--green)}
-.bd-go{background:var(--cyan-dim);color:var(--cyan)}
-.sb-logout{
-  padding:14px 18px;border-top:1px solid var(--border);flex-shrink:0;
-}
-.btn-logout{
-  width:100%;background:transparent;border:1px solid var(--border2);
-  color:var(--text2);font-family:var(--f1);font-weight:600;font-size:11px;
-  padding:9px;border-radius:9px;cursor:pointer;transition:all .15s;
-  text-transform:uppercase;letter-spacing:0.5px;
-}
+.sb-logout{padding:12px 16px;border-top:1px solid var(--border)}
+.btn-logout{width:100%;background:transparent;border:1px solid var(--border2);border-radius:8px;padding:8px;color:var(--text2);font-size:12px;cursor:pointer;transition:all .15s}
 .btn-logout:hover{border-color:var(--red);color:var(--red)}
 
-/* ─── MAIN ─── */
-#main{flex:1;overflow-y:auto;display:flex;flex-direction:column;height:100vh}
-#topbar{
-  background:var(--navy2);border-bottom:1px solid var(--border);
-  padding:0 28px;height:54px;display:flex;align-items:center;
-  justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:5;
-}
-.crumb{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text2)}
-.crumb strong{font-family:var(--f1);font-weight:700;color:var(--text)}
-.crumb-sep{color:var(--text3)}
+/* ── TOPBAR ── */
+#topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;border-bottom:1px solid var(--border);background:var(--navy);flex-shrink:0}
+.crumb{font-size:13px;color:var(--text2)}
+.crumb-sep{margin:0 6px;opacity:.4}
+.crumb strong{color:var(--text)}
 .topbar-actions{display:flex;align-items:center;gap:10px}
-.btn-sm{
-  font-family:var(--f1);font-weight:700;font-size:11px;padding:7px 14px;
-  border-radius:7px;border:none;cursor:pointer;letter-spacing:0.3px;transition:all .15s;
-}
-.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2)}
-.btn-ghost:hover{color:var(--text)}
-.btn-cyan{background:var(--cyan);color:var(--navy)}
-.btn-cyan:hover{filter:brightness(1.08)}
-#content{flex:1;padding:30px 34px;max-width:880px;width:100%}
-.mbtn-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--text2);font-size:18px;padding:4px}
+.mbtn-toggle{background:none;border:none;color:var(--text2);font-size:18px;cursor:pointer;padding:4px 8px;display:none}
 
-/* ─── DASHBOARD ─── */
-.hero{
-  background:var(--navy2);border:1px solid var(--border);
-  border-radius:18px;padding:28px 30px;margin-bottom:22px;
-  position:relative;overflow:hidden;
-}
-.hero::after{
-  content:'';position:absolute;right:-50px;top:-50px;
-  width:180px;height:180px;
-  background:radial-gradient(circle,var(--cyan-glow) 0%,transparent 65%);
-  pointer-events:none;
-}
-.hero-eye{font-family:var(--f1);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--cyan);margin-bottom:8px}
-.hero-title{font-family:var(--f1);font-size:21px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:6px}
-.hero-sub{font-size:13px;color:var(--text2);max-width:480px;line-height:1.6}
-.hero-btn{
-  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
-  background:var(--cyan);color:var(--navy);font-family:var(--f1);
-  font-weight:800;font-size:12px;padding:10px 20px;border-radius:9px;
-  border:none;cursor:pointer;transition:all .15s;letter-spacing:0.3px;
-}
-.hero-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
-.stat-c{background:var(--navy2);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
-.stat-v{font-family:var(--f1);font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
+/* ── CONTENT AREA ── */
+#content{flex:1;overflow-y:auto;padding:24px 24px}
+
+/* ── BUTTONS ── */
+.btn-sm{font-size:12px;font-weight:600;padding:7px 14px;border-radius:8px;border:none;cursor:pointer;transition:all .15s}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-cyan{background:var(--cyan);color:var(--navy);font-weight:700}
+.btn-cyan:hover{opacity:.85}
+
+/* ── DASHBOARD ── */
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy3) 100%);border:1px solid var(--border2);border-radius:16px;padding:28px 30px;position:relative;overflow:hidden;margin-bottom:24px}
+.hero::after{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,var(--cyan-glow) 0%,transparent 70%);pointer-events:none}
+.hero-eye{font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.hero-title{font-family:var(--f1);font-weight:800;font-size:24px;color:var(--text);line-height:1.2;margin-bottom:8px}
+.hero-sub{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:18px;max-width:520px}
+.hero-btn{background:var(--cyan);color:var(--navy);font-family:var(--f1);font-weight:700;font-size:13px;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;transition:opacity .2s}
+.hero-btn:hover{opacity:.85}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.stat-c{background:var(--navy2);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.stat-v{font-family:var(--f1);font-weight:800;font-size:26px;color:var(--text)}
 .stat-v.c{color:var(--cyan)}.stat-v.g{color:var(--green)}
-.stat-l{font-size:11px;color:var(--text2)}
-.sec-title{font-family:var(--f1);font-weight:700;font-size:12px;color:var(--text);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
-.mods-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
-.mod-card{
-  background:var(--navy2);border:1px solid var(--border);border-radius:14px;
-  padding:18px 20px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;
-}
-.mod-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.mod-card.locked{opacity:.45;cursor:not-allowed}
-.mod-accent{position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
-.mod-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
-.mod-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
-.mod-status{font-family:var(--f1);font-weight:700;font-size:9px;text-transform:uppercase;letter-spacing:0.8px;padding:3px 8px;border-radius:20px}
-.ms-done{background:var(--green-dim);color:var(--green)}
-.ms-prog{background:var(--cyan-dim);color:var(--cyan)}
-.ms-lock{background:var(--navy3);color:var(--text3)}
-.mod-title{font-family:var(--f1);font-weight:700;font-size:13.5px;color:var(--text);margin-bottom:4px;line-height:1.3}
-.mod-desc{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:10px}
-.mod-meta{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--text3)}
-.mod-prog{margin-top:10px;height:3px;background:var(--border);border-radius:8px;overflow:hidden}
-.mod-prog-fill{height:100%;border-radius:8px;transition:width .5s}
+.stat-l{font-size:11px;color:var(--text2);margin-top:4px}
+.sec-title{font-family:var(--f1);font-weight:700;font-size:14px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.mods-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mod-card{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:18px 18px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.mod-card:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.mod-card-lock{opacity:.5;cursor:default}
+.mod-card:hover.mod-card-lock{border-color:var(--border);transform:none}
+.mc-eye{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.mc-icon{font-size:22px;margin-bottom:8px}
+.mc-title{font-family:var(--f1);font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
+.mc-sub{font-size:12px;color:var(--text2);margin-bottom:10px}
+.mc-bar{height:3px;background:var(--border2);border-radius:3px;overflow:hidden}
+.mc-fill{height:100%;background:var(--cyan);border-radius:3px;transition:width .5s}
+.mc-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:7px}
+.next-card{background:var(--navy2);border:1px solid var(--border2);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s}
+.next-card:hover{border-color:var(--cyan)}
+.nc-icon{width:40px;height:40px;background:var(--cyan-dim);border:1px solid var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nc-info{flex:1}
+.nc-tag{font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.nc-title{font-size:13px;font-weight:600;color:var(--text)}
+.nc-dur{font-size:11px;color:var(--text2)}
+.nc-arr{color:var(--text3);font-size:18px}
 
-/* ─── LESSON ─── */
-.les-header{margin-bottom:22px}
-.les-eye{font-family:var(--f1);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--cyan);margin-bottom:8px}
-.les-title{font-family:var(--f1);font-size:22px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px}
-.les-meta{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--text2)}
-.les-sep{color:var(--text3)}
-.tab-bar{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:20px}
-.tab{font-family:var(--f1);font-weight:700;font-size:11px;padding:10px 16px;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;letter-spacing:0.3px;text-transform:uppercase}
-.tab:hover{color:var(--text)}.tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
-.les-list{display:flex;flex-direction:column;gap:3px;margin-bottom:22px}
-.les-item{
-  display:flex;align-items:center;gap:11px;padding:11px 15px;
-  border-radius:10px;cursor:pointer;border:1px solid transparent;transition:all .15s;
-}
-.les-item:hover{background:var(--navy3);border-color:var(--border)}
-.les-item.active{background:var(--cyan-dim);border-color:var(--cyan)}
+/* ── MODULE VIEW ── */
+.les-header{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:16px}
+.les-eye{font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px}
+.les-title{font-family:var(--f1);font-weight:800;font-size:20px;color:var(--text);margin-bottom:6px}
+.les-meta{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:8px}
+.les-sep{opacity:.4}
+.tab-bar{display:flex;gap:6px;margin-bottom:16px}
+.tab{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border);color:var(--text2);transition:all .15s}
+.tab.active{background:var(--cyan-dim);border-color:var(--cyan);color:var(--cyan)}
+.les-list{display:flex;flex-direction:column;gap:6px}
+.les-item{display:flex;align-items:center;gap:12px;background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .2s}
+.les-item:hover{border-color:var(--cyan);background:var(--cyan-dim)}
+.les-item.done{border-color:var(--green);background:var(--green-dim)}
+.li-n{width:24px;height:24px;border-radius:50%;background:var(--border2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text2);flex-shrink:0}
 .les-item.done .li-n{background:var(--green);color:var(--navy)}
-.li-n{
-  width:26px;height:26px;border-radius:50%;background:var(--navy3);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--f1);font-weight:700;font-size:10px;color:var(--text2);flex-shrink:0;transition:all .15s;
-}
-.les-item.active .li-n{background:var(--cyan);color:var(--navy)}
-.li-info{flex:1;min-width:0}
-.li-t{font-family:var(--f1);font-weight:600;font-size:12.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.les-item.active .li-t{color:var(--cyan)}
-.li-d{font-size:10.5px;color:var(--text2)}
-.li-ck{font-size:12px;color:var(--green)}
-.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
-.res-card{
-  background:var(--navy3);border:1px solid var(--border);border-radius:10px;
-  padding:12px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:all .15s;
-}
-.res-card:hover{border-color:var(--border2)}
-.res-icon{width:30px;height:30px;border-radius:7px;background:var(--cyan-dim);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.res-title{font-family:var(--f1);font-weight:600;font-size:11px;color:var(--text);line-height:1.3}
-.res-type{font-size:10px;color:var(--text3)}
+.li-info{flex:1}
+.li-t{font-size:13px;font-weight:600;color:var(--text)}
+.li-d{font-size:11px;color:var(--text2)}
+.li-ck{color:var(--green);font-size:14px}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.res-card{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:border-color .2s}
+.res-card:hover{border-color:var(--cyan)}
+.res-icon{font-size:22px}
+.res-title{font-size:12px;font-weight:600;color:var(--text)}
+.res-type{font-size:11px;color:var(--text2)}
 
-/* ─── VIDEO ─── */
-.vid-wrap{
-  background:var(--navy3);border:1px solid var(--border);border-radius:14px;
-  aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  margin-bottom:22px;cursor:pointer;transition:border-color .2s;position:relative;overflow:hidden;
-}
+/* ── LESSON VIEW ── */
+.vid-wrap{background:var(--navy3);border:1px solid var(--border);border-radius:12px;height:180px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;margin-bottom:20px;position:relative;transition:border-color .2s;overflow:hidden}
 .vid-wrap:hover{border-color:var(--cyan)}
-.vid-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy3) 0%,var(--navy2) 100%)}
-.vid-play{
-  position:relative;z-index:1;width:54px;height:54px;background:var(--cyan);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;
-  transition:transform .2s;box-shadow:0 4px 20px var(--cyan-glow);color:var(--navy);
-}
-.vid-wrap:hover .vid-play{transform:scale(1.08)}
-.vid-label{position:relative;z-index:1;font-family:var(--f1);font-weight:600;font-size:12px;color:var(--text2)}
-.vid-watched{
-  position:absolute;top:12px;right:12px;z-index:2;
-  background:var(--green);color:var(--navy);font-family:var(--f1);font-weight:700;
-  font-size:10px;padding:4px 10px;border-radius:20px;letter-spacing:0.5px;display:none;
-}
+.vid-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy3),var(--navy4));opacity:.6}
+.vid-play{width:48px;height:48px;background:var(--cyan);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy);z-index:1;transition:transform .2s}
+.vid-wrap:hover .vid-play{transform:scale(1.1)}
+.vid-label{font-size:12px;color:var(--text2);z-index:1}
+.vid-watched{position:absolute;top:12px;right:12px;background:var(--green);color:var(--navy);font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:none}
+.les-body{font-size:14px;line-height:1.75;color:var(--text2);margin-bottom:24px}
+.les-body h3{font-family:var(--f1);font-weight:700;font-size:16px;color:var(--text);margin:20px 0 8px}
+.les-body h4{font-family:var(--f1);font-weight:700;font-size:14px;color:var(--cyan);margin:16px 0 6px}
+.les-body p{margin-bottom:12px}
+.les-body strong{color:var(--text);font-weight:600}
+.les-body em{color:var(--cyan);font-style:normal;font-weight:600}
+.les-body ul{padding-left:18px;margin-bottom:12px}
+.les-body li{margin-bottom:6px}
+.highlight{background:var(--cyan-dim);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0;font-size:13px;color:var(--text)}
+.warn-box{background:var(--gold-dim);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0;font-size:13px;color:var(--text)}
+.red-box{background:var(--red-dim);border-left:3px solid var(--red);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0;font-size:13px;color:var(--text)}
+.stat-pill{display:inline-block;background:var(--green-dim);border:1px solid var(--green);color:var(--green);font-family:var(--f1);font-weight:800;font-size:20px;padding:6px 16px;border-radius:100px;margin:4px 6px 4px 0}
+.script-block{background:var(--navy3);border:1px solid var(--border2);border-radius:10px;padding:14px 16px;margin:14px 0;font-size:13px;color:var(--text);font-style:italic;line-height:1.7}
+.script-block::before{content:'💬 ';font-style:normal}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.col-card{background:var(--navy3);border:1px solid var(--border);border-radius:10px;padding:14px}
+.col-card h4{font-family:var(--f1);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.col-card.green h4{color:var(--green)}
+.col-card.red h4{color:var(--red)}
+.check-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:12px;color:var(--text2);line-height:1.5}
+.check-item .ci{flex-shrink:0;margin-top:1px}
+.step-list{counter-reset:step;margin:14px 0}
+.step-item{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.step-n{width:28px;height:28px;background:var(--cyan-dim);border:1px solid var(--cyan);color:var(--cyan);font-family:var(--f1);font-weight:800;font-size:13px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-body{flex:1}
+.step-body strong{color:var(--text);display:block;margin-bottom:2px;font-size:13px}
+.step-body p{font-size:12px;color:var(--text2);line-height:1.5}
 
-/* ─── LESSON BODY ─── */
-.les-body{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:18px}
-.les-body h3{font-family:var(--f1);font-weight:700;font-size:15px;color:var(--text);margin-bottom:10px;margin-top:18px}
-.les-body h3:first-child{margin-top:0}
-.les-body p{font-size:13.5px;color:var(--text2);line-height:1.8;margin-bottom:12px}
-.les-body ul{margin:8px 0 14px 18px}
-.les-body li{font-size:13.5px;color:var(--text2);line-height:1.8;margin-bottom:4px}
-.les-body li::marker{color:var(--cyan)}
-.highlight{
-  background:var(--cyan-dim);border-left:3px solid var(--cyan);
-  border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0;
-  font-size:13px;color:var(--text);line-height:1.7;
-}
-.highlight strong{color:var(--cyan)}
-
-/* ─── QUIZ ─── */
-.quiz-wrap{
-  background:var(--navy2);border:1px solid var(--gold);border-radius:14px;
-  padding:24px 26px;margin-bottom:18px;
-}
-.quiz-title{
-  font-family:var(--f1);font-weight:800;font-size:14px;color:var(--gold);
-  margin-bottom:4px;display:flex;align-items:center;gap:8px;
-}
-.quiz-sub{font-size:12px;color:var(--text2);margin-bottom:20px}
-.q-block{margin-bottom:20px}
-.q-text{font-family:var(--f1);font-weight:700;font-size:13px;color:var(--text);margin-bottom:10px;line-height:1.4}
-.q-opts{display:flex;flex-direction:column;gap:7px}
-.q-opt{
-  display:flex;align-items:center;gap:10px;padding:10px 14px;
-  background:var(--navy3);border:1px solid var(--border);border-radius:9px;
-  cursor:pointer;transition:all .15s;
-}
-.q-opt:hover{border-color:var(--border2)}
+/* ── QUIZ ── */
+.quiz-wrap{background:var(--navy2);border:1px solid var(--border2);border-radius:14px;padding:20px;margin-bottom:20px}
+.quiz-title{font-family:var(--f1);font-weight:800;font-size:15px;color:var(--text);margin-bottom:4px}
+.quiz-sub{font-size:12px;color:var(--text2);margin-bottom:16px}
+.q-block{margin-bottom:18px}
+.q-text{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.5}
+.q-opts{display:flex;flex-direction:column;gap:6px}
+.q-opt{display:flex;align-items:center;gap:10px;background:var(--navy3);border:1px solid var(--border);border-radius:8px;padding:9px 12px;cursor:pointer;transition:all .15s}
+.q-opt:hover{border-color:var(--cyan)}
 .q-opt.selected{border-color:var(--cyan);background:var(--cyan-dim)}
 .q-opt.correct{border-color:var(--green);background:var(--green-dim)}
 .q-opt.wrong{border-color:var(--red);background:var(--red-dim)}
-.q-radio{
-  width:18px;height:18px;border-radius:50%;border:2px solid var(--border2);
-  flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  font-size:9px;transition:all .15s;
-}
-.q-opt.selected .q-radio{border-color:var(--cyan);background:var(--cyan);color:var(--navy)}
+.q-radio{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--text3);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .15s}
+.q-opt.selected .q-radio{border-color:var(--cyan);color:var(--cyan)}
 .q-opt.correct .q-radio{border-color:var(--green);background:var(--green);color:var(--navy)}
-.q-opt.wrong .q-radio{border-color:var(--red);background:var(--red);color:#fff}
-.q-opt-text{font-size:13px;color:var(--text);line-height:1.4}
-.quiz-actions{display:flex;align-items:center;justify-content:space-between;margin-top:18px;gap:12px}
-.quiz-score{font-family:var(--f1);font-weight:700;font-size:13px;color:var(--text)}
-.quiz-score span{color:var(--cyan)}
-.quiz-result{
-  padding:14px 18px;border-radius:10px;font-family:var(--f1);font-weight:700;font-size:13px;
-  margin-top:14px;display:none;
-}
-.quiz-result.pass{background:var(--green-dim);border:1px solid var(--green);color:var(--green)}
-.quiz-result.fail{background:var(--red-dim);border:1px solid var(--red);color:var(--red)}
+.q-opt.wrong .q-radio{border-color:var(--red)}
+.q-opt-text{font-size:12px;color:var(--text2)}
+.quiz-result{display:none;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:600;margin-bottom:12px}
+.quiz-result.pass{background:var(--green-dim);color:var(--green)}
+.quiz-result.fail{background:var(--red-dim);color:var(--red)}
+.quiz-actions{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.quiz-score{font-size:12px;color:var(--text2)}
+.quiz-score span{color:var(--cyan);font-weight:700}
 
-/* ─── NAV BUTTONS ─── */
-.les-nav{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  padding:18px 0;border-top:1px solid var(--border);
-}
-.nav-btn{
-  display:flex;align-items:center;gap:7px;font-family:var(--f1);font-weight:700;font-size:11px;
-  padding:10px 18px;border-radius:9px;cursor:pointer;border:1px solid var(--border2);
-  background:transparent;color:var(--text2);transition:all .15s;letter-spacing:0.3px;
-}
-.nav-btn:hover:not(:disabled){color:var(--text);background:var(--navy3)}
-.nav-btn:disabled{opacity:.3;cursor:not-allowed}
-.nav-btn.primary{background:var(--cyan);color:var(--navy);border-color:var(--cyan)}
-.nav-btn.primary:hover{filter:brightness(1.08)}
-.nav-btn.locked-btn{background:var(--navy3);color:var(--text3);border-color:var(--border);cursor:not-allowed}
+/* ── NAV BUTTONS ── */
+.les-nav{display:flex;gap:10px;justify-content:flex-end;padding-top:8px;border-top:1px solid var(--border);margin-top:8px}
+.nav-btn{padding:10px 20px;border-radius:10px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.nav-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
+.nav-btn:disabled{opacity:.35;cursor:not-allowed}
+.nav-btn.primary{background:var(--cyan);border-color:var(--cyan);color:var(--navy)}
+.nav-btn.primary:hover{opacity:.85}
+.locked-btn{background:var(--border);border-color:var(--border);color:var(--text3);cursor:pointer}
+.locked-btn:hover{border-color:var(--gold)!important;color:var(--gold)!important}
 
-/* ─── TOAST ─── */
-#toast{
-  position:fixed;bottom:22px;right:22px;
-  background:var(--navy2);border:1px solid var(--green);color:var(--green);
-  font-family:var(--f1);font-weight:700;font-size:12px;padding:10px 16px;
-  border-radius:9px;display:flex;align-items:center;gap:8px;
-  opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:100;
-}
-#toast.show{opacity:1;transform:translateY(0)}
+/* ── LIBRARY ── */
+#v-lib .sec-title{margin-top:20px}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:20px;right:20px;background:var(--navy3);border:1px solid var(--border2);border-radius:10px;padding:10px 16px;font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px;transform:translateY(80px);opacity:0;transition:all .3s;z-index:500;pointer-events:none}
+#toast.show{transform:translateY(0);opacity:1}
 #toast.warn{border-color:var(--gold);color:var(--gold)}
 
-/* ─── MOBILE ─── */
+/* ── RESPONSIVE ── */
 @media(max-width:768px){
-  #sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);transition:transform .25s}
+  #sidebar{position:fixed;left:0;top:0;height:100%;z-index:100;transform:translateX(-100%)}
   #sidebar.open{transform:translateX(0)}
-  .mbtn-toggle{display:flex}
-  #content{padding:18px 16px}
+  #main{width:100%}
+  .mbtn-toggle{display:block}
+  #content{padding:16px 14px}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .mods-grid{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
   .res-grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
@@ -373,10 +259,10 @@ body{display:flex;overflow:hidden}
       <div class="login-brand">PartnersUp<span>Academia</span></div>
     </div>
     <div class="login-title">Bienvenido de vuelta</div>
-    <div class="login-sub">Usuarios disponibles: admin · asesor1 · asesor2 · asesor3 · asesor4</div>
+    <div class="login-sub">Acceso exclusivo para el equipo de ventas. Usuarios: <strong>admin · setter1 · setter2 · closer1 · closer2</strong></div>
     <div class="form-field">
       <label class="form-label">Usuario</label>
-      <input id="inp-user" class="form-input" type="text" placeholder="admin, asesor1, asesor2..." autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
+      <input id="inp-user" class="form-input" type="text" placeholder="admin, setter1, closer1…" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
     <div class="form-field">
       <label class="form-label">Contraseña</label>
@@ -388,9 +274,8 @@ body{display:flex;overflow:hidden}
 </div>
 
 <!-- ════ APP ════ -->
-<div id="app" style="display:none;width:100%;height:100%;display:none;flex">
+<div id="app" style="display:none">
 
-<!-- SIDEBAR -->
 <div id="sidebar">
   <div class="sb-top">
     <div class="sb-logo">
@@ -416,19 +301,17 @@ body{display:flex;overflow:hidden}
       <div class="sb-itext"><div class="sb-ititle">Dashboard</div><div class="sb-isub">Resumen</div></div>
     </div>
     <div class="sb-section">Módulos</div>
-    <div class="sb-item" onclick="goMod(0)"><div class="sb-iicon">🚀</div><div class="sb-itext"><div class="sb-ititle">1. Fundamentos</div><div class="sb-isub">El sistema completo</div></div><span class="sb-badge bd-go" id="b0">Inicio</span></div>
-    <div class="sb-item" onclick="goMod(1)"><div class="sb-iicon">📣</div><div class="sb-itext"><div class="sb-ititle">2. Meta Ads</div><div class="sb-isub">Captación de pacientes</div></div><span class="sb-badge bd-lock" id="b1">🔒</span></div>
-    <div class="sb-item" onclick="goMod(2)"><div class="sb-iicon">⚙️</div><div class="sb-itext"><div class="sb-ititle">3. CRM</div><div class="sb-isub">Gestión de leads</div></div><span class="sb-badge bd-lock" id="b2">🔒</span></div>
-    <div class="sb-item" onclick="goMod(3)"><div class="sb-iicon">🤖</div><div class="sb-itext"><div class="sb-ititle">4. Agente IA</div><div class="sb-isub">WhatsApp automático</div></div><span class="sb-badge bd-lock" id="b3">🔒</span></div>
-    <div class="sb-item" onclick="goMod(4)"><div class="sb-iicon">📈</div><div class="sb-itext"><div class="sb-ititle">5. Retención</div><div class="sb-isub">Pacientes que regresan</div></div><span class="sb-badge bd-lock" id="b4">🔒</span></div>
-    <div class="sb-item" onclick="goMod(5)"><div class="sb-iicon">💎</div><div class="sb-itext"><div class="sb-ititle">6. Escalado</div><div class="sb-isub">Crecer sin caos</div></div><span class="sb-badge bd-lock" id="b5">🔒</span></div>
-    <div class="sb-section" style="margin-top:6px">Recursos</div>
-    <div class="sb-item" onclick="goView('lib')"><div class="sb-iicon">📁</div><div class="sb-itext"><div class="sb-ititle">Biblioteca</div><div class="sb-isub">Materiales y plantillas</div></div></div>
+    <div class="sb-item" onclick="goMod(0)"><div class="sb-iicon">🎯</div><div class="sb-itext"><div class="sb-ititle">1. ¿Qué somos?</div><div class="sb-isub">No somos una agencia</div></div><span class="sb-badge bd-go" id="b0">Inicio</span></div>
+    <div class="sb-item" onclick="goMod(1)"><div class="sb-iicon">👤</div><div class="sb-itext"><div class="sb-ititle">2. Nuestro cliente</div><div class="sb-isub">A quién ayudamos</div></div><span class="sb-badge bd-lock" id="b1">🔒</span></div>
+    <div class="sb-item" onclick="goMod(2)"><div class="sb-iicon">⚡</div><div class="sb-itext"><div class="sb-ititle">3. El Sistema Integral</div><div class="sb-isub">De lead a paciente</div></div><span class="sb-badge bd-lock" id="b2">🔒</span></div>
+    <div class="sb-item" onclick="goMod(3)"><div class="sb-iicon">💬</div><div class="sb-itext"><div class="sb-ititle">4. Cómo hablar</div><div class="sb-isub">El lenguaje correcto</div></div><span class="sb-badge bd-lock" id="b3">🔒</span></div>
+    <div class="sb-item" onclick="goMod(4)"><div class="sb-iicon">🤝</div><div class="sb-itext"><div class="sb-ititle">5. Tu rol</div><div class="sb-isub">Setter, Closer y comisión</div></div><span class="sb-badge bd-lock" id="b4">🔒</span></div>
+    <div class="sb-section" style="margin-top:4px">Recursos</div>
+    <div class="sb-item" onclick="goView('lib')"><div class="sb-iicon">📁</div><div class="sb-itext"><div class="sb-ititle">Biblioteca</div><div class="sb-isub">Materiales y guías</div></div></div>
   </nav>
   <div class="sb-logout"><button class="btn-logout" onclick="doLogout()">Cerrar sesión</button></div>
 </div>
 
-<!-- MAIN -->
 <div id="main">
   <div id="topbar">
     <div style="display:flex;align-items:center;gap:12px">
@@ -446,15 +329,15 @@ body{display:flex;overflow:hidden}
   <div id="v-dash">
     <div class="hero">
       <div class="hero-eye">👋 Academia PartnersUp</div>
-      <div class="hero-title">Aprende el sistema.<br>Domina cada herramienta.</div>
-      <div class="hero-sub">6 módulos diseñados para que puedas operar el sistema de adquisición de pacientes de principio a fin. Con quiz obligatorio en cada lección.</div>
+      <div class="hero-title">Conoce el sistema.<br>Vende la transformación.</div>
+      <div class="hero-sub">5 módulos para que entiendas exactamente qué vendemos, a quién y cómo hablar de ello. Con quiz obligatorio en cada lección.</div>
       <button class="hero-btn" onclick="goContinue()">▶ Comenzar</button>
     </div>
     <div class="stats-grid">
       <div class="stat-c"><div class="stat-v c" id="st1">0</div><div class="stat-l">Lecciones completadas</div></div>
-      <div class="stat-c"><div class="stat-v" id="st2">24</div><div class="stat-l">Total de lecciones</div></div>
+      <div class="stat-c"><div class="stat-v" id="st2">20</div><div class="stat-l">Total de lecciones</div></div>
       <div class="stat-c"><div class="stat-v g" id="st3">0%</div><div class="stat-l">Progreso general</div></div>
-      <div class="stat-c"><div class="stat-v" id="st4">4.5h</div><div class="stat-l">Contenido total</div></div>
+      <div class="stat-c"><div class="stat-v" id="st4">2.5h</div><div class="stat-l">Contenido total</div></div>
     </div>
     <div class="sec-title">Módulos del Programa</div>
     <div class="mods-grid" id="modsGrid"></div>
@@ -467,7 +350,7 @@ body{display:flex;overflow:hidden}
     <div class="les-header">
       <div class="les-eye" id="mEye">Módulo 1</div>
       <div class="les-title" id="mTitle">Título</div>
-      <div class="les-meta"><span id="mLes">4 lecciones</span><span class="les-sep">·</span><span id="mDur">45 min</span></div>
+      <div class="les-meta"><span id="mLes">4 lecciones</span><span class="les-sep">·</span><span id="mDur">35 min</span></div>
     </div>
     <div class="tab-bar">
       <div class="tab active" onclick="modTab('c',this)">Contenido</div>
@@ -487,15 +370,13 @@ body{display:flex;overflow:hidden}
     <div class="vid-wrap" id="vidWrap" onclick="watchVideo()">
       <div class="vid-bg"></div>
       <div class="vid-play">▶</div>
-      <div class="vid-label" id="vidLabel">Haz clic para ver el video</div>
+      <div class="vid-label" id="vidLabel">Haz clic para marcar como visto</div>
       <div class="vid-watched" id="vidDone">✓ Visto</div>
     </div>
     <div class="les-body" id="lBody"></div>
-
-    <!-- QUIZ -->
     <div class="quiz-wrap" id="quizWrap">
       <div class="quiz-title">🎯 Quiz de la Lección</div>
-      <div class="quiz-sub">Responde correctamente para desbloquear la siguiente lección. Necesitas al menos 2 de 3 respuestas correctas.</div>
+      <div class="quiz-sub">Necesitas al menos 2 de 3 respuestas correctas.</div>
       <div id="quizQuestions"></div>
       <div class="quiz-result" id="quizResult"></div>
       <div class="quiz-actions">
@@ -503,7 +384,6 @@ body{display:flex;overflow:hidden}
         <button class="btn-sm btn-cyan" id="btnQuiz" onclick="submitQuiz()">Verificar respuestas</button>
       </div>
     </div>
-
     <div class="les-nav">
       <button class="nav-btn" id="btnPrev" onclick="prevLes()">← Anterior</button>
       <button class="nav-btn primary locked-btn" id="btnNext" onclick="nextLes()">Siguiente →</button>
@@ -514,26 +394,20 @@ body{display:flex;overflow:hidden}
   <div id="v-lib" style="display:none">
     <div class="hero" style="margin-bottom:22px">
       <div class="hero-eye">📁 Biblioteca</div>
-      <div class="hero-title" style="font-size:18px">Materiales de formación</div>
+      <div class="hero-title" style="font-size:18px">Materiales del equipo</div>
       <div class="hero-sub">Recursos de apoyo para cada módulo del programa.</div>
     </div>
-    <div class="sec-title">Fundamentos del Sistema</div>
-    <div class="res-grid" style="margin-bottom:22px">
-      <div class="res-card"><div class="res-icon">📄</div><div><div class="res-title">Guía de Activación</div><div class="res-type">PDF · 8 páginas</div></div></div>
-      <div class="res-card"><div class="res-icon">📊</div><div><div class="res-title">KPIs de Referencia</div><div class="res-type">Plantilla</div></div></div>
-      <div class="res-card"><div class="res-icon">🎥</div><div><div class="res-title">Video de Bienvenida</div><div class="res-type">Video · 8 min</div></div></div>
+    <div class="sec-title">Materiales de Venta</div>
+    <div class="res-grid" style="margin-bottom:20px">
+      <div class="res-card"><div class="res-icon">📊</div><div><div class="res-title">Casos de Éxito</div><div class="res-type">Resultados reales · PDF</div></div></div>
+      <div class="res-card"><div class="res-icon">💬</div><div><div class="res-title">Scripts de Calificación</div><div class="res-type">Setter · Guía</div></div></div>
+      <div class="res-card"><div class="res-icon">🎯</div><div><div class="res-title">Guía de Objeciones</div><div class="res-type">Closer · Referencia</div></div></div>
     </div>
-    <div class="sec-title">Meta Ads</div>
-    <div class="res-grid" style="margin-bottom:22px">
-      <div class="res-card"><div class="res-icon">📝</div><div><div class="res-title">Plantilla de Copy VSL</div><div class="res-type">Google Docs</div></div></div>
-      <div class="res-card"><div class="res-icon">🎨</div><div><div class="res-title">Pack de Creativos</div><div class="res-type">Canva · 8 piezas</div></div></div>
-      <div class="res-card"><div class="res-icon">📊</div><div><div class="res-title">Estructura de Campaña</div><div class="res-type">PDF · 12 páginas</div></div></div>
-    </div>
-    <div class="sec-title">CRM & Automatizaciones</div>
+    <div class="sec-title">Recursos de Formación</div>
     <div class="res-grid">
-      <div class="res-card"><div class="res-icon">⚙️</div><div><div class="res-title">Flujo de Automatización</div><div class="res-type">Snapshot importable</div></div></div>
-      <div class="res-card"><div class="res-icon">💬</div><div><div class="res-title">Scripts Agente IA</div><div class="res-type">Google Docs</div></div></div>
-      <div class="res-card"><div class="res-icon">📋</div><div><div class="res-title">Pipeline de Seguimiento</div><div class="res-type">CSV importable</div></div></div>
+      <div class="res-card"><div class="res-icon">📋</div><div><div class="res-title">Perfil del Cliente Ideal</div><div class="res-type">Referencia rápida</div></div></div>
+      <div class="res-card"><div class="res-icon">📈</div><div><div class="res-title">KPIs del Sistema</div><div class="res-type">Métricas clave</div></div></div>
+      <div class="res-card"><div class="res-icon">🔑</div><div><div class="res-title">La Frase del Sistema</div><div class="res-type">Memorizar · Flash card</div></div></div>
     </div>
   </div>
 
@@ -541,385 +415,627 @@ body{display:flex;overflow:hidden}
 </div><!-- /main -->
 </div><!-- /app -->
 
-<div id="toast">✓ <span id="toastMsg">Listo</span></div>
+<div id="toast"><span id="toastMsg"></span></div>
 
 <script>
-// ══════════════════════════════════
-// AUTH — credenciales en frontend (MVP)
-// ══════════════════════════════════
-const USERS = {
-  'admin':    {pass:'academia2026', name:'Admin UP',  role:'Administrador'},
-  'asesor1':  {pass:'academia2026', name:'Asesor 1',  role:'Asesor'},
-  'asesor2':  {pass:'academia2026', name:'Asesor 2',  role:'Asesor'},
-  'asesor3':  {pass:'academia2026', name:'Asesor 3',  role:'Asesor'},
-  'asesor4':  {pass:'academia2026', name:'Asesor 4',  role:'Asesor'},
+// ════════════════════════════════════════════
+// USERS
+// ════════════════════════════════════════════
+const USERS={
+  admin:{pass:'admin123',name:'Admin',role:'Administrador'},
+  setter1:{pass:'setter123',name:'Setter 1',role:'Setter'},
+  setter2:{pass:'setter123',name:'Setter 2',role:'Setter'},
+  closer1:{pass:'closer123',name:'Closer 1',role:'Closer'},
+  closer2:{pass:'closer123',name:'Closer 2',role:'Closer'}
 };
 
-let currentUser = null;
+// ════════════════════════════════════════════
+// MODULES DATA
+// ════════════════════════════════════════════
+const MODS=[
+  // ───────────────────────────────────────────
+  // MOD 0 — ¿QUÉ SOMOS?
+  // ───────────────────────────────────────────
+  {
+   title:'¿Qué somos?',sub:'No somos una agencia',icon:'🎯',dur:'35 min',locked:false,
+   resources:[
+     {i:'💬',t:'La Frase del Sistema',s:'Memorizar'},
+     {i:'📊',t:'Casos de Éxito',s:'Referencia'}
+   ],
+   lessons:[
+    {title:'La pregunta que lo cambia todo',dur:'8 min',
+     body:`<h3>No somos lo que crees</h3>
+<p>La mayoría de las agencias preguntan: <em>"¿qué servicio te podemos vender?"</em>. PartnersUp pregunta: <em>"¿qué resultado necesitas?"</em>. Ese cambio de perspectiva lo es todo.</p>
+<p>No vendemos herramientas. No vendemos campañas. No vendemos software. Vendemos una transformación: una clínica que lucha por llenar su agenda se convierte en una que la llena de forma predecible, mes a mes.</p>
+<div class="highlight">La palabra <strong>"agencia"</strong> carga con un equipaje pesado. Cuando una clínica escucha "agencia de marketing" recuerda la última vez que pagó a alguien y no midió nada. PartnersUp no es eso. Somos un <strong>sistema integral</strong> — y esa palabra importa.</div>
+<h3>¿Por qué esto importa para tu conversación de venta?</h3>
+<p>Si tú mismo no tienes claro que vendemos un sistema, vas a hablar de herramientas. Y cuando hablas de herramientas, el prospecto te compara con cualquier otra opción en el mercado. Cuando hablas del resultado, la conversación es completamente diferente.</p>
+<div class="warn-box">⚠️ Ejercicio mental: antes de cualquier conversación con un prospecto, repite para ti mismo: <em>"No vendo campañas. No vendo un chatbot. No vendo un CRM. Vendo pacientes predecibles."</em></div>`,
+     quiz:[
+      {q:'¿Qué vende PartnersUp a sus clientes?',opts:['Campañas de Meta Ads','Un sistema integral de adquisición de pacientes','Un CRM con agente de IA','Consultoría de marketing digital'],ans:1},
+      {q:'¿Por qué es un problema decir "somos una agencia de marketing"?',opts:['Porque suena muy formal','Porque nos comparan con cualquier otra agencia y perdemos diferenciación','Porque las clínicas no saben qué es una agencia','Porque el término está desactualizado'],ans:1},
+      {q:'¿Cuál es la pregunta correcta que hace PartnersUp a sus prospectos?',opts:['¿Qué presupuesto tienes para publicidad?','¿Tienes CRM actualmente?','¿Qué resultado necesitas?','¿Cuántos seguidores tienes en Instagram?'],ans:2}
+     ]},
+    {title:'El problema que nadie más resuelve',dur:'9 min',
+     body:`<h3>La brecha entre el interés y el paciente</h3>
+<p>Las clínicas saben hacer su trabajo. Los especialistas son excelentes. Los tratamientos funcionan. Pero entre la persona que piensa <em>"me interesa ese tratamiento"</em> y la persona que entra por la puerta como paciente confirmado... hay un proceso que la mayoría de las clínicas nunca ha sistematizado.</p>
+<div class="step-list">
+  <div class="step-item"><div class="step-n">1</div><div class="step-body"><strong>Alguien se interesa</strong><p>Ven contenido, buscan información, preguntan por WhatsApp.</p></div></div>
+  <div class="step-item"><div class="step-n">2</div><div class="step-body"><strong>La clínica no está lista</strong><p>El equipo responde tarde, fuera de horario, o no da seguimiento. El lead se enfría.</p></div></div>
+  <div class="step-item"><div class="step-n">3</div><div class="step-body"><strong>El dinero se pierde en silencio</strong><p>Nadie sabe cuántos leads llegaron, cuántos se perdieron, ni por qué. La clínica sigue como siempre.</p></div></div>
+</div>
+<p>Esa brecha — entre la persona interesada y el paciente confirmado — es exactamente lo que PartnersUp cierra. No con publicidad sola. No con un chatbot solo. Con un sistema completo e integrado que automatiza cada paso de ese camino.</p>
+<div class="highlight">El dolor de la clínica no es "necesito más publicidad". Es "tengo personas interesadas que nunca se convierten en pacientes". Esa es la distinción que nos permite vender el sistema, no los anuncios.</div>`,
+     quiz:[
+      {q:'¿Qué brecha específica cierra PartnersUp?',opts:['Entre el médico y la clínica','Entre la persona interesada y el paciente confirmado','Entre el presupuesto y los resultados de publicidad','Entre el Instagram y la página web'],ans:1},
+      {q:'¿Cuál es el dolor real de la clínica que PartnersUp resuelve?',opts:['No tienen suficiente presupuesto para publicidad','Tienen personas interesadas que nunca se convierten en pacientes','No tienen página de Instagram','Su equipo médico no está capacitado'],ans:1},
+      {q:'¿Por qué las clínicas pierden leads sin darse cuenta?',opts:['Porque tienen mal servicio al paciente','Porque nadie sabe cuántos leads llegaron, se perdieron ni por qué','Porque sus tratamientos no son buenos','Porque están en la ciudad equivocada'],ans:1}
+     ]},
+    {title:'Por qué somos diferentes',dur:'9 min',
+     body:`<h3>El mercado tiene piezas. Nosotros tenemos el sistema.</h3>
+<p>Existen agencias de publicidad. Existen proveedores de CRM. Existen empresas que venden chatbots. Existen consultores de marketing. PartnersUp no es ninguna de esas cosas por separado — y es todo eso funcionando de forma integrada.</p>
+<div class="two-col">
+  <div class="col-card red"><h4>❌ El mercado</h4>
+    <div class="check-item"><span class="ci">📣</span><span>Una agencia te hace anuncios y te envía un reporte.</span></div>
+    <div class="check-item"><span class="ci">🤖</span><span>Una empresa de chatbots te vende un bot que responde WhatsApp.</span></div>
+    <div class="check-item"><span class="ci">⚙️</span><span>Un proveedor de CRM te configura el software.</span></div>
+    <div class="check-item"><span class="ci">❓</span><span>Nadie responde por el resultado final: pacientes en la agenda.</span></div>
+  </div>
+  <div class="col-card green"><h4>✅ PartnersUp</h4>
+    <div class="check-item"><span class="ci">⚡</span><span>Instalamos un sistema completo que conecta todo.</span></div>
+    <div class="check-item"><span class="ci">📊</span><span>Medimos el ROI, no el esfuerzo.</span></div>
+    <div class="check-item"><span class="ci">🎯</span><span>Somos responsables del resultado: pacientes que llegan.</span></div>
+    <div class="check-item"><span class="ci">🔄</span><span>El sistema funciona 24/7, no solo en horario de oficina.</span></div>
+  </div>
+</div>
+<div class="highlight">La diferencia real: cuando otra empresa te vende ads, es responsable de los ads. Cuando PartnersUp entrega su sistema, es responsable de los pacientes. Esa accountability — medimos ROI, no esfuerzo — es la diferenciación real.</div>`,
+     quiz:[
+      {q:'¿Qué diferencia a PartnersUp de una agencia de publicidad tradicional?',opts:['Que PartnersUp es más barata','Que PartnersUp es responsable del resultado final (pacientes), no solo del esfuerzo (campañas)','Que PartnersUp solo hace redes sociales','Que PartnersUp trabaja solo con clínicas grandes'],ans:1},
+      {q:'¿Qué mide PartnersUp vs. lo que mide una agencia típica?',opts:['PartnersUp mide alcance; la agencia mide conversiones','PartnersUp mide ROI real (pacientes y revenue); la agencia típica mide esfuerzo (campañas, alcance)','Ambas miden exactamente lo mismo','PartnersUp no mide nada porque los resultados son intangibles'],ans:1},
+      {q:'¿Por qué comprar herramientas por separado (ads aquí, CRM allá, chatbot en otro lado) no da el mismo resultado?',opts:['Porque cada proveedor solo es responsable de su parte, no del resultado total','Porque es más caro','Porque las herramientas son incompatibles entre sí','Porque la clínica tiene que aprenderlas todas'],ans:0}
+     ]},
+    {title:'Lo que activamos en 7 días',dur:'9 min',
+     body:`<h3>7 días hábiles. Sin "en construcción".</h3>
+<p>Desde el día en que una clínica firma el contrato, el sistema está activo en <strong>7 días hábiles</strong>. No 3 meses. No "una vez que configuremos todo". Siete días.</p>
+<div class="step-list">
+  <div class="step-item"><div class="step-n">D0</div><div class="step-body"><strong>Firma del contrato</strong><p>Se recopila toda la información de la clínica: servicios, precios, perfil del paciente ideal.</p></div></div>
+  <div class="step-item"><div class="step-n">D1</div><div class="step-body"><strong>Configuración del sistema</strong><p>El CRM y el pipeline de la clínica quedan listos.</p></div></div>
+  <div class="step-item"><div class="step-n">D3</div><div class="step-body"><strong>Campañas y flujo de citas</strong><p>Los anuncios están configurados. El proceso de agendamiento queda automatizado.</p></div></div>
+  <div class="step-item"><div class="step-n">D5</div><div class="step-body"><strong>Agente activo en WhatsApp</strong><p>El agente responde, confirma citas y envía recordatorios. Listo para operar.</p></div></div>
+  <div class="step-item"><div class="step-n">D7</div><div class="step-body"><strong>Todo activo. Primer lead entrando.</strong><p>La clínica tiene campañas corriendo, agente respondiendo y dashboard con métricas en tiempo real.</p></div></div>
+</div>
+<div class="highlight">La velocidad de activación es parte de la propuesta de valor. No es solo una promesa operativa — es la prueba de que esto es un sistema probado, no un proyecto de desarrollo personalizado. La velocidad genera confianza.</div>`,
+     quiz:[
+      {q:'¿En cuánto tiempo queda activo el sistema desde la firma?',opts:['30 días hábiles','7 días hábiles','Depende del tamaño de la clínica, puede tomar hasta 3 meses','2 semanas'],ans:1},
+      {q:'¿Qué tiene lista la clínica al día 7?',opts:['Solo los anuncios de Meta','Campañas corriendo, agente en WhatsApp, flujo de agendamiento y dashboard con métricas','Solo el CRM configurado sin campañas','Un borrador del sistema pendiente de aprobación'],ans:1},
+      {q:'¿Por qué la activación en 7 días es importante en el argumento de venta?',opts:['Porque así se cobra más rápido','Porque demuestra que es un sistema probado, no un desarrollo a medida — genera confianza','Porque las clínicas no quieren esperar','Porque es un requisito legal del sector salud en Colombia'],ans:1}
+     ]}
+   ]
+  },
+  // ───────────────────────────────────────────
+  // MOD 1 — NUESTRO CLIENTE
+  // ───────────────────────────────────────────
+  {
+   title:'Nuestro cliente',sub:'A quién ayudamos',icon:'👤',dur:'30 min',locked:true,
+   resources:[
+     {i:'📋',t:'Perfil del Cliente Ideal',s:'Referencia rápida'},
+     {i:'🚨',t:'Señales de Descalificación',s:'Lista de chequeo'}
+   ],
+   lessons:[
+    {title:'El perfil exacto del cliente soñado',dur:'7 min',
+     body:`<h3>No todas las clínicas son nuestro cliente</h3>
+<p>PartnersUp trabaja con <strong>dueños, directores o gerentes de clínicas de medicina estética no quirúrgica en Colombia</strong>. Son personas que ya construyeron algo: uno o más consultorios activos, un equipo, pacientes reales — y la sensación de que podrían estar haciéndolo mejor.</p>
+<div class="highlight">Clave: no buscamos clínicas que empiezan de cero. Buscamos clínicas que ya tienen tracción y quieren sistematizar. Esa distinción es crítica para calificar rápido.</div>
+<h4>Características del cliente ideal</h4>
+<div class="two-col">
+  <div class="col-card green"><h4>✅ Tiene</h4>
+    <div class="check-item"><span class="ci">🏥</span><span>1 o más consultorios activos con flujo de pacientes</span></div>
+    <div class="check-item"><span class="ci">📱</span><span>Responde WhatsApp manualmente (o tiene alguien haciéndolo)</span></div>
+    <div class="check-item"><span class="ci">💰</span><span>Factura pero sabe que está dejando dinero sobre la mesa</span></div>
+    <div class="check-item"><span class="ci">🧠</span><span>Mentalidad de crecimiento — quiere sistematizar, no improvisar</span></div>
+  </div>
+  <div class="col-card"><h4 style="color:var(--cyan)">🔍 Le pasa</h4>
+    <div class="check-item"><span class="ci">😤</span><span>Se frustra cuando una paciente potencial no vuelve a escribir</span></div>
+    <div class="check-item"><span class="ci">📊</span><span>No tiene CRM o tiene uno desorganizado</span></div>
+    <div class="check-item"><span class="ci">📅</span><span>Su agenda no está llena y no sabe exactamente por qué</span></div>
+    <div class="check-item"><span class="ci">💸</span><span>Tiene presupuesto para invertir en la solución</span></div>
+  </div>
+</div>`,
+     quiz:[
+      {q:'¿Cuál es el perfil exacto del cliente ideal de PartnersUp?',opts:['Cualquier profesional de la salud que quiera más pacientes','Dueño o director de clínica de medicina estética no quirúrgica en Colombia con flujo activo de pacientes','Clínicas de cualquier especialidad médica en Latinoamérica','Solo clínicas grandes con múltiples sedes'],ans:1},
+      {q:'¿En qué etapa debe estar la clínica para ser nuestro cliente ideal?',opts:['Apenas abriendo, sin pacientes todavía','Ya tiene flujo de pacientes y quiere sistematizar — no está empezando de cero','Debe tener al menos 5 años en el mercado','Solo si ya tiene publicidad corriendo'],ans:1},
+      {q:'¿Cuál de estas es una característica del cliente soñado de PartnersUp?',opts:['Prefiere no invertir en tecnología y confía solo en el voz a voz','Tiene CRM bien organizado y lleva métricas detalladas','Quiere sistematizar, tiene flujo de pacientes y sabe que está dejando dinero sobre la mesa','No tiene presupuesto pero quiere crecer'],ans:2}
+     ]},
+    {title:'Los 6 dolores reales de la clínica',dur:'8 min',
+     body:`<h3>Antes de vender, debes entender qué los duele</h3>
+<p>Cuando un prospecto menciona cualquiera de estos dolores, es tu señal: tienen el problema y nosotros tenemos la solución. Apréndetelos de memoria.</p>
+<div class="step-list">
+  <div class="step-item"><div class="step-n">1</div><div class="step-body"><strong>Leads que llegan y no convierten</strong><p>La respuesta tarda demasiado o llega fuera del horario de la clínica. El lead se enfría y desaparece.</p></div></div>
+  <div class="step-item"><div class="step-n">2</div><div class="step-body"><strong>El equipo pasa el día en WhatsApp</strong><p>En lugar de atender pacientes presenciales, el personal está respondiendo chats manualmente. Todo el día.</p></div></div>
+  <div class="step-item"><div class="step-n">3</div><div class="step-body"><strong>Cero visibilidad del negocio</strong><p>No saben cuántos leads entraron, cuántos agendaron, cuántos asistieron ni cuántos compraron. Toman decisiones a ciegas.</p></div></div>
+  <div class="step-item"><div class="step-n">4</div><div class="step-body"><strong>Sin forma predecible de llenar la agenda</strong><p>Dependen del voz a voz y de publicar en Instagram de vez en cuando. Nada es sistemático ni medible.</p></div></div>
+  <div class="step-item"><div class="step-n">5</div><div class="step-body"><strong>Alta tasa de no-shows</strong><p>Pacientes que agendan y no llegan. No hay seguimiento automático después del agendamiento.</p></div></div>
+  <div class="step-item"><div class="step-n">6</div><div class="step-body"><strong>La clínica cierra a las 6pm</strong><p>Todos los leads que llegan en la noche o el fin de semana se pierden porque nadie responde.</p></div></div>
+</div>
+<div class="highlight">No necesitas que la clínica tenga los 6 dolores. Con que mencionen 1 o 2 en la conversación ya estás ante alguien que puede beneficiarse del sistema. Esa es tu apertura.</div>`,
+     quiz:[
+      {q:'Una clínica te dice: "nos llegan consultas pero nunca llegan a la cita". ¿Qué dolor describe esto?',opts:['Alta tasa de no-shows','Leads que llegan y no convierten porque la respuesta tarda o llega fuera de horario','Equipo saturado respondiendo WhatsApp','Sin forma predecible de llenar la agenda'],ans:1},
+      {q:'¿Qué problema específico genera que la clínica cierre a las 6pm?',opts:['Los médicos no pueden trabajar más horas','Los leads que llegan en la noche o el fin de semana se pierden porque nadie responde','El sistema no funciona fuera de horario','Las campañas paran automáticamente a esa hora'],ans:1},
+      {q:'¿Cuántos de estos 6 dolores necesita tener una clínica para ser candidata al sistema?',opts:['Todos los 6 sin excepción','Los 6 pero puede empezar con algunos','Con 1 o 2 es suficiente para abrir la conversación','Mínimo 4 para que el sistema tenga impacto'],ans:2}
+     ]},
+    {title:'Señales de cliente ideal vs. señales de alarma',dur:'8 min',
+     body:`<h3>Calificar rápido protege a todos</h3>
+<p>No todas las clínicas son nuestro cliente ideal. Forzar un cierre con el cliente equivocado daña a la clínica, a PartnersUp y a tu comisión. La retención cae al segundo mes y todos pierden.</p>
+<div class="two-col">
+  <div class="col-card green"><h4>✅ SEÑALES DE QUE SÍ ES NUESTRO CLIENTE</h4>
+    <div class="check-item"><span class="ci">✓</span><span>Menciona querer "sistematizar" o "organizar" cómo consiguen pacientes</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Se frustra por el caos de WhatsApp o por tener al equipo saturado</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Pregunta cómo se miden los resultados (le importa el ROI)</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Ya tiene flujo de pacientes y quiere escalarlo</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Tiene presupuesto para invertir en el sistema y en pauta</span></div>
+  </div>
+  <div class="col-card red"><h4>🚨 SEÑALES DE ALARMA — DESCALIFICA</h4>
+    <div class="check-item"><span class="ci">✗</span><span>Resistencia fuerte a tecnología o a cambiar su proceso actual</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>No tiene flujo mínimo de pacientes (imposible medir ROI en 30 días)</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>Presupuesto insuficiente para pauta + retainer</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>Expectativas irreales ("quiero 500 leads al mes" con 100K COP de presupuesto)</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>Ya tiene otro sistema instalado y no quiere cambiarlo</span></div>
+  </div>
+</div>
+<div class="red-box">🔴 Regla de oro: Es mejor perder un prospecto que perder un cliente al mes 2. Un cierre forzado con el cliente equivocado destruye el LTV y genera churn. Califica con dureza, siempre.</div>`,
+     quiz:[
+      {q:'Un prospecto dice: "quiero 1000 leads al mes pero solo tengo 150.000 COP para pauta". ¿Qué haces?',opts:['Cierras igual y ves qué pasa','Descalificas — el presupuesto no soporta esa expectativa','Le prometes los 1000 leads igual','Le ofreces solo la mitad del sistema'],ans:1},
+      {q:'¿Cuál es la señal más clara de que una clínica SÍ es nuestro cliente ideal?',opts:['Tiene más de 10 años en el mercado','Pregunta cómo se miden los resultados y menciona querer sistematizar','Tiene muchos seguidores en Instagram','Tiene un presupuesto muy alto'],ans:1},
+      {q:'¿Por qué es importante descalificar rápido a prospectos que no son el cliente ideal?',opts:['Para ahorrar tiempo del closer y evitar clientes que generan churn al mes 2','Porque así el equipo tiene menos trabajo','Para que la competencia se quede con esos clientes','Porque a PartnersUp solo le gustan los clientes grandes'],ans:0}
+     ]},
+    {title:'Los resultados reales que entregamos',dur:'7 min',
+     body:`<h3>Números reales. No promesas.</h3>
+<p>Cuando un prospecto pregunta <em>"¿pero de verdad funciona?"</em>, no das testimonios vagos. Das números específicos y medibles de clínicas reales.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0">
+  <div style="background:var(--navy3);border:1px solid var(--border2);border-radius:12px;padding:18px">
+    <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Clínica Mary</div>
+    <div class="stat-pill">12x</div><span style="font-size:12px;color:var(--text2)"> ROI</span><br><br>
+    <div class="check-item"><span class="ci">📈</span><span>+35% citas agendadas</span></div>
+    <div class="check-item"><span class="ci">⏰</span><span>20 horas semanales liberadas para el equipo</span></div>
+    <div class="check-item"><span class="ci">📱</span><span>WhatsApp 100% automatizado</span></div>
+  </div>
+  <div style="background:var(--navy3);border:1px solid var(--border2);border-radius:12px;padding:18px">
+    <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Clínicas 901</div>
+    <div class="stat-pill">14x</div><span style="font-size:12px;color:var(--text2)"> ROI</span><br><br>
+    <div class="check-item"><span class="ci">📈</span><span>+40% citas agendadas</span></div>
+    <div class="check-item"><span class="ci">⏰</span><span>15 horas semanales liberadas para el equipo</span></div>
+    <div class="check-item"><span class="ci">🗓️</span><span>Agenda llena de forma predecible</span></div>
+  </div>
+</div>
+<div class="highlight">Estos números son el argumento de cierre más poderoso que tienes. Úsalos siempre. Pero importante: <strong>no expliques cómo los logramos</strong>. Los números hablan solos. Si quieren saber el cómo, esa es exactamente la puerta de entrada a la demo.</div>
+<p>La frase correcta es: <em>"Clínica Mary logró 12x de ROI en los primeros meses. Clínicas 901, 14x con +40% de citas. ¿Quieres ver en 30 minutos cómo funciona el sistema con datos reales de una clínica activa?"</em></p>`,
+     quiz:[
+      {q:'¿Qué ROI logró Clínicas 901 con el sistema de PartnersUp?',opts:['8x ROI con +20% citas','12x ROI con +35% citas','14x ROI con +40% citas y 15 horas semanales liberadas','20x ROI sin datos adicionales'],ans:2},
+      {q:'Cuando un prospecto pregunta cómo logramos esos resultados, ¿cuál es la respuesta correcta?',opts:['Explicar en detalle todas las herramientas que usamos','Invitarlos a la demo donde pueden ver el sistema funcionando con datos reales','Enviarles un PDF técnico con la arquitectura del sistema','Decirles que esa información es confidencial'],ans:1},
+      {q:'¿Por qué es importante usar números específicos (12x, 14x, +35% citas) en vez de frases como "resultados increíbles"?',opts:['Porque los números suenan más técnicos','Porque los números específicos son verificables, generan credibilidad y no se pueden comparar fácilmente','Porque es un requisito legal','Porque las clínicas solo entienden números'],ans:1}
+     ]}
+   ]
+  },
+  // ───────────────────────────────────────────
+  // MOD 2 — EL SISTEMA INTEGRAL
+  // ───────────────────────────────────────────
+  {
+   title:'El Sistema Integral',sub:'De lead a paciente',icon:'⚡',dur:'35 min',locked:true,
+   resources:[
+     {i:'🔄',t:'Recorrido del Paciente',s:'Diagrama visual'},
+     {i:'📊',t:'KPIs del Sistema',s:'Métricas clave'}
+   ],
+   lessons:[
+    {title:'La promesa: de lead a paciente',dur:'9 min',
+     body:`<h3>La promesa es precisa</h3>
+<p>Una persona que no conoce la clínica se convierte en una cita confirmada, asistida — sin que el equipo de la clínica tenga que gestionar ese proceso manualmente. Ese es el viaje completo. De desconocido a paciente, automatizado.</p>
+<div class="highlight">Cuando decimos <strong>"sistema integral"</strong>, significa que cada paso de ese camino está conectado: cómo esa persona conoce la clínica, cómo se captura su interés, cómo agenda su cita, cómo recibe confirmación y recordatorios, y cómo la clínica mide todo lo que pasó. Sin piezas sueltas. Sin transferencias manuales. Un solo flujo.</div>
+<h3>El sistema opera en dos dimensiones simultáneas</h3>
+<div class="two-col">
+  <div class="col-card"><h4 style="color:var(--cyan)">📲 Para el paciente potencial</h4>
+    <div class="check-item"><span class="ci">•</span><span>Ve contenido relevante sobre el tratamiento que le interesa</span></div>
+    <div class="check-item"><span class="ci">•</span><span>Accede fácilmente a información y confirma su cita</span></div>
+    <div class="check-item"><span class="ci">•</span><span>Recibe confirmación inmediata y recordatorios</span></div>
+    <div class="check-item"><span class="ci">•</span><span>Llega a la clínica informado y comprometido</span></div>
+  </div>
+  <div class="col-card"><h4 style="color:var(--gold)">🏥 Para la clínica</h4>
+    <div class="check-item"><span class="ci">•</span><span>El equipo se enfoca en tratar pacientes, no en gestionar chats</span></div>
+    <div class="check-item"><span class="ci">•</span><span>Tienen visibilidad en tiempo real de todo el pipeline</span></div>
+    <div class="check-item"><span class="ci">•</span><span>Saben exactamente cuánto ROI está generando el sistema</span></div>
+    <div class="check-item"><span class="ci">•</span><span>El sistema funciona incluso cuando la clínica está cerrada</span></div>
+  </div>
+</div>`,
+     quiz:[
+      {q:'¿Qué significa exactamente "de lead a paciente" en el contexto del sistema?',opts:['Que hacemos publicidad hasta que la persona llega','Que el sistema gestiona todo el camino desde el primer contacto hasta la cita confirmada y asistida, sin intervención manual','Que el médico llama personalmente a cada lead','Que vendemos bases de datos de pacientes'],ans:1},
+      {q:'¿Qué hace el equipo de la clínica mientras el sistema opera?',opts:['Gestiona manualmente los WhatsApps más complicados','Se enfoca en tratar a los pacientes que ya están en la clínica','Administra las campañas de publicidad','Configura el sistema diariamente'],ans:1},
+      {q:'¿A qué hora opera el sistema de PartnersUp?',opts:['Solo en horario de oficina de la clínica','Solo cuando hay campañas activas','24 horas, 7 días a la semana — incluso cuando la clínica está cerrada','Solo en días hábiles'],ans:2}
+     ]},
+    {title:'El recorrido del paciente (sin tecnicismos)',dur:'9 min',
+     body:`<h3>Lo que pasa, paso a paso, cuando el sistema funciona</h3>
+<p>No necesitas saber los detalles técnicos de cómo funciona. Sí necesitas entender el flujo para poder explicárselo a un prospecto con claridad y confianza.</p>
+<div class="step-list">
+  <div class="step-item"><div class="step-n">1</div><div class="step-body"><strong>Descubrimiento</strong><p>Una persona interesada en un tratamiento estético ve contenido de la clínica. El sistema se asegura de que ese contenido llegue a personas que ya han mostrado interés en ese tipo de tratamientos — no a cualquiera.</p></div></div>
+  <div class="step-item"><div class="step-n">2</div><div class="step-body"><strong>Interés y calificación</strong><p>La persona accede a una página que explica con claridad la oferta de la clínica. A través de un breve cuestionario, entendemos qué busca y confirmamos que es un buen candidato para el tratamiento.</p></div></div>
+  <div class="step-item"><div class="step-n">3</div><div class="step-body"><strong>Agendamiento</strong><p>Dentro del mismo flujo, la persona selecciona la fecha y hora que mejor le funciona. Sin llamadas. Sin vai-venes de mensajes. En el mismo momento, directo.</p></div></div>
+  <div class="step-item"><div class="step-n">4</div><div class="step-body"><strong>Confirmación automática</strong><p>Inmediatamente después de agendar, la persona recibe confirmación y recordatorios antes de su cita. Si tiene preguntas, el sistema responde al instante — a cualquier hora.</p></div></div>
+  <div class="step-item"><div class="step-n">5</div><div class="step-body"><strong>Llegada a la clínica</strong><p>El paciente llega. El equipo hace lo que mejor sabe hacer: entregar el servicio. El sistema gestionó todo lo anterior.</p></div></div>
+</div>
+<div class="highlight">El sistema gestiona los pasos 1 al 4. La clínica se enfoca en el paso 5. Esa división es intencional — y es lo que libera al equipo.</div>`,
+     quiz:[
+      {q:'¿En qué paso empieza a involucrarse el equipo de la clínica?',opts:['En el paso 2, cuando el prospecto muestra interés','En el paso 3, cuando la persona agenda','Cuando el paciente llega a la clínica (paso 5)','Desde el primer momento, para supervisar el sistema'],ans:2},
+      {q:'¿Qué problema específico soluciona el paso de agendamiento dentro del flujo?',opts:['Elimina la necesidad de pagar publicidad','Elimina la necesidad de llamar o intercambiar mensajes para coordinar una cita','Garantiza que todos los pacientes paguen por adelantado','Reemplaza al médico en la consulta inicial'],ans:1},
+      {q:'¿Qué pasa inmediatamente después de que alguien agenda su cita?',opts:['El médico la llama para confirmar','Recibe confirmación automática y recordatorios antes de su cita','Se le cobra el tratamiento por adelantado','Nada — la clínica la confirma al día siguiente'],ans:1}
+     ]},
+    {title:'Por qué el todo es mayor que las partes',dur:'9 min',
+     body:`<h3>Una sola pieza no produce el resultado</h3>
+<p>Para entender por qué vendemos <em>el sistema</em> y no las partes, imagina estos escenarios:</p>
+<div class="step-list">
+  <div class="step-item"><div class="step-n">A</div><div class="step-body"><strong>Solo publicidad</strong><p>Llegan leads. Pero nadie los gestiona. El equipo responde cuando puede. La mayoría se pierde. El dinero en pauta se desperdicia.</p></div></div>
+  <div class="step-item"><div class="step-n">B</div><div class="step-body"><strong>Solo agendamiento automatizado</strong><p>¿De dónde vienen los contactos? Si nadie llega al flujo de agendamiento, el sistema no sirve de nada.</p></div></div>
+  <div class="step-item"><div class="step-n">C</div><div class="step-body"><strong>Solo un agente en WhatsApp</strong><p>Puede responder preguntas, pero no genera el interés inicial. Las personas no saben que la clínica existe.</p></div></div>
+</div>
+<div class="red-box">Cada herramienta sola es incompleta. La magia ocurre cuando todas operan en secuencia, comunicándose entre sí, dentro de un solo flujo.</div>
+<h3>Por eso no podemos "solo hacer los anuncios"</h3>
+<p>Cuando un prospecto pide <em>"¿pueden solo hacerme la publicidad?"</em>, la respuesta honesta es: podríamos, pero no te daría lo que realmente estás buscando. El resultado que quieres —agenda llena con ROI medible— requiere el sistema completo.</p>
+<div class="highlight">Esto también es tu argumento para nunca decir "vendemos un agente de IA" o "solo hacemos campañas". Sería mentirle al prospecto sobre lo que realmente entregamos.</div>`,
+     quiz:[
+      {q:'¿Por qué PartnersUp no puede "solo hacer los anuncios" para una clínica?',opts:['Porque es demasiado trabajo','Porque los anuncios solos no gestionan los leads — el resultado requiere el sistema completo','Porque no tienen experiencia en publicidad','Porque las campañas son la parte menos importante'],ans:1},
+      {q:'¿Qué falta si una clínica solo tiene un agente de WhatsApp sin el resto del sistema?',opts:['Nada, el agente solo ya es suficiente','Le falta el canal de respuesta a pacientes','Le falta el interés inicial — el agente puede responder preguntas pero no genera que la gente llegue','Le falta el CRM'],ans:2},
+      {q:'¿Qué le dices a un prospecto que pide "solo el agendamiento automatizado"?',opts:['Se lo vendes por separado','Le explicas que sin el flujo completo, nadie llega al agendamiento y el sistema no produce resultados','Le cobras el doble','Le dices que eso no existe en PartnersUp'],ans:1}
+     ]},
+    {title:'Lo que mide el sistema — y por qué importa',dur:'8 min',
+     body:`<h3>La visibilidad es parte del producto</h3>
+<p>Uno de los argumentos más fuertes de nuestra venta es también el más simple: medimos todo. Y esa medición está disponible para la clínica en tiempo real.</p>
+<div class="two-col">
+  <div class="col-card red"><h4>❌ Con una agencia típica</h4>
+    <div class="check-item"><span class="ci">📋</span><span>Reciben un reporte mensual de "alcance" y "engagement"</span></div>
+    <div class="check-item"><span class="ci">❓</span><span>No saben si eso se traduce en pacientes reales</span></div>
+    <div class="check-item"><span class="ci">💸</span><span>Pagan sin saber exactamente qué están comprando</span></div>
+  </div>
+  <div class="col-card green"><h4>✅ Con PartnersUp</h4>
+    <div class="check-item"><span class="ci">📊</span><span>Cuántos leads entraron esta semana</span></div>
+    <div class="check-item"><span class="ci">📅</span><span>Qué porcentaje agendó cita</span></div>
+    <div class="check-item"><span class="ci">🚶</span><span>Qué porcentaje asistió</span></div>
+    <div class="check-item"><span class="ci">💰</span><span>Cuánto revenue generó el sistema — el ROI exacto</span></div>
+  </div>
+</div>
+<p>Estas no son métricas de vanidad. Son los números que le dicen al dueño de la clínica si la inversión está valiendo la pena.</p>
+<div class="script-block">Cuando un prospecto pregunta "¿cómo sé que funciona?", la respuesta es: "Vas a poder verlo en tiempo real. Cada día sabes cuántos leads entraron, cuántos están agendados y qué está generando el sistema para tu clínica."</div>
+<div class="highlight">La visibilidad no es un beneficio adicional. Es parte central del argumento de venta: por primera vez, la clínica va a poder ver exactamente qué pasa entre que alguien se interesa y que llega a la silla.</div>`,
+     quiz:[
+      {q:'¿Qué métrica muestra directamente si el sistema está generando valor para la clínica?',opts:['Alcance de las campañas y número de impresiones','ROI — el ingreso generado por cada peso invertido en el sistema','Número de seguidores ganados','Porcentaje de apertura de correos'],ans:1},
+      {q:'¿Cuál es la diferencia entre las métricas de una agencia típica y las de PartnersUp?',opts:['Las agencias miden más cosas','PartnersUp mide resultados reales de negocio (pacientes, citas, ROI); las agencias miden vanity metrics (alcance, likes)','Son exactamente iguales','PartnersUp solo mide el ROI y nada más'],ans:1},
+      {q:'Cuando un prospecto pregunta "¿cómo sé que funciona?", ¿cuál es la respuesta más poderosa?',opts:['Mostrarle los términos del contrato','Decirle que confíe en nosotros porque tenemos experiencia','Mostrarle que tendrá visibilidad en tiempo real: leads, citas, asistencia y ROI, todo visible en su dashboard','Enviarle los resultados de otras clínicas por correo'],ans:2}
+     ]}
+   ]
+  },
+  // ───────────────────────────────────────────
+  // MOD 3 — CÓMO HABLAR
+  // ───────────────────────────────────────────
+  {
+   title:'Cómo hablar del sistema',sub:'El lenguaje correcto',icon:'💬',dur:'30 min',locked:true,
+   resources:[
+     {i:'💬',t:'Scripts de Calificación',s:'Setter · Referencia'},
+     {i:'🎯',t:'Guía de Objeciones',s:'Closer · Referencia'}
+   ],
+   lessons:[
+    {title:'La frase que define todo',dur:'7 min',
+     body:`<h3>Memoriza esto. Úsalo siempre.</h3>
+<div style="background:var(--navy3);border:2px solid var(--cyan);border-radius:14px;padding:20px 22px;margin:16px 0;text-align:center">
+  <div style="font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">La definición de PartnersUp</div>
+  <div style="font-family:var(--f1);font-weight:800;font-size:17px;color:var(--text);line-height:1.4">"PartnersUp es un sistema integral de adquisición de pacientes para clínicas de medicina estética no quirúrgica. Nos encargamos de todo, desde encontrar a la persona interesada hasta confirmar su cita."</div>
+</div>
+<h3>Por qué cada palabra importa</h3>
+<div class="step-list">
+  <div class="step-item"><div class="step-n">1</div><div class="step-body"><strong>"Sistema integral"</strong><p>Todo conectado, no piezas sueltas. Diferencia fundamental vs. una agencia que vende un servicio.</p></div></div>
+  <div class="step-item"><div class="step-n">2</div><div class="step-body"><strong>"Adquisición de pacientes"</strong><p>No leads. No contactos. Pacientes — personas que llegan a la clínica y pagan por un tratamiento.</p></div></div>
+  <div class="step-item"><div class="step-n">3</div><div class="step-body"><strong>"Nos encargamos de todo"</strong><p>La clínica no tiene que gestionar el proceso. Esa es la liberación que buscan.</p></div></div>
+  <div class="step-item"><div class="step-n">4</div><div class="step-body"><strong>"Desde encontrar hasta confirmar"</strong><p>El camino completo. No solo un punto del proceso.</p></div></div>
+</div>
+<div class="warn-box">🎯 Ejercicio: practica decir esta frase en voz alta hasta que salga natural. Si suenas robótico al decirla, el prospecto lo percibe. La confianza en la definición transmite confianza en el sistema.</div>`,
+     quiz:[
+      {q:'Completa: "PartnersUp es un sistema integral de..."',opts:['...marketing digital para empresas','...adquisición de pacientes para clínicas de medicina estética no quirúrgica','...publicidad en redes sociales para profesionales de salud','...automatización de WhatsApp para negocios'],ans:1},
+      {q:'¿Por qué decimos "adquisición de pacientes" en lugar de "generación de leads"?',opts:['Porque "pacientes" suena más técnico','Porque el resultado final es un paciente que llega a la clínica y paga — no solo un contacto en una lista','Porque "leads" es una palabra en inglés','Porque generamos más leads que pacientes'],ans:1},
+      {q:'¿Por qué es importante que la frase salga natural y con confianza?',opts:['Para impresionar al prospecto con vocabulario técnico','Porque si suenas robótico el prospecto lo percibe y pierde confianza en el sistema','Para diferenciarnos de la competencia que usa otras frases','Porque es un requisito del proceso de ventas'],ans:1}
+     ]},
+    {title:'Lo que NO decimos (y por qué)',dur:'8 min',
+     body:`<h3>Las frases que matan la venta</h3>
+<p>Hay frases que parecen útiles pero reducen lo que hacemos a una sola pieza. Cuando describes la pieza, el prospecto evalúa la pieza — y la compara con alternativas más baratas.</p>
+<div class="two-col">
+  <div class="col-card red"><h4>❌ NUNCA DIGAS ESTO</h4>
+    <div class="check-item"><span class="ci">✗</span><span><strong>"Hacemos Meta Ads"</strong> → Suena como cualquier agencia de pauta</span></div>
+    <div class="check-item"><span class="ci">✗</span><span><strong>"Tenemos un agente de IA para WhatsApp"</strong> → Suena como una herramienta de chatbot</span></div>
+    <div class="check-item"><span class="ci">✗</span><span><strong>"Configuramos tu CRM"</strong> → Suena como implementación de software</span></div>
+    <div class="check-item"><span class="ci">✗</span><span><strong>"Te ayudamos a conseguir más leads"</strong> → Vago. Todas las agencias dicen eso.</span></div>
+    <div class="check-item"><span class="ci">✗</span><span><strong>"Automatizamos tu WhatsApp"</strong> → Suena a herramienta, no a sistema</span></div>
+  </div>
+  <div class="col-card green"><h4>✅ DI ESTO EN CAMBIO</h4>
+    <div class="check-item"><span class="ci">✓</span><span>"Instalamos un sistema completo que trae pacientes a tu clínica de forma predecible"</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>"El sistema gestiona todo el proceso desde que alguien se interesa hasta que confirma su cita"</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>"Tu equipo deja de responder WhatsApp todo el día y se enfoca en atender pacientes"</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>"Puedes ver en tiempo real cuántos leads entraron, cuántos agendaron y cuánto ROI está generando"</span></div>
+  </div>
+</div>
+<div class="red-box">🔴 La prueba: ¿tu frase hace que el prospecto piense en herramientas o en resultados? Si es en herramientas, reformúlala. Siempre habla del resultado que produce el sistema, no de los componentes que lo hacen posible.</div>`,
+     quiz:[
+      {q:'¿Por qué es un error decir "hacemos Meta Ads"?',opts:['Porque Meta Ads no funciona para clínicas','Porque nos posiciona como cualquier otra agencia de pauta y perdemos diferenciación','Porque es mentira — solo usamos Instagram','Porque el prospecto no sabe qué es Meta'],ans:1},
+      {q:'¿Qué pasa cuando describes un componente del sistema en vez del sistema completo?',opts:['El prospecto entiende mejor cómo funciona','El prospecto evalúa ese componente, lo compara con alternativas más baratas y la conversación se desvía','El prospecto queda más impresionado','No pasa nada — es lo mismo'],ans:1},
+      {q:'¿Cuál de estas frases ES correcta para hablar de PartnersUp?',opts:['Tenemos el mejor chatbot de WhatsApp del mercado','Hacemos campañas en Facebook e Instagram para conseguirte leads','Instalamos un sistema completo que trae pacientes de forma predecible y libera a tu equipo','Configuramos GoHighLevel para tu clínica'],ans:2}
+     ]},
+    {title:'Respondiendo las preguntas frecuentes',dur:'8 min',
+     body:`<h3>Las respuestas exactas para las preguntas más comunes</h3>
+<p>Estas son las preguntas reales que vas a recibir. Aprende la estructura de respuesta — no el guión de memoria, sino la lógica detrás de cada respuesta.</p>
+<h4>❓ "¿Qué exactamente hacen ustedes?"</h4>
+<div class="script-block">Instalamos un sistema completo que captura pacientes, los califica, agenda su cita y la confirma de forma automática. La clínica se enfoca en tratar — nosotros nos encargamos de todo lo anterior: que la persona llegue a la silla.</div>
+<h4>❓ "¿Qué herramientas usan?"</h4>
+<div class="script-block">Usamos una combinación de sistemas configurados específicamente para cada clínica. Lo que importa es el resultado: agenda llena con ROI medible. La mejor forma de ver cómo funciona es en la demo — ahí lo mostramos con datos reales de una clínica activa.</div>
+<h4>❓ "¿En qué se diferencian de una agencia de marketing?"</h4>
+<div class="script-block">Una agencia corre campañas y te envía un reporte. Nosotros entregamos pacientes y mostramos el ROI. La diferencia es la responsabilidad: medimos resultados, no esfuerzo.</div>
+<h4>❓ "¿Cuánto cuesta?"</h4>
+<div class="script-block">Depende del tamaño de la clínica y el volumen de pacientes que quieres generar. El siguiente paso es una demo de 30 minutos donde mostramos el sistema con datos reales — ahí podemos hablar de lo que tiene sentido para tu caso específico.</div>`,
+     quiz:[
+      {q:'Cuando te preguntan "¿qué herramientas usan?", ¿cuál es la respuesta correcta?',opts:['Listar todas las herramientas técnicas del sistema','Enfocarte en el resultado y redirigir a la demo para mostrar el sistema con datos reales','Decir que la información es confidencial','Enviarles un PDF técnico con todos los componentes'],ans:1},
+      {q:'¿Cuál es la diferencia clave entre PartnersUp y una agencia de marketing?',opts:['Que PartnersUp es más barata','Que PartnersUp tiene mejores diseñadores','Una agencia envía reportes. PartnersUp entrega pacientes y muestra el ROI — medimos resultados, no esfuerzo','Que PartnersUp usa herramientas más modernas'],ans:2},
+      {q:'Cuando preguntan el precio, ¿cuál es el paso correcto?',opts:['Dar el precio exacto inmediatamente para no perder tiempo','Decir que es muy económico para generar interés','Redirigir a la demo — el precio sin contexto no tiene sentido y la demo es donde se genera el valor','Pedir que primero firmen un NDA'],ans:2}
+     ]},
+    {title:'Generar interés sin revelar el cómo',dur:'7 min',
+     body:`<h3>Tu objetivo no es explicar. Es abrir la puerta.</h3>
+<p>En cualquier conversación —por teléfono, WhatsApp, en persona— tu objetivo no es explicar el sistema en detalle. Es llegar al <em>"sí, quiero ver la demo"</em>.</p>
+<div class="red-box">⚠️ Cada vez que explicas el sistema en exceso antes de la demo: (1) le das al prospecto información para buscar alternativas más baratas, (2) creas preguntas que desvían la conversación, (3) destruyes el impacto de la demo.</div>
+<h3>La frase que más mueve conversaciones hacia la demo</h3>
+<div class="script-block">La mejor forma de entender lo que hacemos es verlo funcionando con una clínica real. En 30 minutos te mostramos leads entrando al sistema, el agente respondiendo en WhatsApp en tiempo real y las métricas de una clínica que está activa ahora mismo. ¿Cuándo tienes esos 30 minutos?</div>
+<h3>Si insisten en más detalles antes de la demo</h3>
+<div class="script-block">Te podría explicar todo ahora mismo, pero honestamente, es 10 veces más poderoso cuando lo ves en vivo. 30 minutos y vas a tener el panorama completo con datos reales, no con diapositivas.</div>
+<div class="highlight">La demo vende el sistema. Tu trabajo es conseguir el sí para la demo — no cerrar el contrato en la primera conversación. Ese es el juego del setter.</div>`,
+     quiz:[
+      {q:'¿Cuál es el objetivo principal de una conversación de calificación?',opts:['Cerrar el contrato en esa misma llamada','Explicar en detalle todas las herramientas del sistema','Conseguir el "sí" para la demo — no vender, sino abrir la puerta','Determinar el precio exacto para el prospecto'],ans:2},
+      {q:'¿Por qué no debes explicar el sistema en exceso antes de la demo?',opts:['Porque es información confidencial','Porque le das al prospecto información para buscar alternativas y destruyes el impacto de la demo','Porque toma demasiado tiempo','Porque el prospecto no va a entender'],ans:1},
+      {q:'¿Qué es lo más efectivo para mover una conversación hacia la demo?',opts:['Enviar el precio por WhatsApp','Mandar un video explicativo de 20 minutos','Invitarlos a ver el sistema funcionando con una clínica real en 30 minutos','Compartir el PDF técnico del sistema'],ans:2}
+     ]}
+   ]
+  },
+  // ───────────────────────────────────────────
+  // MOD 4 — TU ROL
+  // ───────────────────────────────────────────
+  {
+   title:'Tu rol en el proceso',sub:'Setter, Closer y comisión',icon:'🤝',dur:'25 min',locked:true,
+   resources:[
+     {i:'📋',t:'Checklist de Calificación',s:'Setter · Guía'},
+     {i:'💰',t:'Modelo de Comisión',s:'Referencia interna'}
+   ],
+   lessons:[
+    {title:'Setter vs. Closer — dos roles que se complementan',dur:'6 min',
+     body:`<h3>Dos roles distintos. Un solo proceso.</h3>
+<p>PartnersUp opera con dos roles de venta que se complementan. Confundir los roles, o intentar hacer los dos a la vez, rompe el proceso y daña las conversiones.</p>
+<div class="two-col">
+  <div class="col-card"><h4 style="color:var(--cyan)">📞 EL SETTER</h4>
+    <div class="check-item"><span class="ci">1.</span><span>Encuentra y contacta al prospecto</span></div>
+    <div class="check-item"><span class="ci">2.</span><span>Califica: ¿tiene el problema? ¿tiene el perfil?</span></div>
+    <div class="check-item"><span class="ci">3.</span><span>Genera interés y curiosidad por el sistema</span></div>
+    <div class="check-item"><span class="ci">4.</span><span>Consigue el "sí" para la demo</span></div>
+    <div class="check-item"><span class="ci">5.</span><span>Transfiere al closer con contexto completo</span></div>
+    <div style="margin-top:10px;padding:8px;background:var(--cyan-dim);border-radius:8px;font-size:11px;color:var(--cyan)">Meta: Agendar demos con prospectos calificados</div>
+  </div>
+  <div class="col-card"><h4 style="color:var(--gold)">🎯 EL CLOSER</h4>
+    <div class="check-item"><span class="ci">1.</span><span>Recibe el prospecto calificado del setter</span></div>
+    <div class="check-item"><span class="ci">2.</span><span>Valida el dolor en la apertura</span></div>
+    <div class="check-item"><span class="ci">3.</span><span>Muestra el sistema en vivo con datos reales</span></div>
+    <div class="check-item"><span class="ci">4.</span><span>Presenta la propuesta comercial</span></div>
+    <div class="check-item"><span class="ci">5.</span><span>Cierra el contrato</span></div>
+    <div style="margin-top:10px;padding:8px;background:var(--gold-dim);border-radius:8px;font-size:11px;color:var(--gold)">Meta: Convertir demos en contratos firmados</div>
+  </div>
+</div>
+<div class="highlight">El setter NO debe intentar cerrar el contrato. El closer NO debe recibir leads fríos sin calificar. La transición entre los dos roles — con toda la información del prospecto — es la parte más crítica del proceso.</div>`,
+     quiz:[
+      {q:'¿Cuál es el objetivo específico del setter?',opts:['Cerrar el contrato en la primera llamada','Agendar demos con prospectos calificados y transferirlos al closer con contexto completo','Hacer seguimiento post-cierre','Configurar el sistema para las clínicas'],ans:1},
+      {q:'¿Qué NO debe hacer un setter?',opts:['Calificar al prospecto','Generar interés en el sistema','Intentar cerrar el contrato — ese es el rol del closer','Conseguir el sí para la demo'],ans:2},
+      {q:'¿Por qué la transición entre setter y closer es crítica?',opts:['Porque es cuando se negocia el precio','Porque el closer necesita toda la información del prospecto para validar el dolor y personalizar la demo','Porque es cuando se firma el contrato','Porque el setter cobra su comisión en ese momento'],ans:1}
+     ]},
+    {title:'Cómo calificar un prospecto (setter)',dur:'7 min',
+     body:`<h3>Calificar bien es el trabajo más importante del setter</h3>
+<p>Enviar un prospecto sin calificar a la demo es como enviar a alguien que no sabe cocinar a un restaurante de alta cocina — no van a apreciar lo que ven y van a perder el tiempo de todos.</p>
+<div class="two-col">
+  <div class="col-card green"><h4>✅ PROSPECTO CALIFICADO</h4>
+    <div class="check-item"><span class="ci">✓</span><span>Es dueño o director de una clínica activa</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Tiene flujo de pacientes (no está empezando)</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Menciona un dolor concreto (WhatsApp caótico, leads que no convierten, agenda con huecos)</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Muestra apertura a invertir en una solución</span></div>
+    <div class="check-item"><span class="ci">✓</span><span>Su presupuesto tiene sentido para el sistema</span></div>
+  </div>
+  <div class="col-card red"><h4>🚨 SEÑALES DE PARAR</h4>
+    <div class="check-item"><span class="ci">✗</span><span>No tiene pacientes todavía (clínica nueva)</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>Resistencia fuerte a tecnología o a cambiar</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>Ya tiene sistema instalado y no quiere cambiarlo</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>Expectativas irreales vs. presupuesto disponible</span></div>
+    <div class="check-item"><span class="ci">✗</span><span>Solo quiere "probar gratis" sin compromiso</span></div>
+  </div>
+</div>
+<div class="warn-box">⚠️ Regla del setter: cuando tienes duda sobre si un prospecto califica, califica más duro, no menos. Es mejor perder la posibilidad de agendar una demo que enviarle al closer un lead que va a desperdiciar su tiempo.</div>`,
+     quiz:[
+      {q:'¿Cuál de estas es la señal más fuerte de que un prospecto está calificado?',opts:['Tiene muchos seguidores en Instagram','Menciona un dolor concreto (WhatsApp caótico, leads que no convierten) y muestra apertura a invertir','Lleva más de 10 años en el mercado','Responde rápido los mensajes'],ans:1},
+      {q:'Un prospecto dice: "quiero probar el sistema gratis primero". ¿Qué haces?',opts:['Le ofreces una prueba gratuita de 15 días','Lo calificas como válido si tiene el perfil correcto','Es una señal de alarma — sin compromiso no hay alineación de incentivos. Descalifica o profundiza.','Le dices que sí y ves qué pasa'],ans:2},
+      {q:'¿Qué debe hacer el setter cuando tiene dudas sobre si un prospecto califica?',opts:['Enviarlo igual al closer y dejar que él decida','Calificar más duro, no menos — es mejor perder la demo que enviar un lead inútil','Preguntar a su jefe qué hacer','Ignorar las señales de alarma si el prospecto parece interesado'],ans:1}
+     ]},
+    {title:'El proceso de la demo (closer)',dur:'6 min',
+     body:`<h3>La demo no es una presentación. Es una demostración.</h3>
+<p>El momento más crítico de todo el proceso de venta es la demo. No se usan diapositivas. No se hacen promesas abstractas. Se muestra el sistema funcionando con datos reales de una clínica activa.</p>
+<div class="step-list">
+  <div class="step-item"><div class="step-n">1</div><div class="step-body"><strong>Apertura: valida el dolor</strong><p>"Entiendo que mencionaste que tu equipo está saturado respondiendo WhatsApp y que los leads no siempre convierten. ¿Es así?" El prospecto siente que fue escuchado desde el primer minuto.</p></div></div>
+  <div class="step-item"><div class="step-n">2</div><div class="step-body"><strong>Demo en vivo</strong><p>Leads reales en el pipeline. El agente respondiendo en WhatsApp en tiempo real. Dashboard con métricas de una clínica activa. "Esto es lo que vería tu clínica en 7 días."</p></div></div>
+  <div class="step-item"><div class="step-n">3</div><div class="step-body"><strong>Propuesta comercial</strong><p>Presenta las opciones según el tamaño de la clínica. El prospecto ya está calificado — la propuesta es el paso lógico, no una sorpresa.</p></div></div>
+  <div class="step-item"><div class="step-n">4</div><div class="step-body"><strong>Cierre directo</strong><p>"Basado en todo lo que viste hoy, ¿tiene sentido empezar esta semana?" Directo. Sin rodeos. La respuesta es un sí o una objeción concreta que se trabaja.</p></div></div>
+</div>
+<div class="highlight">Recuerda: la demo vende. El trabajo del closer es facilitar, no sobre-vender. Si el sistema es lo que el prospecto necesita, la demo lo cierra sola.</div>`,
+     quiz:[
+      {q:'¿Por qué la demo muestra datos reales en lugar de diapositivas?',opts:['Porque las diapositivas son anticuadas','Porque ver leads reales, el agente activo y métricas reales crea credibilidad inmediata que ninguna presentación puede igualar','Porque es más fácil preparar la demo así','Porque los prospectos lo exigen'],ans:1},
+      {q:'¿Qué hace el closer al inicio de la demo?',opts:['Presenta el precio inmediatamente','Explica la historia de la empresa','Valida el dolor específico que el setter ya identificó, para que el prospecto se sienta escuchado','Lee el contrato con el prospecto'],ans:2},
+      {q:'¿Cómo es la pregunta de cierre correcta?',opts:['"¿Qué piensas del sistema?"','"¿Tienes alguna duda antes de decidir?"','"Basado en todo lo que viste hoy, ¿tiene sentido empezar esta semana?"','"¿Cuándo crees que podrías estar listo para firmar?"'],ans:2}
+     ]},
+    {title:'El modelo de compensación',dur:'6 min',
+     body:`<h3>100% comisión. Incentivos alineados.</h3>
+<p>PartnersUp compensa exclusivamente a través de comisiones por cierre. No hay sueldo fijo. Esto es intencional: alinea los incentivos de todos hacia el mismo resultado.</p>
+<div style="background:var(--navy3);border:1px solid var(--border2);border-radius:12px;padding:20px;margin:16px 0">
+  <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">Cómo se paga la comisión</div>
+  <div style="display:flex;gap:16px">
+    <div style="flex:1;background:var(--green-dim);border:1px solid var(--green);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-family:var(--f1);font-weight:800;font-size:24px;color:var(--green)">50%</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5">Cuando la clínica firma el contrato y paga el setup fee</div>
+    </div>
+    <div style="flex:1;background:var(--cyan-dim);border:1px solid var(--cyan);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-family:var(--f1);font-weight:800;font-size:24px;color:var(--cyan)">50%</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:6px;line-height:1.5">Cuando la clínica paga su primer retainer mensual y el sistema está activo</div>
+    </div>
+  </div>
+</div>
+<h3>¿Por qué el pago dividido?</h3>
+<p>El 50/50 incentiva a los cerradores a traer clínicas que <em>realmente van a activarse</em>, no solo a firmar y desaparecer. Una firma sin activación genera solo la mitad de la comisión.</p>
+<div class="highlight">El principio de fondo: cuando la clínica gana, PartnersUp gana, y tú ganas. Los tres alineados hacia el mismo resultado. Ese alineamiento es lo que hace que el modelo funcione a largo plazo.</div>
+<p>Los cerradores con mayor volumen mensual de cierres tienen acceso a comisiones escalonadas. Los montos exactos se definen internamente y varían según el tamaño del contrato.</p>`,
+     quiz:[
+      {q:'¿Cuándo recibe el closer el segundo 50% de su comisión?',opts:['Cuando el prospecto agenda la demo','Cuando la clínica firma el contrato','Cuando la clínica paga su primer retainer mensual y el sistema está activo','Al final del mes, independientemente del resultado'],ans:2},
+      {q:'¿Por qué la comisión se divide en dos pagos?',opts:['Para que el closer tenga flujo de caja constante','Para incentivar al closer a traer clínicas que se activen, no solo que firmen','Por un requisito legal en Colombia','Para que PartnersUp pueda financiar las operaciones'],ans:1},
+      {q:'¿Cuál es el principio fundamental del modelo de compensación de PartnersUp?',opts:['El closer siempre gana, independientemente de los resultados de la clínica','Solo PartnersUp gana cuando la clínica firma','Cuando la clínica gana, PartnersUp gana y el closer gana — todos alineados hacia el mismo resultado','El modelo premia el volumen de demos, no los cierres'],ans:2}
+     ]}
+   ]
+  }
+];
 
+// ════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════
+let curUser=null, curMod=0, curLes=0, quizAnswers={}, quizDone=false;
+const SK_W='pu_w_', SK_P='pu_p_', SK_C='pu_c_';
+function lk(m,l){return m+'_'+l}
+function getWatched(){try{return JSON.parse(localStorage.getItem(SK_W+curUser)||'[]')}catch{return[]}}
+function saveWatched(d){localStorage.setItem(SK_W+curUser,JSON.stringify(d))}
+function getPassed(){try{return JSON.parse(localStorage.getItem(SK_P+curUser)||'[]')}catch{return[]}}
+function savePassed(d){localStorage.setItem(SK_P+curUser,JSON.stringify(d))}
+function getCompleted(){try{return JSON.parse(localStorage.getItem(SK_C+curUser)||'[]')}catch{return[]}}
+function saveCompleted(d){localStorage.setItem(SK_C+curUser,JSON.stringify(d))}
+
+// ════════════════════════════════════════════
+// LOGIN / LOGOUT
+// ════════════════════════════════════════════
 function doLogin(){
-  const u = document.getElementById('inp-user').value.trim().toLowerCase();
-  const p = document.getElementById('inp-pass').value;
-  const err = document.getElementById('login-err');
-  if(USERS[u] && USERS[u].pass === p){
-    currentUser = {username:u, ...USERS[u]};
-    err.style.display='none';
+  const u=document.getElementById('inp-user').value.trim().toLowerCase();
+  const p=document.getElementById('inp-pass').value;
+  const err=document.getElementById('login-err');
+  if(USERS[u]&&USERS[u].pass===p){
+    curUser=u;
     document.getElementById('screen-login').style.display='none';
-    const app = document.getElementById('app');
+    const app=document.getElementById('app');
     app.style.display='flex';
-    initApp();
+    document.getElementById('sbAv').textContent=USERS[u].name[0].toUpperCase();
+    document.getElementById('sbName').textContent=USERS[u].name;
+    document.getElementById('sbRole').textContent=USERS[u].role;
+    err.style.display='none';
+    updateProgress();
+    renderDash();
   } else {
     err.style.display='block';
     document.getElementById('inp-pass').value='';
   }
 }
-
 function doLogout(){
-  currentUser = null;
+  curUser=null;
   document.getElementById('app').style.display='none';
   document.getElementById('screen-login').style.display='flex';
   document.getElementById('inp-user').value='';
   document.getElementById('inp-pass').value='';
 }
 
-// ══════════════════════════════════
-// DATA
-// ══════════════════════════════════
-const MODS = [
-  {id:0,em:'🚀',col:'#00C8FF',locked:false,
-   title:'Fundamentos del Sistema',
-   desc:'Qué es el sistema, sus cuatro pilares, cómo leer el CRM y las métricas que importan.',
-   dur:'45 min',cnt:4,
-   lessons:[
-    {title:'Los cuatro pilares del sistema',dur:'10 min',
-     body:`<h3>Un sistema, no una campaña</h3><p>El sistema de captación de pacientes tiene cuatro componentes que trabajan juntos. Ninguno funciona solo — su valor está en la integración.</p><ul><li><strong>Meta Ads</strong> — anuncios que llevan pacientes potenciales al sistema</li><li><strong>CRM</strong> — pipeline que captura, clasifica y da seguimiento automático a cada lead</li><li><strong>Agente IA en WhatsApp</strong> — responde, califica y agenda las 24 horas sin intervención manual</li><li><strong>Asesoría mensual</strong> — revisión de métricas y ajuste estratégico</li></ul><div class="highlight">Los cuatro pilares activos desde el día uno. <strong>La activación completa tarda 7 días hábiles desde la firma.</strong></div><h3>El rol del asesor en el sistema</h3><p>Como asesor, tu función es acompañar al cliente en la implementación, explicar cómo leer sus resultados y garantizar que use el sistema correctamente. No operarás las campañas — el equipo técnico lo hace. Pero debes entender cada parte para responder preguntas y resolver dudas.</p>`,
-     quiz:[
-      {q:'¿Cuántos días hábiles tarda la activación completa del sistema?',opts:['3 días','7 días','14 días','30 días'],ans:1},
-      {q:'¿Cuál es el rol principal del asesor con el cliente?',opts:['Operar las campañas de Meta','Gestionar el CRM manualmente','Acompañar la implementación y explicar resultados','Crear el contenido de los anuncios'],ans:2},
-      {q:'¿Cuántos pilares tiene el sistema?',opts:['Dos','Tres','Cuatro','Cinco'],ans:2}
-     ]},
-    {title:'Cómo navegar el CRM con el cliente',dur:'12 min',
-     body:`<h3>El CRM es el corazón operativo</h3><p>El CRM gestiona todos los leads del cliente. Cada paciente potencial entra, avanza por etapas y termina en una cita agendada o se descarta con registro. Ningún lead se pierde si el sistema está bien configurado.</p><p>Las etapas del pipeline estándar:</p><ul><li><strong>Nuevo Lead</strong> — acaba de llenar el formulario del anuncio</li><li><strong>Contactado</strong> — el agente IA ya escribió por WhatsApp</li><li><strong>Calificado</strong> — confirmó interés y tiene perfil ideal</li><li><strong>Cita Agendada</strong> — fecha y hora confirmadas</li><li><strong>Asistió</strong> — fue a la clínica</li><li><strong>Paciente</strong> — compró un tratamiento</li></ul><div class="highlight">El KPI más importante no es cuántos leads entran. Es <strong>cuántos pasan de Agendado a Asistió.</strong></div><h3>Revisión semanal de 15 minutos</h3><p>Enseña al cliente a hacer una revisión semanal de su pipeline. Busca etapas donde los leads se acumulan — ese es el cuello de botella que deben reportar en la asesoría mensual.</p>`,
-     quiz:[
-      {q:'¿Qué etapa sigue después de "Calificado" en el pipeline?',opts:['Nuevo Lead','Contactado','Cita Agendada','Paciente'],ans:2},
-      {q:'¿Cuánto tiempo debe tomar la revisión semanal del CRM?',opts:['1 hora','30 minutos','15 minutos','5 minutos'],ans:2},
-      {q:'¿Qué indica que hay un lead acumulado en una etapa?',opts:['Todo está funcionando bien','Hay un cuello de botella que reportar','El agente IA falló','El lead ya es paciente'],ans:1}
-     ]},
-    {title:'Métricas que debes saber explicar',dur:'12 min',
-     body:`<h3>Tres métricas, todo el contexto</h3><p>Para acompañar a un cliente necesitas poder explicar tres números con claridad:</p><p><strong>CPL (Costo Por Lead)</strong>: inversión en publicidad dividida por número de leads. En clínicas estéticas un CPL saludable está entre $8,000 y $25,000 COP. Si está por encima, hay ajuste pendiente en el anuncio o el público.</p><p><strong>Tasa de agendamiento</strong>: porcentaje de leads que terminan con cita confirmada. Entre 20% y 45% es saludable. Por debajo de 20%, el agente IA necesita ajuste en su guión.</p><p><strong>ROI del sistema</strong>: ingresos generados divididos entre inversión total (gestión más pauta). A partir del mes 3, la mayoría de las clínicas activas están en 2.5x–4x.</p><div class="highlight">No optimices por CPL. <strong>Optimiza siempre por costo por paciente que asistió.</strong> Un lead barato que nunca llega vale menos que uno caro que compra.</div>`,
-     quiz:[
-      {q:'¿Cuál es el rango de CPL saludable para clínicas estéticas en Colombia?',opts:['$1,000 – $5,000 COP','$8,000 – $25,000 COP','$50,000 – $100,000 COP','$200,000 – $500,000 COP'],ans:1},
-      {q:'¿Qué tasa de agendamiento indica que el agente IA necesita ajuste?',opts:['Por encima del 45%','Entre 20% y 45%','Por debajo del 20%','Por encima del 60%'],ans:2},
-      {q:'¿En qué métrica debes enfocarte al optimizar el sistema?',opts:['CPL más bajo posible','Más leads por día','Costo por paciente que asistió','Mayor alcance de los anuncios'],ans:2}
-     ]},
-    {title:'Tu rol en la asesoría mensual',dur:'11 min',
-     body:`<h3>La asesoría que maximiza resultados</h3><p>La asesoría mensual es el punto de contacto más importante con el cliente. Para que sea productiva, debes llegar con cuatro datos:</p><ul><li>Inversión total en pauta ese mes</li><li>Total de leads generados</li><li>Total de citas que asistieron</li><li>Ingresos generados por pacientes nuevos del sistema</li></ul><p>Con esos cuatro datos calculas el ROI del mes y propones ajustes concretos. La mayoría de las mejoras en resultados vienen de estas sesiones — no del setup inicial.</p><div class="highlight">El sistema mejora con el tiempo. <strong>Los primeros 30–60 días son de aprendizaje del algoritmo.</strong> Los resultados más fuertes vienen del mes 2 en adelante. Comunica esto al cliente desde el inicio.</div><h3>Gestión de expectativas</h3><p>El cliente que entiende la curva de aprendizaje del sistema tiene más paciencia y mejores resultados. Explica siempre que el mes 1 es de ajuste y que el mes 3 en adelante es donde el sistema entrega su potencial real.</p>`,
-     quiz:[
-      {q:'¿Cuántos datos necesitas tener antes de la asesoría mensual?',opts:['1','2','4','6'],ans:2},
-      {q:'¿Cuándo el sistema entrega sus mejores resultados?',opts:['En el primer mes','En el día de la activación','A partir del mes 3','Después de un año'],ans:2},
-      {q:'¿Por qué es importante explicar la curva de aprendizaje al cliente?',opts:['Para cobrar más','Para que tenga paciencia y mejores resultados','Para evitar reuniones','No es importante explicarla'],ans:1}
-     ]}
-   ],
-   resources:[{i:'🚀',t:'Guía de Activación',s:'PDF · 8 páginas'},{i:'📊',t:'KPIs de Referencia',s:'Plantilla'},{i:'🎥',t:'Video de Bienvenida',s:'8 min'}]
-  },
-  {id:1,em:'📣',col:'#3B82F6',locked:true,
-   title:'Meta Ads para Clínicas',
-   desc:'Estructura de campañas, cómo interpretar reportes y qué decirle al cliente sobre sus anuncios.',
-   dur:'55 min',cnt:4,
-   lessons:[
-    {title:'Cómo funciona el algoritmo de Meta',dur:'11 min',
-     body:`<h3>El algoritmo trabaja para ti — si lo dejas</h3><p>Meta no distribuye anuncios al azar. Su algoritmo aprende qué personas tienen más probabilidad de llenar el formulario y concentra el presupuesto en ellas. Ese proceso se llama fase de aprendizaje y dura entre 7 y 14 días.</p><p>Los primeros 15 días de una campaña nueva son los más costosos: el algoritmo está invirtiendo en aprender. Interrumpir, pausar o hacer cambios frecuentes reinicia el aprendizaje.</p><div class="highlight">Regla principal: <strong>no tocar las campañas mientras están aprendiendo.</strong> La paciencia en ese momento vale más que cualquier ajuste.</div>`,
-     quiz:[
-      {q:'¿Cuánto dura la fase de aprendizaje del algoritmo de Meta?',opts:['1-2 días','7-14 días','30 días','3 meses'],ans:1},
-      {q:'¿Qué pasa si pausas una campaña durante la fase de aprendizaje?',opts:['El algoritmo mejora','El costo baja','El aprendizaje se reinicia','No pasa nada'],ans:2},
-      {q:'¿Por qué los primeros 15 días son los más costosos?',opts:['Meta cobra más al inicio','El algoritmo está aprendiendo e invirtiendo en datos','Los creativos no están optimizados','La audiencia es nueva'],ans:1}
-     ]},
-    {title:'Estructura de campaña: CBO, Ad Sets y Creativos',dur:'12 min',
-     body:`<h3>Tres niveles que trabajan juntos</h3><p>Las campañas tienen una estructura de tres niveles:</p><ul><li><strong>Campaña (CBO)</strong> — define el objetivo y controla el presupuesto total. El presupuesto está aquí para que Meta lo distribuya inteligentemente entre los grupos de anuncios.</li><li><strong>Ad Sets</strong> — define el público y el posicionamiento. Cada ad set apunta a un segmento diferente (por ciudad, interés o comportamiento).</li><li><strong>Anuncios (Creativos)</strong> — el video o imagen más el copy que ve el paciente.</li></ul><div class="highlight">El equipo técnico decide la estructura. <strong>Tu trabajo es entenderla para poder interpretar los reportes</strong> y hacer preguntas precisas.</div>`,
-     quiz:[
-      {q:'¿Dónde se configura el presupuesto en una campaña CBO?',opts:['En cada anuncio individual','En el nivel de Ad Set','En el nivel de Campaña','En la cuenta de Meta'],ans:2},
-      {q:'¿Qué define principalmente el Ad Set?',opts:['El texto del anuncio','El público y posicionamiento','El presupuesto total','El objetivo de la campaña'],ans:1},
-      {q:'¿Qué son los creativos en la estructura de una campaña?',opts:['Los públicos configurados','El presupuesto asignado','El video o imagen y el copy que ve el paciente','Las reglas de optimización'],ans:2}
-     ]},
-    {title:'Cómo interpretar el reporte de campañas',dur:'13 min',
-     body:`<h3>Las 5 columnas que revisas cada semana</h3><p>Para gestionar la inversión solo necesitas 5 columnas del panel de Meta:</p><ul><li><strong>Alcance</strong> — personas únicas que vieron el anuncio</li><li><strong>Impresiones</strong> — veces que se mostró (incluye repetición)</li><li><strong>Costo por resultado</strong> — CPL: cuánto pagaron por cada lead</li><li><strong>Resultados</strong> — total de leads del período</li><li><strong>Presupuesto gastado</strong> — inversión total</li></ul><div class="highlight">Si el CPL sube semana a semana, hay saturación de audiencia. <strong>El antídoto es creativo nuevo.</strong> Eso es lo que el equipo ajustará en la asesoría.</div>`,
-     quiz:[
-      {q:'¿Qué indica que hay saturación de audiencia?',opts:['El CPL baja semana a semana','El CPL sube semana a semana','El alcance aumenta','Las impresiones disminuyen'],ans:1},
-      {q:'¿Qué diferencia hay entre Alcance e Impresiones?',opts:['Son lo mismo','Alcance son personas únicas, Impresiones incluye repetición','Impresiones son personas únicas, Alcance incluye repetición','No hay diferencia importante'],ans:1},
-      {q:'¿Cuál es el antídoto principal para la saturación de audiencia?',opts:['Aumentar el presupuesto','Cambiar el público objetivo','Crear nuevo creativo (video o imagen)','Pausar la campaña 7 días'],ans:2}
-     ]},
-    {title:'Preguntas clave para la asesoría',dur:'19 min',
-     body:`<h3>Las preguntas que separan a un asesor promedio de uno excelente</h3><p>Los asesores que mejor acompañan a sus clientes son los que hacen preguntas precisas basadas en datos, no los que solo transmiten información.</p><p>Preguntas estándar para cada asesoría mensual:</p><ul><li>¿Cuál fue el CPL este mes comparado con el anterior?</li><li>¿Qué creativo generó más leads con menor costo?</li><li>¿Hay algún ad set que debería pausarse o escalarse?</li><li>¿Qué contenido nuevo recomiendas grabar este mes?</li><li>¿La tasa de agendamiento del cliente es mejor o peor que el benchmark del sector?</li></ul><div class="highlight">La última pregunta es la más poderosa. <strong>Saber cómo está el cliente vs el promedio del sector le da contexto real</strong> sobre si el sistema está funcionando bien en su caso.</div>`,
-     quiz:[
-      {q:'¿Cuál es la pregunta más poderosa para contextualizar los resultados del cliente?',opts:['¿Cuánto gastamos este mes?','¿Hay que cambiar el creativo?','¿La tasa de agendamiento está por encima o debajo del benchmark?','¿El cliente está satisfecho?'],ans:2},
-      {q:'¿En qué se basan los mejores asesores para acompañar a sus clientes?',opts:['En experiencia personal','En datos y preguntas precisas','En opiniones del equipo','En tendencias del mercado'],ans:1},
-      {q:'¿Con qué frecuencia deben revisarse estas preguntas?',opts:['Diariamente','Semanalmente','En cada asesoría mensual','Trimestralmente'],ans:2}
-     ]}
-   ],
-   resources:[{i:'📝',t:'Copy VSL Clínica',s:'Google Docs'},{i:'🎨',t:'Pack Creativos',s:'Canva 8 piezas'},{i:'📊',t:'Estructura de Campaña',s:'PDF'}]
-  },
-  {id:2,em:'⚙️',col:'#8B5CF6',locked:true,
-   title:'CRM y Automatizaciones',
-   desc:'Cómo funciona el CRM, el pipeline de seguimiento y las automatizaciones que trabajan solas.',
-   dur:'50 min',cnt:4,
-   lessons:[
-    {title:'Arquitectura del CRM de captación',dur:'13 min',
-     body:`<h3>El sistema nervioso de la operación</h3><p>El CRM es el sistema que conecta todos los canales. Cuando un lead llena el formulario del anuncio, en menos de 90 segundos recibe un mensaje del agente IA por WhatsApp. Esa velocidad de respuesta es la que determina la tasa de conversión — no el copy del anuncio.</p><p>El CRM gestiona cuatro tipos de comunicación automática: mensajes de bienvenida, seguimientos programados, confirmaciones de cita y recordatorios pre-cita.</p><div class="highlight">Estudios del sector muestran que responder en los primeros 5 minutos multiplica por 9 la probabilidad de convertir ese lead. <strong>El agente IA responde en 90 segundos.</strong></div>`,
-     quiz:[
-      {q:'¿En cuánto tiempo responde el agente IA al nuevo lead?',opts:['5 minutos','90 segundos','24 horas','Cuando el equipo lo revise'],ans:1},
-      {q:'¿Cuántos tipos de comunicación automática gestiona el CRM?',opts:['Uno','Dos','Cuatro','Seis'],ans:2},
-      {q:'Responder en los primeros 5 minutos multiplica la conversión por:',opts:['2 veces','5 veces','9 veces','15 veces'],ans:2}
-     ]},
-    {title:'Flujo de seguimiento automático',dur:'12 min',
-     body:`<h3>El sistema que trabaja mientras el equipo duerme</h3><p>El flujo de seguimiento tiene tres disparadores automáticos para leads que no responden:</p><ul><li>Mensaje inicial: a los 90 segundos de registrarse</li><li>Segundo seguimiento: a las 24 horas si no hubo respuesta</li><li>Tercer seguimiento: a las 72 horas con una propuesta de fecha concreta</li></ul><p>Si después de tres intentos no hay respuesta, el lead pasa a una cola de "revisión manual" donde el asesor de la clínica puede intervenir con contexto completo.</p><div class="highlight">Este flujo recupera entre el 15% y 25% de leads que sin él se habrían perdido. <strong>Ese porcentaje es la diferencia entre una agenda medio llena y una llena.</strong></div>`,
-     quiz:[
-      {q:'¿Cuándo se envía el segundo seguimiento automático?',opts:['A los 90 segundos','A las 6 horas','A las 24 horas','A los 3 días'],ans:2},
-      {q:'¿Qué porcentaje de leads recupera el flujo de seguimiento?',opts:['5-10%','15-25%','40-50%','60-70%'],ans:1},
-      {q:'¿Qué pasa con el lead después de tres intentos sin respuesta?',opts:['Se elimina del sistema','Pasa a revisión manual','Se reactiva en 30 días','Se marca como perdido definitivamente'],ans:1}
-     ]},
-    {title:'Recordatorios y confirmación de citas',dur:'13 min',
-     body:`<h3>El proceso que reduce las inasistencias en un 30%</h3><p>Una vez confirmada la cita, el sistema envía tres comunicaciones automáticas:</p><ul><li>Confirmación inmediata con dirección y detalles</li><li>Recordatorio 24 horas antes de la cita</li><li>Recordatorio 2 horas antes de la cita</li></ul><p>Este protocolo reduce la tasa de inasistencia en promedio un 30%. La diferencia entre el 55% y el 85% de asistencia en una clínica con 40 citas al mes son 12 pacientes adicionales que asistieron — sin ningún trabajo extra.</p><div class="highlight">El sistema gestiona los recordatorios. <strong>La responsabilidad del asesor y del cliente es asegurarse de que la información de la cita en el CRM sea correcta.</strong> Una hora equivocada genera el efecto contrario.</div>`,
-     quiz:[
-      {q:'¿Cuántas comunicaciones automáticas envía el sistema después de confirmar una cita?',opts:['Una','Dos','Tres','Cuatro'],ans:2},
-      {q:'¿En cuánto reduce el protocolo de recordatorios la tasa de inasistencia?',opts:['10%','20%','30%','50%'],ans:2},
-      {q:'¿Cuál es la responsabilidad principal del asesor respecto a las citas en el CRM?',opts:['Enviar los recordatorios manualmente','Confirmar las citas por teléfono','Asegurarse de que la información en el CRM sea correcta','Programar el agente IA diariamente'],ans:2}
-     ]},
-    {title:'Intervención manual: cuándo y cómo',dur:'12 min',
-     body:`<h3>El 20% que requiere toque humano</h3><p>El agente IA maneja el 80% de los casos de forma autónoma. El 20% restante requiere intervención humana: objeciones complejas, casos especiales, o pacientes que prefieren hablar con una persona.</p><p>El protocolo es claro: el asesor de la clínica nunca debe "competir" con el agente IA en una conversación activa. Si el agente está manejando un lead, el asesor espera a que ese lead llegue a la cola de revisión manual. De lo contrario, se crean mensajes duplicados que confunden al prospecto.</p><div class="highlight">Cuando el asesor toma una conversación de revisión manual, tiene acceso al historial completo. <strong>Usa ese contexto — nunca preguntes algo que el agente ya preguntó.</strong></div>`,
-     quiz:[
-      {q:'¿Qué porcentaje de casos maneja el agente IA de forma autónoma?',opts:['50%','60%','70%','80%'],ans:3},
-      {q:'¿Qué pasa si el asesor de la clínica interviene en una conversación activa del agente?',opts:['Mejora la experiencia','Se crea duplicación de mensajes que confunde al prospecto','El agente se apaga','No pasa nada importante'],ans:1},
-      {q:'¿Qué información tiene el asesor cuando toma una conversación de revisión manual?',opts:['Solo el nombre del lead','Solo el servicio de interés','El historial completo de la conversación','No tiene información previa'],ans:2}
-     ]}
-   ],
-   resources:[{i:'⚙️',t:'Snapshot de Automatización',s:'Importable'},{i:'📋',t:'Pipeline Configurado',s:'CSV'},{i:'📝',t:'Manual de CRM',s:'PDF'}]
-  },
-  {id:3,em:'🤖',col:'#10B981',locked:true,
-   title:'Agente IA en WhatsApp',
-   desc:'Cómo funciona el agente, qué puede y no puede hacer, y cómo actualizar su entrenamiento.',
-   dur:'40 min',cnt:4,
-   lessons:[
-    {title:'Cómo piensa y actúa el agente IA',dur:'10 min',
-     body:`<h3>Un consultor de ventas entrenado, no un chatbot</h3><p>El agente IA no responde con frases genéricas. Está entrenado con el conocimiento específico de la clínica: servicios, rangos de precio, disponibilidad general de agenda, objeciones comunes y el perfil del paciente ideal.</p><p>Su única función es mover al lead hacia una cita confirmada. Cada mensaje que envía está diseñado con ese objetivo.</p><div class="highlight">El agente no cierra ventas. <strong>El agente cierra citas.</strong> La venta la cierra el especialista en la clínica durante la consulta. Esa división es intencional.</div>`,
-     quiz:[
-      {q:'¿Cuál es la función principal del agente IA?',opts:['Vender tratamientos','Mover al lead hacia una cita confirmada','Reemplazar al personal de la clínica','Gestionar redes sociales'],ans:1},
-      {q:'¿Quién cierra la venta del tratamiento?',opts:['El agente IA','El asesor de PartnersUp','El especialista en la clínica durante la consulta','El sistema automáticamente'],ans:2},
-      {q:'¿Con qué información específica está entrenado el agente?',opts:['Solo servicios generales de estética','Información genérica sobre medicina','Servicios, precios, agenda y perfil del paciente ideal de la clínica','Solo el nombre de la clínica'],ans:2}
-     ]},
-    {title:'Límites del agente: qué puede y no puede hacer',dur:'10 min',
-     body:`<h3>Los límites son intencionales y protegen al cliente</h3><p>El agente puede: responder preguntas sobre servicios, proponer horarios de cita, confirmar citas, manejar objeciones básicas de precio, enviar recordatorios y reactivar leads fríos.</p><p>El agente no puede: dar diagnósticos médicos, comprometer descuentos no aprobados, manejar quejas de pacientes actuales, ni tomar decisiones fuera de su guión configurado.</p><p>Cuando alguien pregunta algo fuera del guión, el agente responde: "Te comunico con un asesor en breve" y escala la conversación al equipo humano. Ese es el protocolo correcto.</p><div class="highlight">Si la clínica te reporta que el agente "no supo responder" algo, <strong>ese es el caso perfecto para actualizar el entrenamiento</strong> — no para intervenir manualmente.</div>`,
-     quiz:[
-      {q:'¿Qué hace el agente cuando alguien pregunta algo fuera de su guión?',opts:['Inventa una respuesta','Se desconecta','Escala la conversación al equipo humano','Ignora la pregunta'],ans:2},
-      {q:'¿Puede el agente IA dar diagnósticos médicos?',opts:['Sí, si tiene la información necesaria','Sí, para tratamientos estéticos básicos','No, está fuera de sus capacidades configuradas','Solo en casos de urgencia'],ans:2},
-      {q:'Si la clínica reporta que el agente no supo responder algo, ¿cuál es la acción correcta?',opts:['Intervenir manualmente en todas las conversaciones','Apagar el agente temporalmente','Actualizar el entrenamiento del agente','Ignorarlo si fue un caso aislado'],ans:2}
-     ]},
-    {title:'Cómo actualizar el entrenamiento del agente',dur:'10 min',
-     body:`<h3>El asesor facilita las actualizaciones</h3><p>Cuando el cliente cambia precios, agrega servicios o lanza promociones, el agente necesita saberlo. El proceso es simple: el cliente comunica el cambio al asesor, el asesor lo reporta al equipo técnico, y la actualización se aplica dentro de 48 horas hábiles.</p><p>Como asesor, debes identificar cuándo el agente necesita actualización. Las señales más comunes son: el agente menciona un servicio que ya no se ofrece, no sabe responder sobre un servicio nuevo, o cotiza a un precio desactualizado.</p><div class="highlight">Tener un agente desactualizado es peor que no tenerlo. <strong>Un lead que recibe información incorrecta pierde confianza en la clínica.</strong> Las actualizaciones son parte del mantenimiento mensual del sistema.</div>`,
-     quiz:[
-      {q:'¿En cuánto tiempo se aplica una actualización al entrenamiento del agente?',opts:['Inmediatamente','En 24 horas','En 48 horas hábiles','En una semana'],ans:2},
-      {q:'¿Cuál es el proceso correcto para actualizar el agente?',opts:['El cliente lo hace directamente en el sistema','El cliente comunica al asesor, quien reporta al equipo técnico','El asesor lo actualiza directamente','Se hace solo en la asesoría mensual'],ans:1},
-      {q:'¿Qué pasa cuando el agente da información desactualizada al lead?',opts:['No tiene mayor impacto','El lead lo ignora','El lead pierde confianza en la clínica','El sistema lo corrige automáticamente'],ans:2}
-     ]},
-    {title:'Objeciones comunes y cómo las maneja el agente',dur:'10 min',
-     body:`<h3>Las tres objeciones que aparecen en el 70% de conversaciones</h3><p>El agente está entrenado para manejar las objeciones más frecuentes:</p><ul><li><strong>"¿Cuánto cuesta?"</strong> → Da un rango general y ofrece una consulta presencial gratuita para un presupuesto exacto. No da precio exacto — esa es tarea del especialista.</li><li><strong>"Voy a pensarlo"</strong> → Pregunta qué genera duda, responde específicamente y propone una fecha concreta.</li><li><strong>"¿Tiene resultados reales?"</strong> → Comparte el caso de éxito más relevante y ofrece una cita de evaluación sin compromiso.</li></ul><div class="highlight">El asesor debe conocer estas respuestas para poder explicarle al cliente <strong>por qué el agente responde así</strong> y por qué esa estrategia convierte mejor que responder el precio directamente.</div>`,
-     quiz:[
-      {q:'¿Por qué el agente no da el precio exacto cuando el lead pregunta?',opts:['Porque no tiene la información','Para proteger la información de la clínica','Para llevar al lead a una consulta presencial donde el especialista pueda personalizar','Porque los precios cambian constantemente'],ans:2},
-      {q:'¿Cuántas objeciones principales cubre el agente en el 70% de conversaciones?',opts:['Una','Dos','Tres','Cinco'],ans:2},
-      {q:'¿Qué hace el agente cuando el lead dice "voy a pensarlo"?',opts:['Termina la conversación','Ofrece un descuento','Pregunta qué genera la duda y propone una fecha concreta','Espera a que el lead vuelva a escribir'],ans:2}
-     ]}
-   ],
-   resources:[{i:'💬',t:'Scripts del Agente',s:'Google Docs'},{i:'🤖',t:'Protocolo de Escalada',s:'PDF'}]
-  },
-  {id:4,em:'📈',col:'#F59E0B',locked:true,
-   title:'Retención de Pacientes',
-   desc:'Cómo el sistema reactiva pacientes inactivos y construye el activo más valioso de la clínica.',
-   dur:'35 min',cnt:3,
-   lessons:[
-    {title:'Por qué la retención multiplica el ROI',dur:'12 min',
-     body:`<h3>El negocio real está en la segunda cita</h3><p>Conseguir un paciente nuevo tiene un costo: CPL, gestión de la cita, tiempo del especialista en la primera consulta. Hacer que ese mismo paciente regrese tiene un costo casi cero — y genera el mismo o mayor valor.</p><p>Una clínica que retiene el 60% de sus pacientes activos puede reducir su dependencia de publicidad pagada en un 40% después del primer año.</p><div class="highlight">El sistema incluye automatizaciones de reactivación. <strong>Pero funcionan mejor cuando la clínica tiene también un protocolo interno de seguimiento post-tratamiento.</strong> Eso es lo que debes incentivar como asesor.</div>`,
-     quiz:[
-      {q:'¿En qué porcentaje puede reducirse la dependencia de publicidad con 60% de retención?',opts:['10%','20%','40%','60%'],ans:2},
-      {q:'¿Cuál es el costo de hacer que un paciente existente regrese vs uno nuevo?',opts:['Es igual','Es mayor que uno nuevo','Es casi cero','Es el doble'],ans:1},
-      {q:'¿Qué debe incentivar el asesor además de las automatizaciones de retención?',opts:['Mayor inversión en publicidad','Un protocolo interno de seguimiento post-tratamiento','Más redes sociales','Reducir precios'],ans:1}
-     ]},
-    {title:'Automatizaciones de reactivación en el CRM',dur:'12 min',
-     body:`<h3>El paciente que no ha vuelto en 60 días</h3><p>El CRM detecta automáticamente cuando un paciente activo lleva más de 60 días sin agendar una cita. En ese momento activa una secuencia de tres mensajes espaciados en 7 días:</p><ul><li>Mensaje 1: recordatorio del último tratamiento + pregunta de bienestar</li><li>Mensaje 2: oferta de consulta de seguimiento gratuita</li><li>Mensaje 3: recordatorio final con propuesta de fecha concreta</li></ul><div class="highlight">Esta secuencia recupera en promedio <strong>el 18% de pacientes inactivos.</strong> Para una clínica con 200 pacientes activos, eso son 36 citas adicionales por ciclo — sin ningún peso adicional en pauta.</div>`,
-     quiz:[
-      {q:'¿Después de cuántos días sin cita se activa la secuencia de reactivación?',opts:['30 días','45 días','60 días','90 días'],ans:2},
-      {q:'¿Cuántos mensajes tiene la secuencia de reactivación?',opts:['Uno','Dos','Tres','Cinco'],ans:2},
-      {q:'¿Qué porcentaje de pacientes inactivos recupera esta secuencia en promedio?',opts:['5%','12%','18%','30%'],ans:2}
-     ]},
-    {title:'Construir la base de pacientes leales',dur:'11 min',
-     body:`<h3>El activo más valioso de la clínica</h3><p>Una base de datos de pacientes activos y bien gestionada es el activo más valioso que tiene una clínica. Vale más que el equipamiento, el local y la marca juntos — porque genera ingresos directamente y sin costo de adquisición.</p><p>Las clínicas que más crecen no son las que invierten más en publicidad. Son las que combinan una captación constante con una retención estructurada.</p><div class="highlight">La meta a 24 meses no es gastar más en pauta. <strong>Es que el 50% de los ingresos venga de pacientes que regresan.</strong> Cuando eso ocurre, el negocio se vuelve predecible y escalable.</div>`,
-     quiz:[
-      {q:'¿Cuál es la meta de retención a 24 meses para el ingreso de la clínica?',opts:['20% de ingresos por pacientes que regresan','35% de ingresos por pacientes que regresan','50% de ingresos por pacientes que regresan','80% de ingresos por pacientes que regresan'],ans:2},
-      {q:'¿Qué diferencia a las clínicas que más crecen?',opts:['Mayor inversión en equipamiento','Precios más competitivos','Combinan captación constante con retención estructurada','Mayor número de especialistas'],ans:2},
-      {q:'¿Cuándo el negocio de la clínica se vuelve predecible?',opts:['Desde el primer mes','Cuando el 50% de ingresos viene de pacientes que regresan','Cuando tienen 100 leads por mes','Cuando reducen el CPL'],ans:1}
-     ]}
-   ],
-   resources:[{i:'📈',t:'Estrategia de Retención',s:'PDF'},{i:'📅',t:'Calendario de Contenido',s:'Notion 30 días'}]
-  },
-  {id:5,em:'💎',col:'#6366F1',locked:true,
-   title:'Escalado sin Caos',
-   desc:'Cuándo escalar, cómo hacerlo sin romper el sistema, y la visión a 24 meses.',
-   dur:'40 min',cnt:4,
-   lessons:[
-    {title:'Señales de que el cliente está listo para escalar',dur:'10 min',
-     body:`<h3>Escalar antes de tiempo es el error más caro</h3><p>Muchos clientes quieren escalar el presupuesto de publicidad después del primer mes con buenos resultados. Casi siempre es prematuro. El algoritmo necesita al menos 90 días para optimizarse correctamente.</p><p>Las tres señales que indican que el cliente está listo para escalar:</p><ul><li>CPL estable por 30 días consecutivos</li><li>Tasa de asistencia sobre el 70%</li><li>Capacidad operativa en la clínica para absorber más pacientes</li></ul><div class="highlight">Escalar sin capacidad operativa genera malas experiencias que destruyen la retención. <strong>Primero estabiliza. Luego escala. Siempre en ese orden.</strong></div>`,
-     quiz:[
-      {q:'¿Cuántos días necesita el algoritmo para optimizarse correctamente?',opts:['15 días','30 días','60 días','90 días'],ans:3},
-      {q:'¿Cuál NO es una señal de que el cliente está listo para escalar?',opts:['CPL estable por 30 días','Tasa de asistencia sobre 70%','Capacidad operativa disponible','Muchos likes en redes sociales'],ans:3},
-      {q:'¿Qué ocurre cuando se escala sin capacidad operativa?',opts:['El sistema mejora más rápido','Se generan malas experiencias que destruyen la retención','Baja el CPL','El agente IA trabaja más eficiente'],ans:1}
-     ]},
-    {title:'La regla del 20%: cómo escalar el presupuesto',dur:'10 min',
-     body:`<h3>Sin romper el algoritmo</h3><p>Aumentar el presupuesto de una campaña de forma abrupta reinicia el aprendizaje del algoritmo. La regla general es no subir más del 20% del presupuesto actual por semana.</p><p>Si el cliente invierte $600,000 COP a la semana en pauta, el siguiente paso es $720,000. El siguiente, $864,000. Escalonado y controlado.</p><div class="highlight">El equipo técnico gestiona estas decisiones. <strong>Pero entender la regla del 20% te ayuda como asesor a no crear expectativas incorrectas</strong> sobre la velocidad del escalado.</div>`,
-     quiz:[
-      {q:'¿Cuánto se puede aumentar el presupuesto máximo por semana sin reiniciar el algoritmo?',opts:['10%','20%','50%','100%'],ans:1},
-      {q:'Si el cliente invierte $600,000 COP por semana, ¿cuál es el siguiente paso correcto?',opts:['$650,000 COP','$720,000 COP','$900,000 COP','$1,200,000 COP'],ans:1},
-      {q:'¿Por qué el asesor debe entender la regla del 20%?',opts:['Para poder aplicarla directamente','Para no crear expectativas incorrectas sobre la velocidad del escalado','Para negociar mejores precios','No necesita saberla'],ans:1}
-     ]},
-    {title:'Expandir a nuevos servicios o ciudades',dur:'10 min',
-     body:`<h3>Expansión vertical vs. horizontal</h3><p>Hay dos formas de crecer: profundizar en lo que ya funciona (más inversión, más pacientes del mismo tipo) o ampliar (nuevos servicios, nueva ciudad, nueva clínica).</p><p>La expansión vertical — más inversión en lo que ya funciona — es casi siempre más rentable que la horizontal en los primeros dos años. Cada nuevo servicio o ciudad requiere un ciclo de aprendizaje completo.</p><div class="highlight">No expandas hasta que el sistema actual genere un ROI superior a 3x. <strong>Expandirse desde la escasez multiplica los problemas, no los ingresos.</strong></div>`,
-     quiz:[
-      {q:'¿Qué es la expansión vertical en este contexto?',opts:['Abrir una nueva ciudad','Agregar nuevos servicios','Más inversión en lo que ya funciona','Contratar más personal'],ans:2},
-      {q:'¿Cuál tipo de expansión es más rentable en los primeros dos años?',opts:['Horizontal (nuevos servicios o ciudades)','Vertical (más inversión en lo que funciona)','Ambas son iguales','Depende completamente del caso'],ans:1},
-      {q:'¿Con qué ROI mínimo se recomienda considerar la expansión?',opts:['1.5x','2x','3x','5x'],ans:2}
-     ]},
-    {title:'El sistema a 24 meses: la visión completa',dur:'10 min',
-     body:`<h3>La clínica que no depende del azar</h3><p>A 24 meses de implementación correcta, el sistema debería verse así: Meta Ads genera leads con CPL estable, el agente IA agenda sin intervención manual, el CRM hace el seguimiento automático, y el 50% de los ingresos viene de pacientes que regresan.</p><p>En ese punto el negocio es predecible. El cliente sabe cuánto invierte y cuánto recibe. Puede proyectar, planear y crecer de forma consciente.</p><div class="highlight">Ese es el negocio que construyes junto al cliente. <strong>No una campaña de publicidad. Un sistema de adquisición y retención que funciona solo.</strong> Esa es la promesa del sistema.</div>`,
-     quiz:[
-      {q:'¿Cuál es la meta de retención a 24 meses según la visión del sistema?',opts:['20% ingresos recurrentes','35% ingresos recurrentes','50% ingresos recurrentes','70% ingresos recurrentes'],ans:2},
-      {q:'¿Qué significa que el negocio sea "predecible"?',opts:['Que el CPL sea siempre igual','Que el cliente sepa cuánto invierte y cuánto recibirá a cambio','Que no hayan cambios en el sistema','Que los leads lleguen a la misma hora'],ans:1},
-      {q:'¿Cuál es la promesa real del sistema según el módulo de escalado?',opts:['Una campaña de publicidad de alta conversión','Un agente IA para WhatsApp','Un sistema de adquisición y retención que funciona solo','El CRM más completo del mercado'],ans:2}
-     ]}
-   ],
-   resources:[{i:'💎',t:'Guía de Escalado',s:'PDF 15 páginas'},{i:'📊',t:'Proyección 24 meses',s:'Google Sheets'}]
-  }
-];
-
-// ══════════════════════════════════
-// STATE
-// ══════════════════════════════════
-let storeKey = () => 'pu_' + (currentUser?.username||'x');
-let getCompleted = () => JSON.parse(localStorage.getItem(storeKey()+'_c') || '[]');
-let getWatched   = () => JSON.parse(localStorage.getItem(storeKey()+'_w') || '[]');
-let getPassed    = () => JSON.parse(localStorage.getItem(storeKey()+'_q') || '[]');
-let saveCompleted= (d) => localStorage.setItem(storeKey()+'_c', JSON.stringify(d));
-let saveWatched  = (d) => localStorage.setItem(storeKey()+'_w', JSON.stringify(d));
-let savePassed   = (d) => localStorage.setItem(storeKey()+'_q', JSON.stringify(d));
-
-let curMod=0, curLes=0;
-let quizAnswers={}, quizDone=false;
-
-function lk(m,l){return m+'-'+l}
-
-// ══════════════════════════════════
-// INIT APP
-// ══════════════════════════════════
-function initApp(){
-  const u = currentUser;
-  document.getElementById('sbAv').textContent = u.name[0].toUpperCase();
-  document.getElementById('sbName').textContent = u.name;
-  document.getElementById('sbRole').textContent = u.role;
-  renderDash();
-  updateProgress();
-  goView('dash');
-}
-
+// ════════════════════════════════════════════
+// PROGRESS
+// ════════════════════════════════════════════
 function updateProgress(){
-  const comp = getCompleted();
-  const total = MODS.reduce((s,m)=>s+m.lessons.length,0);
-  const done = comp.length;
-  const pct = Math.round(done/total*100);
-  document.getElementById('progPct').textContent = pct+'%';
-  document.getElementById('progFill').style.width = pct+'%';
-  document.getElementById('st1').textContent = done;
-  document.getElementById('st3').textContent = pct+'%';
-  // Badges
+  const comp=getCompleted();
+  const total=MODS.reduce((a,m)=>a+m.lessons.length,0);
+  const done=comp.length;
+  const pct=total>0?Math.round(done/total*100):0;
+  document.getElementById('progPct').textContent=pct+'%';
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('st1').textContent=done;
+  document.getElementById('st3').textContent=pct+'%';
+  // Update module badges
   MODS.forEach((m,i)=>{
-    const bd=document.getElementById('b'+i);
-    if(!bd) return;
-    const d=m.lessons.filter((_,j)=>comp.includes(lk(i,j))).length;
-    if(m.locked){bd.textContent='🔒';bd.className='sb-badge bd-lock';}
-    else if(d===m.lessons.length){bd.textContent='✓';bd.className='sb-badge bd-done';}
-    else if(d>0){bd.textContent=d+'/'+m.lessons.length;bd.className='sb-badge bd-go';}
-    else{bd.textContent='Inicio';bd.className='sb-badge bd-go';}
+    const mDone=m.lessons.filter((_,j)=>comp.includes(lk(i,j))).length;
+    const badge=document.getElementById('b'+i);
+    if(badge){
+      if(mDone===m.lessons.length){badge.textContent='✓';badge.className='sb-badge bd-done';}
+      else if(mDone>0){badge.textContent=mDone+'/'+m.lessons.length;badge.className='sb-badge bd-go';}
+      else if(i===0||!m.locked){badge.textContent='Inicio';badge.className='sb-badge bd-go';}
+      else{badge.textContent='🔒';badge.className='sb-badge bd-lock';}
+    }
+    // Unlock next module logic
+    if(i>0){
+      const prevComp=MODS[i-1].lessons.filter((_,j)=>comp.includes(lk(i-1,j))).length;
+      if(prevComp===MODS[i-1].lessons.length) MODS[i].locked=false;
+    }
   });
 }
 
-// ══════════════════════════════════
+// ════════════════════════════════════════════
 // VIEWS
-// ══════════════════════════════════
-function goView(name){
-  ['dash','mod','les','lib'].forEach(v=>{
-    const el=document.getElementById('v-'+v);
-    if(el) el.style.display=v===name?'block':'none';
-  });
-  const titles={dash:'Dashboard',mod:'Módulo',les:'Lección',lib:'Biblioteca'};
-  document.getElementById('crumbT').textContent=titles[name]||name;
-  // Sidebar active
+// ════════════════════════════════════════════
+function goView(id){
+  ['dash','mod','les','lib'].forEach(v=>document.getElementById('v-'+v).style.display='none');
+  document.getElementById('v-'+id).style.display='block';
   document.querySelectorAll('.sb-item').forEach(el=>el.classList.remove('active'));
-  if(name==='dash') document.querySelectorAll('.sb-item')[0].classList.add('active');
-  if(name==='lib'){const items=document.querySelectorAll('.sb-item');items[items.length-1].classList.add('active');}
-  if(window.innerWidth<=768) document.getElementById('sidebar').classList.remove('open');
+  if(id==='dash'){
+    document.querySelectorAll('.sb-item')[0].classList.add('active');
+    document.getElementById('crumbT').textContent='Dashboard';
+  }
+  document.getElementById('content').scrollTop=0;
+  if(document.getElementById('sidebar').classList.contains('open')) toggleSB();
 }
 
-// ══════════════════════════════════
-// DASHBOARD
-// ══════════════════════════════════
 function renderDash(){
   const comp=getCompleted();
   const grid=document.getElementById('modsGrid');
   grid.innerHTML='';
   MODS.forEach((m,i)=>{
-    const done=m.lessons.filter((_,j)=>comp.includes(lk(i,j))).length;
-    const pct=Math.round(done/m.lessons.length*100);
-    const st=m.locked?'Bloqueado':done===m.lessons.length?'Completado':done>0?'En progreso':'Comenzar';
-    const sc=m.locked?'ms-lock':done===m.lessons.length?'ms-done':'ms-prog';
-    grid.innerHTML+=`<div class="mod-card${m.locked?' locked':''}" onclick="${m.locked?'showLock()':'goMod('+i+')'}">
-      <div class="mod-accent" style="background:${m.col}"></div>
-      <div class="mod-head">
-        <div class="mod-icon" style="background:${m.col}20">${m.em}</div>
-        <div class="mod-status ${sc}">${st}</div>
-      </div>
-      <div class="mod-title">Módulo ${i+1}: ${m.title}</div>
-      <div class="mod-desc">${m.desc}</div>
-      <div class="mod-meta"><span>📚 ${m.cnt} lecciones</span><span>⏱ ${m.dur}</span></div>
-      <div class="mod-prog"><div class="mod-prog-fill" style="width:${pct}%;background:${m.col}"></div></div>
+    const mDone=m.lessons.filter((_,j)=>comp.includes(lk(i,j))).length;
+    const pct=Math.round(mDone/m.lessons.length*100);
+    const locked=m.locked&&i>0&&mDone===0;
+    grid.innerHTML+=`<div class="mod-card${locked?' mod-card-lock':''}" onclick="${locked?'showLock()':'goMod('+i+')'}">
+      <div class="mc-eye">Módulo ${i+1} · ${m.dur}</div>
+      <div class="mc-icon">${m.icon}</div>
+      <div class="mc-title">${m.title}</div>
+      <div class="mc-sub">${m.sub}</div>
+      <div class="mc-bar"><div class="mc-fill" style="width:${pct}%"></div></div>
+      <div class="mc-meta"><span>${mDone}/${m.lessons.length} lecciones</span><span>${pct}%</span></div>
     </div>`;
   });
-  // Next card
+  // Next lesson card
   const nc=document.getElementById('nextCard');
-  let found=false;
   for(let i=0;i<MODS.length;i++){
     if(MODS[i].locked) continue;
     for(let j=0;j<MODS[i].lessons.length;j++){
       if(!comp.includes(lk(i,j))){
-        const l=MODS[i].lessons[j];
-        nc.innerHTML=`<div class="les-item" style="background:var(--navy2);border:1px solid var(--border);padding:14px 16px;cursor:pointer" onclick="goLesson(${i},${j})">
-          <div class="li-n" style="background:${MODS[i].col}20;color:${MODS[i].col}">${MODS[i].em}</div>
-          <div class="li-info"><div class="li-t" style="font-size:13px">Módulo ${i+1} · ${l.title}</div><div class="li-d">${l.dur} · ${MODS[i].title}</div></div>
-          <button class="btn-sm btn-cyan" style="font-size:11px">Iniciar →</button></div>`;
-        found=true;break;
+        nc.innerHTML=`<div class="next-card" onclick="goLesson(${i},${j})">
+          <div class="nc-icon">${MODS[i].icon}</div>
+          <div class="nc-info">
+            <div class="nc-tag">Módulo ${i+1} · Lección ${j+1}</div>
+            <div class="nc-title">${MODS[i].lessons[j].title}</div>
+            <div class="nc-dur">${MODS[i].lessons[j].dur}</div>
+          </div>
+          <div class="nc-arr">→</div>
+        </div>`;
+        return;
       }
     }
-    if(found) break;
   }
-  if(!found) nc.innerHTML=`<div style="background:var(--navy2);border:1px solid var(--green);border-radius:12px;padding:16px 18px;color:var(--green);font-family:var(--f1);font-weight:700;font-size:13px">🎉 ¡Completaste todos los módulos del programa!</div>`;
+  nc.innerHTML='<div style="color:var(--green);font-weight:600;padding:14px;background:var(--green-dim);border-radius:10px;font-size:13px">🎉 ¡Completaste toda la Academia! Estás listo para vender el sistema.</div>';
 }
 
-// ══════════════════════════════════
-// MODULE
-// ══════════════════════════════════
 function goMod(idx){
-  curMod=idx;
+  if(MODS[idx].locked){showLock();return;}
   const m=MODS[idx];
-  if(m.locked){showLock();return;}
-  document.getElementById('mEye').textContent=`Módulo ${idx+1} · ${m.title}`;
-  document.getElementById('mTitle').textContent=m.title;
+  const comp=getCompleted();
+  document.getElementById('mEye').textContent='Módulo '+(idx+1)+' · '+m.dur;
+  document.getElementById('mTitle').textContent=m.title+' — '+m.sub;
   document.getElementById('mLes').textContent=m.lessons.length+' lecciones';
   document.getElementById('mDur').textContent=m.dur;
-  const comp=getCompleted();
   const list=document.getElementById('lesList');
   list.innerHTML='';
   m.lessons.forEach((l,j)=>{
@@ -939,7 +1055,7 @@ function goMod(idx){
   document.getElementById('crumbT').textContent='Módulo '+(idx+1);
   const items=document.querySelectorAll('.sb-item');
   items.forEach(el=>el.classList.remove('active'));
-  if(items[idx+1]) items[idx+1].classList.add('active');
+  if(items[idx+2]) items[idx+2].classList.add('active');
 }
 
 function modTab(n,el){
@@ -949,61 +1065,53 @@ function modTab(n,el){
   el.classList.add('active');
 }
 
-// ══════════════════════════════════
-// LESSON
-// ══════════════════════════════════
 function goLesson(mi,li){
   curMod=mi; curLes=li;
   quizAnswers={}; quizDone=false;
   const m=MODS[mi]; const l=m.lessons[li];
-  document.getElementById('lEye').textContent=`Módulo ${mi+1} · ${m.title}`;
+  document.getElementById('lEye').textContent='Módulo '+(mi+1)+' · '+m.title;
   document.getElementById('lTitle').textContent=l.title;
   document.getElementById('lDur').textContent=l.dur;
-  document.getElementById('lPos').textContent=`${li+1}/${m.lessons.length}`;
+  document.getElementById('lPos').textContent=(li+1)+'/'+m.lessons.length;
   document.getElementById('vidLabel').textContent=l.title;
   document.getElementById('lBody').innerHTML=l.body||'';
-
-  // Video state
   const watched=getWatched();
   const wk=lk(mi,li);
-  const wd=document.getElementById('vidDone');
-  wd.style.display=watched.includes(wk)?'block':'none';
-
-  // Quiz
+  document.getElementById('vidDone').style.display=watched.includes(wk)?'block':'none';
   renderQuiz(l.quiz, mi, li);
-
-  // Nav buttons
   document.getElementById('btnPrev').disabled=(mi===0&&li===0);
   updateNextBtn();
-
   goView('les');
   document.getElementById('crumbT').textContent=l.title.length>32?l.title.slice(0,32)+'…':l.title;
+  const items=document.querySelectorAll('.sb-item');
+  items.forEach(el=>el.classList.remove('active'));
+  if(items[mi+2]) items[mi+2].classList.add('active');
 }
 
 function watchVideo(){
   const wk=lk(curMod,curLes);
   const watched=getWatched();
-  if(!watched.includes(wk)){
-    watched.push(wk);
-    saveWatched(watched);
-  }
+  if(!watched.includes(wk)){watched.push(wk);saveWatched(watched);}
   document.getElementById('vidDone').style.display='block';
   toast('Video marcado como visto ✓');
 }
 
+// ════════════════════════════════════════════
+// QUIZ
+// ════════════════════════════════════════════
 function renderQuiz(qs, mi, li){
   const passed=getPassed();
   const qk=lk(mi,li);
-  const isAlreadyPassed=passed.includes(qk);
+  const done=passed.includes(qk);
   const wrap=document.getElementById('quizQuestions');
   wrap.innerHTML='';
   qs.forEach((q,qi)=>{
     let optsHtml='';
     q.opts.forEach((o,oi)=>{
       let cls='q-opt';
-      if(isAlreadyPassed) cls+=(oi===q.ans?' correct':'');
-      optsHtml+=`<div class="${cls}" id="q${qi}o${oi}" onclick="selectOpt(${qi},${oi},${q.ans},${isAlreadyPassed})">
-        <div class="q-radio">${oi===q.ans&&isAlreadyPassed?'✓':''}</div>
+      if(done) cls+=(oi===q.ans?' correct':'');
+      optsHtml+=`<div class="${cls}" id="q${qi}o${oi}" onclick="selectOpt(${qi},${oi},${q.ans},${done})">
+        <div class="q-radio">${oi===q.ans&&done?'✓':''}</div>
         <div class="q-opt-text">${o}</div>
       </div>`;
     });
@@ -1012,59 +1120,39 @@ function renderQuiz(qs, mi, li){
   const res=document.getElementById('quizResult');
   const score=document.getElementById('quizScore');
   const btnQ=document.getElementById('btnQuiz');
-  if(isAlreadyPassed){
-    res.style.display='block';
-    res.className='quiz-result pass';
+  if(done){
+    res.style.display='block';res.className='quiz-result pass';
     res.textContent='✓ Quiz completado. Puedes continuar a la siguiente lección.';
-    score.innerHTML='';
-    btnQ.style.display='none';
-    quizDone=true;
+    score.innerHTML='';btnQ.style.display='none';quizDone=true;
   } else {
-    res.style.display='none';
-    res.className='quiz-result';
-    score.innerHTML='';
-    btnQ.style.display='block';
-    btnQ.textContent='Verificar respuestas';
-    quizDone=false;
+    res.style.display='none';res.className='quiz-result';
+    score.innerHTML='';btnQ.style.display='block';btnQ.textContent='Verificar respuestas';quizDone=false;
   }
   updateNextBtn();
 }
 
 function selectOpt(qi,oi,ans,disabled){
   if(disabled||quizDone) return;
-  // Deselect others in same question
-  for(let k=0;k<4;k++){
-    const el=document.getElementById('q'+qi+'o'+k);
-    if(el) el.classList.remove('selected');
-  }
+  for(let k=0;k<4;k++){const el=document.getElementById('q'+qi+'o'+k);if(el)el.classList.remove('selected');}
   document.getElementById('q'+qi+'o'+oi).classList.add('selected');
   quizAnswers[qi]=oi;
 }
 
 function submitQuiz(){
-  const m=MODS[curMod]; const l=m.lessons[curLes];
-  const qs=l.quiz;
-  const total=qs.length;
-  const needed=Math.ceil(total*0.66);
-  let correct=0;
-  // Validate all answered
+  const m=MODS[curMod];const l=m.lessons[curLes];const qs=l.quiz;
+  const total=qs.length;const needed=Math.ceil(total*0.66);
   for(let qi=0;qi<total;qi++){
-    if(quizAnswers[qi]===undefined){
-      toast('⚠ Responde todas las preguntas primero','warn');
-      return;
-    }
+    if(quizAnswers[qi]===undefined){toast('⚠ Responde todas las preguntas primero','warn');return;}
   }
-  // Show results
+  let correct=0;
   qs.forEach((q,qi)=>{
-    const sel=quizAnswers[qi];
-    const isRight=(sel===q.ans);
+    const sel=quizAnswers[qi];const isRight=(sel===q.ans);
     if(isRight) correct++;
     for(let oi=0;oi<q.opts.length;oi++){
-      const el=document.getElementById('q'+qi+'o'+oi);
-      if(!el) continue;
+      const el=document.getElementById('q'+qi+'o'+oi);if(!el)continue;
       el.classList.remove('selected','correct','wrong');
       if(oi===q.ans) el.classList.add('correct');
-      else if(oi===sel && !isRight) el.classList.add('wrong');
+      else if(oi===sel&&!isRight) el.classList.add('wrong');
       const radio=el.querySelector('.q-radio');
       if(radio) radio.textContent=(oi===q.ans)?'✓':'';
     }
@@ -1078,26 +1166,22 @@ function submitQuiz(){
   if(passed){
     res.className='quiz-result pass';
     res.textContent='✓ ¡Aprobado! Lección completada. Puedes continuar.';
-    btnQ.textContent='Intenta de nuevo';
-    btnQ.style.display='none';
-    quizDone=true;
-    // Save passed
-    const pa=getPassed();
-    const qk=lk(curMod,curLes);
+    btnQ.style.display='none';quizDone=true;
+    const pa=getPassed();const qk=lk(curMod,curLes);
     if(!pa.includes(qk)){pa.push(qk);savePassed(pa);}
-    // Save completed
     const comp=getCompleted();
     if(!comp.includes(qk)){comp.push(qk);saveCompleted(comp);}
-    updateProgress();
-    renderDash();
+    updateProgress();renderDash();
     toast('🎉 Lección completada');
   } else {
     res.className='quiz-result fail';
     res.textContent=`✗ Necesitas al menos ${needed} correctas. Obtuviste ${correct}/${total}. Revisa el contenido e intenta de nuevo.`;
     btnQ.textContent='Intentar de nuevo';
-    btnQ.onclick=()=>{quizAnswers={};quizDone=false;res.style.display='none';score.innerHTML='';
+    btnQ.onclick=()=>{
+      quizAnswers={};quizDone=false;res.style.display='none';score.innerHTML='';
       document.querySelectorAll('.q-opt').forEach(el=>el.classList.remove('selected','correct','wrong'));
       document.querySelectorAll('.q-radio').forEach(el=>el.textContent='');
+      btnQ.onclick=submitQuiz;
     };
     toast('Revisa el contenido e intenta de nuevo','warn');
   }
@@ -1105,9 +1189,7 @@ function submitQuiz(){
 }
 
 function updateNextBtn(){
-  const passed=getPassed();
-  const qk=lk(curMod,curLes);
-  const ok=passed.includes(qk);
+  const passed=getPassed();const qk=lk(curMod,curLes);const ok=passed.includes(qk);
   const btn=document.getElementById('btnNext');
   const m=MODS[curMod];
   const isLast=(curMod===MODS.length-1&&curLes===m.lessons.length-1);
@@ -1117,11 +1199,7 @@ function updateNextBtn(){
 }
 
 function nextLes(){
-  const passed=getPassed();
-  if(!passed.includes(lk(curMod,curLes))){
-    toast('⚠ Debes completar el quiz para avanzar','warn');
-    return;
-  }
+  if(!getPassed().includes(lk(curMod,curLes))){toast('⚠ Debes completar el quiz para avanzar','warn');return;}
   const m=MODS[curMod];
   if(curLes<m.lessons.length-1){goLesson(curMod,curLes+1);}
   else{
@@ -1134,11 +1212,7 @@ function nextLes(){
 
 function prevLes(){
   if(curLes>0) goLesson(curMod,curLes-1);
-  else if(curMod>0){
-    let pm=curMod-1;
-    while(pm>0&&MODS[pm].locked) pm--;
-    goLesson(pm,MODS[pm].lessons.length-1);
-  }
+  else if(curMod>0){let pm=curMod-1;while(pm>0&&MODS[pm].locked)pm--;goLesson(pm,MODS[pm].lessons.length-1);}
 }
 
 function goContinue(){
